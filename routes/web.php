@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index', ['pageTitle' => 'Intranet SAIN']);
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index', ['pageTitle' => 'Intranet SAIN'])->name('home');
