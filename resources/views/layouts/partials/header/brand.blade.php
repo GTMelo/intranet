@@ -1,4 +1,4 @@
-<nav id="header-brand">
+<div id="header-brand">
     <a href="/">
         <svg class="d-inline-block align-top" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="54" height="41" viewBox="0 0 241 181">
             <path id="a3" d="M142 143.9c-21-10.8-37.3-23.4-50-38.6C77.3 87.6 67.2 69.3 61.8 50.8c-0.5-1.7-1.2-4.4-1.8-7.3C52.5 53.3 47.6 64.4 45.4 75.9c4.3 19.3 18 37.8 38.2 44.7l-10.2 30.4c27.3 21.4 65.6 21.7 93.2 0.8 -0.4 0-0.7-0.1-1.1-0.1C158.5 150.7 149 147.5 142 143.9z"/>
@@ -8,4 +8,4 @@
         </svg>
         <span>IntraSAIN</span>
     </a>
-</nav>
+</div>

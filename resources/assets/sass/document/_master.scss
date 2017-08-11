@@ -1,0 +1,26 @@
+.reset{
+  all: initial;
+  * {
+    all: unset;
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  flex: 1;
+  *::selection {
+    background: #0C3455;
+    color: white;
+  }
+}
+
+main{
+  flex: 1;
+}

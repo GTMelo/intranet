@@ -1,3 +1,8 @@
 // Bulma
 @import "node_modules/bulma/bulma";
 
+@import "common/colors";
+
+@import "partials/header";
+@import "partials/footer";
+@import "document/master";
