@@ -1,3 +1,32 @@
 footer[role="document-footer"]{
-  background-color: $azul-sain;
+  color: white;
+  background-color: darken($color-main, 15%);
+  padding: 1rem;
+  & > div{
+    @extend .level;
+  }
+}
+
+#footer-enderecos{
+  & > div{
+    @extend .level-item;
+    flex-direction: column;
+    font-weight: 300;
+    font-size: 0.8rem;
+    & p:first-child{
+      @extend .is-flex;
+      align-items: center;
+      font-weight: normal;
+      font-size: 1.2rem;
+      i{
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+#copyright {
+  @extend .level-item;
+  font-weight: 300;
+  font-size: small;
 }
