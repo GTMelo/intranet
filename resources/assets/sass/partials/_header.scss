@@ -1,8 +1,18 @@
 header[role="document-header"]{
+  @extend .level;
   height: 60px;
-  background-color: $azul-sain;
+  background-color: $color-main;
+  padding: 0 1rem;
+  & > nav, & > nav > div{
+    height: 100%;
+  }
 }
 
 #header-brand{
-  background-color: red;
+  @extend .is-flex;
+  align-items: center;
+  svg{
+    fill: white;
+    margin-right: 0.5rem;
+  }
 }

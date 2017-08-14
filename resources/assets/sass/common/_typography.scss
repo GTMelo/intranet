@@ -1,0 +1,82 @@
+@font-face {
+  font-family: OpenSansLocal;
+  src: url('../../fonts/opensans/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: OpenSansLocal;
+  src: url('../../fonts/opensans/OpenSans-Italic.ttf');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: OpenSansLocal;
+  src: url('../../fonts/opensans/OpenSans-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: OpenSansLocal;
+  src: url('../../fonts/opensans/OpenSans-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: OpenSansLocal;
+  src: url('../../fonts/opensans/OpenSans-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: OpenSansLocal;
+  src: url('../../fonts/opensans/OpenSans-LightItalic.ttf');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: FjallaoneLocal;
+  src: url('../../fonts/fjallaone/FjallaOne-Regular.ttf');
+}
+
+@font-face {
+  font-family: AverageRegularLocal;
+  src: url('../../fonts/average/Average-Regular.ttf');
+}
+
+$font_heading: 'FjallaoneLocal', 'arial black', 'sans-serif';
+$font_subheading: 'OpenSansLocal';
+$font_copy: 'AverageRegularLocal', 'times new roman', 'serif';
+$font_base: 'OpenSansLocal';
+
+
+/*! Typebase.scss v0.1.0 | MIT License */
+
+// Typesetting variables. Edit these!
+$baseFontSize: 22; // in pixels. This would result in 22px on desktop
+$baseLineHeight: 1.5; // how large the line height is as a multiple of font size
+$leading: $baseLineHeight * 1rem;
+// Rate of growth for headings
+// I actually like this to be slightly smaller then the leading. Makes for tight headings.
+$scale: 1.414;
+
+/* Setup */
+
+html {
+  /* Change default typefaces here */
+  font-family: $font_base;
+  font-size: $baseFontSize / 16 * 100%;
+
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: auto;
+  -moz-text-size-adjust: auto;
+  -ms-text-size-adjust: auto;
+  -o-text-size-adjust: auto;
+  text-size-adjust: auto;
+
+}
+
+* {
+  font-family: $font_base;
+}
