@@ -1,0 +1,6 @@
+@mixin smoothTransition($property:background-color, $duration:0.2, $timing-function:linear, $delay:0) {
+  -webkit-transition: #{$property} #{$duration}s #{$timing-function} #{$delay}s;
+  -moz-transition: #{$property} #{$duration}s #{$timing-function} #{$delay}s;
+  -o-transition: #{$property} #{$duration}s #{$timing-function} #{$delay}s;
+  transition: #{$property} #{$duration}s #{$timing-function} #{$delay}s;
+}
