@@ -1,7 +1,7 @@
 %contrast-bg-hover{
   @include smoothTransition();
   &:hover{
-    background-color: $amarelo-sain;
+    background-color: $color-highlight;
     *{
       @include smoothTransition(color fill);
     }
