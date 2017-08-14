@@ -5,6 +5,9 @@ footer[role="document-footer"]{
   & > div{
     @extend .level;
   }
+  svg{
+    fill: darken($color-main, 17%);
+  }
 }
 
 #footer-enderecos{
