@@ -3,6 +3,7 @@ header[role="document-header"]{
   height: 60px;
   background-color: $color-main;
   padding: 0 1rem;
+  color: white;
   & > nav{
     height: 100%;
   }
@@ -16,6 +17,7 @@ header[role="document-header"]{
 #header-brand{
   @extend .is-flex;
   align-items: center;
+  font-size: 1.3rem;
   svg{
     fill: white;
     margin-right: 0.5rem;

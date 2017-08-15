@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <main>
+    <main class="container">
         <p>Content!</p>
     </main>
 @endsection

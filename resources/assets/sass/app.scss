@@ -1,14 +1,17 @@
-// Bulma
-@import "node_modules/bulma/bulma";
+@import "common/colors";
+@import "common/typography";
+@import "common/mixins";
+@import "common/_placeholders";
 
 //font-awesome
 $fa-font-path: "../../../node_modules/font-awesome/fonts" !default;
 @import 'node_modules/font-awesome/scss/font-awesome';
 
-@import "common/colors";
-@import "common/typography";
-@import "common/mixins";
-@import "common/_placeholders";
+// Bulma
+$dropdown-content-radius: 0;
+$dropdown-item-active-color: black;
+$dropdown-item-active-background-color: $amarelo-sain;
+@import "node_modules/bulma/bulma";
 
 @import "partials/header";
 @import "partials/footer";

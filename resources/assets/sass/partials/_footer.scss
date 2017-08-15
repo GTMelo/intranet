@@ -6,7 +6,7 @@ footer[role="document-footer"]{
     @extend .level;
   }
   svg{
-    fill: darken($color-main, 17%);
+    fill: lighten($color-main, 1%);
   }
 }
 
@@ -15,14 +15,14 @@ footer[role="document-footer"]{
     @extend .level-item;
     flex-direction: column;
     font-weight: 300;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     & p:first-child{
       @extend .is-flex;
       align-items: center;
       font-weight: normal;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       i{
-        font-size: 0.8rem;
+        //font-size: 1.2rem;
       }
     }
   }
