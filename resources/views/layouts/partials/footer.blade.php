@@ -1,5 +1,5 @@
 <footer role="document-footer">
-    <div id="footer-enderecos">
+    <div id="footer-enderecos" class="container">
         <div class="level-item">
             <p>SAIN SEDE &nbsp; <i class="fa fa-clipboard" aria-hidden="true"></i></p>
             <p>Esplanada dos Ministérios</p>

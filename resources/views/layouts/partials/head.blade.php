@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>
-        @if(isset($pageTitle)) {{ $pageTitle }} @else ERRO: Página não possui $pageTitle @endif
+        @if(isset($pageTitle)) {{ $pageTitle }} - IntraSAIN @else IntraSAIN @endif
     </title>
     <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
 </head>
