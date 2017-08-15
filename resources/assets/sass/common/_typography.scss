@@ -54,7 +54,7 @@ $font_base: 'OpenSansLocal';
 /*! Typebase.scss v0.1.0 | MIT License */
 
 // Typesetting variables. Edit these!
-$baseFontSize: 22; // in pixels. This would result in 22px on desktop
+$baseFontSize: 16; // in pixels. This would result in 22px on desktop
 $baseLineHeight: 1.5; // how large the line height is as a multiple of font size
 $leading: $baseLineHeight * 1rem;
 // Rate of growth for headings
@@ -79,4 +79,6 @@ html {
 
 * {
   font-family: $font_base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

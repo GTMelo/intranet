@@ -1,0 +1,24 @@
+.page-header{
+  @extend .section;
+  background-color: $color-heavy;
+  text-align: center;
+  * {
+    color: white;
+  }
+
+  & .subtitle{
+    color: $amarelo-sain;
+  }
+}
+
+.page-title{
+  @extend .title;
+  font-weight: 300;
+  font-size: 3.2rem;
+}
+
+.page-subtitle{
+  @extend .subtitle;
+  font-weight: 300;
+  padding-bottom: 0.5rem;
+}
