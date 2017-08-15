@@ -11,10 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('home.index', ['pageTitle' => 'Intranet SAIN']);
+    return view('home.index', ['pageTitle' => 'Home']);
 });
 
+// Auth
 Auth::routes();
+Route::get('/registrar', 'Auth\RegisterController@showRegistrationForm', ['pageTitle' => 'Criar uma Nova Conta']);
+Route::get('/entrar', 'Auth\LoginController@showLoginForm', ['pageTitle' => 'Login']);
 
-Route::get('/home', 'HomeController@index', ['pageTitle' => 'Intranet SAIN'])->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
