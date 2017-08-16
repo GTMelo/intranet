@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <main class="container" id="app">
+    <main class="container">
 
         <h1>Testes Vue</h1>
         <input type="text" v-model="foo">

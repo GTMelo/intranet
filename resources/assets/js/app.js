@@ -21,6 +21,6 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        foo: 'bar'
+        foo: ''
     }
 });
