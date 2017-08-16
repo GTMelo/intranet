@@ -23,4 +23,4 @@ Route::get('/registrar', 'Auth\RegisterController@showRegistrationForm', ['pageT
 Route::get('/entrar', 'Auth\LoginController@showLoginForm', ['pageTitle' => 'Login']);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/teste', 'TesteController@index');
