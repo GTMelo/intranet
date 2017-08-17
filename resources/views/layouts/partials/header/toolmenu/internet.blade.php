@@ -1,6 +1,6 @@
-<div class="level-item dropdown is-hoverable">
+<div class="level-item dropdown is-hoverable header-item">
     <div class="dropdown-trigger">
-        <span>Ferramentas</span>
+        <span>Sain na Internet</span>
     </div>
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">

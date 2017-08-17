@@ -1,3 +1,3 @@
-<div class="level-item">
+<div class="level-item header-item">
     <span>Áreas da SAIN</span>
 </div>
