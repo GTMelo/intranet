@@ -6,7 +6,7 @@
     <a href="/registrar">Cadastre-se</a>
 </div>
 
-<modal v-if="showLoginModal" @close="showLoginModal = false" title="IntraSain-login">
+<modal v-if="showLoginModal" @close="showLoginModal = false" title="IntraSAIN - login">
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
 

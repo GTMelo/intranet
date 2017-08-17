@@ -1,10 +1,10 @@
 <template>
     <div class="modal is-active">
-        <div class="modal-background"></div>
+        <div class="modal-background" @click="$emit('close')"></div>
         <div class="modal-content">
             <div class="modal-card">
                 <div class="modal-card-head">
-                    <h1 class="is-size-4">{{ title }}</h1>
+                    <h1 class="is-size-4"><strong>{{ title }}</strong></h1>
                 </div>
                 <div class="modal-card-body">
                     <slot></slot>
