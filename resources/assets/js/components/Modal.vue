@@ -10,6 +10,9 @@
                     <div class="modal-card-body">
                         <slot></slot>
                     </div>
+                    <div v-if="this.hasFooter" class="modal-card-foot">
+                        <slot name="footer"></slot>
+                    </div>
                 </div>
             </div>
             <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
@@ -22,7 +25,14 @@
 
         props: ['title'],
 
-        computed: {},
+        computed: {
+            hasFooter(){
+                return this.$slots.footer;
+            }
+        },
+
+        mounted(){
+        }
 
     }
 </script>
