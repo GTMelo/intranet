@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('message', require('./components/Message.vue'))
 
 const app = new Vue({
     el: '#app',
@@ -28,10 +29,7 @@ const app = new Vue({
     },
 
     methods: {
-        addName() {
-            this.names.push(this.newName);
-            this.newName = '';
-        },
+
     },
 
     computed: {

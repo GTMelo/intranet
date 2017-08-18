@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/registrar', 'Auth\RegisterController@showRegistrationForm', ['pageTitle' => 'Criar uma Nova Conta']);
 Route::get('/entrar', 'Auth\LoginController@showLoginForm', ['pageTitle' => 'Login']);
+Route::get('/sair', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/teste', 'TesteController@index');

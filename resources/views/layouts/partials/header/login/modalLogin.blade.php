@@ -1,5 +1,5 @@
 <modal v-if="showLoginModal" @close="showLoginModal = false" title="IntraSAIN - login">
-<form class="form-horizontal" method="POST" action="{{ route('login') }}">
+<form id="formLogin" class="form-horizontal" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
     <div class="field">
         <div class="control has-icons-left">
@@ -13,8 +13,8 @@
             <span class="icon is-large is-left"><i class="fa fa-key"></i></span>
         </div>
     </div>
-    <div class="field">
-        <button class="button is-large is-fullwidth is-primary">Entrar</button>
-    </div>
 </form>
+<div slot="footer" class="field">
+    <button class="button is-primary" form="formLogin">Entrar</button>
+</div>
 </modal>

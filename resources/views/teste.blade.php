@@ -4,16 +4,6 @@
 
     <main class="container">
 
-        <section class="container">
-            <button class="button is-primary" @click="showTestModal = true">launch test modal</button>
-            <modal v-if="showTestModal" @close="showTestModal = false" title="Example modal">
-                <form id="formteste">adsf</form>
-                <template slot="footer">
-                    <button class="button is-primary" form="formteste">Go</button>
-                </template>
-            </modal>
-        </section>
-
         <section class="section">
             <div>
                 <label>Teste Vue</label>
