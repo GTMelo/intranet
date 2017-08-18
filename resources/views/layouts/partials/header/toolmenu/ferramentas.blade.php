@@ -1,4 +1,4 @@
-<div class="level-item dropdown is-hoverable">
+<div class="level-item dropdown is-hoverable header-item">
     <div class="dropdown-trigger">
         <span>Ferramentas</span>
     </div>

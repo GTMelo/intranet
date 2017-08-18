@@ -22,7 +22,9 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        showLoginModal: false
+        showTestModal: false,
+        showLoginModal: false,
+        showRegistrationModal: false
     },
 
     methods: {

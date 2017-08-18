@@ -1,4 +1,4 @@
-<div id="header-brand" class="level-item">
+<div id="header-brand" class="level-item header-item">
     <a href="/">
         <div class="level-item">
             <svg class="d-inline-block align-top" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="54" height="41" viewBox="0 0 241 181">
