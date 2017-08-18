@@ -4,7 +4,12 @@
 
     <main class="container">
 
-        <section>
+        <section class="container">
+            <button class="button is-primary" @click="showTestModal = true">launch test modal</button>
+            <modal v-if="showTestModal" @close="showTestModal = false" title="Example modal">
+            Content asçdifj açsdf
+            <div slot="footer"><span>OK</span></div>
+            </modal>
         </section>
 
         <section class="section">
