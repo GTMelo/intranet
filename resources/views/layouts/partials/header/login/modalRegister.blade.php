@@ -1,5 +1,5 @@
 <modal v-if="showRegistrationModal" @close="showRegistrationModal = false" title="IntraSAIN - Criar nova conta de usuário">
-<form class="form-horizontal" method="POST" action="{{ route('register') }}">
+<form id="formRegistration" class="form-horizontal" method="POST" action="{{ route('register') }}">
 
     {{ csrf_field() }}
 
@@ -32,10 +32,8 @@
         </div>
         <p class="help">A senha precisa ter no mínimo 6 dígitos</p>
     </div>
-    <div class="field is-grouped is-grouped-centered">
-        <div class="field">
-            <input type="submit" class="button is-primary" value="Criar conta">
-        </div>
-    </div>
 </form>
+<div slot="footer" class="field">
+    <button class="button is-primary" form="formRegistration">Criar nova Conta</button>
+</div>
 </modal>

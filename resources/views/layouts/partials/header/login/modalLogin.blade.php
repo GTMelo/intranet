@@ -3,13 +3,13 @@
     {{ csrf_field() }}
     <div class="field">
         <div class="control has-icons-left">
-            <input class="input is-large" type="text" placeholder="CPF">
+            <input name="cpf" class="input is-large" type="text" placeholder="CPF">
             <span class="icon is-large is-left"><i class="fa fa-user"></i></span>
         </div>
     </div>
     <div class="field">
         <div class="control has-icons-left">
-            <input class="input is-large" type="password" placeholder="Senha">
+            <input name="password" class="input is-large" type="password" placeholder="Senha">
             <span class="icon is-large is-left"><i class="fa fa-key"></i></span>
         </div>
     </div>
