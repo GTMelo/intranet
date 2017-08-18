@@ -1,12 +1,9 @@
-{{--{!! dd($errors->isEmpty()) !!}--}}
-
-@if(!$errors->isEmpty())
+@if(count($errors))
     <section class="container">
-        <message cat="danger" title="Erro">
-            <p>Um ou mais problemas foram encontrados:</p>
+        <message cat="danger" title="Um ou mais problemas foram encontrados:">
             <ul>
-                @foreach($errors as $error)
-                    <li>{{ $error->message }}</li>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </message>
