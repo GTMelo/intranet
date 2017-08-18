@@ -1,6 +1,6 @@
 <template>
 
-    <article :class="type">
+    <article :class="this.typeOfMessage">
         <div class="message-header">
             <p>{{title}}</p>
             <button class="delete" aria-label="delete"></button>
@@ -15,7 +15,25 @@
 <script>
 
     export default{
-        props: ['type', 'title']
+        props: ['cat', 'title'],
+
+        computed: {
+            typeOfMessage(){
+                let result = "message";
+
+                switch (this.cat){
+                    case('danger'):
+                        result += ' is-danger';
+                        break;
+                    case ('warning'):
+                        result += ' is-warning';
+                        break;
+                    default:
+                }
+
+                return result;
+            }
+        }
     }
 
 </script>

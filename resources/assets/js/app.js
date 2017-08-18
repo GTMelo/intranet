@@ -28,10 +28,7 @@ const app = new Vue({
     },
 
     methods: {
-        addName() {
-            this.names.push(this.newName);
-            this.newName = '';
-        },
+
     },
 
     computed: {
