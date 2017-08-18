@@ -4,6 +4,12 @@
 
     <main class="container">
 
+        <message type="message is-danger" title="Lorem Ipsum">
+            Message goes here
+        </message>
+
+
+
         <section>
         </section>
 
