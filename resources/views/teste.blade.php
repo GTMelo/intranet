@@ -4,12 +4,15 @@
 
     <main class="container">
 
-        <message type="message is-danger" title="Lorem Ipsum">
-            Message goes here
-        </message>
-
-
-
+        <message title="Lorem Ipsum"> asdf as df</message>
+        <message cat="warning" title="Atenção:"> asdf asd fasd fasd </message>
+        <message cat="danger" title="Atenção:"><ul>
+                <li>asdfa sdf</li>
+                <li>asdfasd fa</li>
+                <li>sdfa sdfasdf </li>
+                <li>asdfasd fa</li>
+                <li>asdfasd fa</li>
+            </ul></message>
         <section>
         </section>
 
