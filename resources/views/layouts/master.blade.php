@@ -9,6 +9,9 @@
         {{--Header do Site--}}
         @include('layouts.partials.header')
 
+        {{--Mensagens e erros--}}
+        @include('layouts.partials.errors')
+
         {{--Tudo entre header e footer--}}
         @yield('content')
 

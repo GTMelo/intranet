@@ -1,5 +1,6 @@
 <modal v-if="showRegistrationModal" @close="showRegistrationModal = false" title="IntraSAIN - Criar nova conta de usuário">
-<form class="form-horizontal" method="POST" action="{{ route('login') }}">
+<form class="form-horizontal" method="POST" action="{{ route('register') }}">
+
     {{ csrf_field() }}
 
     <div class="field">
