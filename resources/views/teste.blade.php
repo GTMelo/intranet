@@ -7,8 +7,10 @@
         <section class="container">
             <button class="button is-primary" @click="showTestModal = true">launch test modal</button>
             <modal v-if="showTestModal" @close="showTestModal = false" title="Example modal">
-            Content asçdifj açsdf
-            <div slot="footer"><span>OK</span></div>
+                <form id="formteste">adsf</form>
+                <template slot="footer">
+                    <button class="button is-primary" form="formteste">Go</button>
+                </template>
             </modal>
         </section>
 
