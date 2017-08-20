@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('nome_completo');
             $table->string('nome_curto');
             $table->string('password');
+            $table->boolean('ativo')->default(true);
             $table->rememberToken();
             $table->timestamp('last_access')->nullable();
             $table->timestamps();
