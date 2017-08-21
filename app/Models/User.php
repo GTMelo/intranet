@@ -44,4 +44,13 @@ class User extends Authenticatable
     public function main_telefone(){
         return self::belongsToMany(Telefone::class)->wherePivot('is_main', true)->first();
     }
+
+    public function emails(){
+        return self::belongsToMany(Email::class)->withPivot('is_main');
+    }
+
+    public function main_email(){
+        return self::belongsToMany(Email::class)->wherePivot('is_main', true)->first();
+    }
+
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Email;
 use App\Models\Telefone;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -30,5 +31,7 @@ class UserTableSeeder extends Seeder
         $user->telefones()->attach(Telefone::find(5));
 
         $user->attachPermission('read-rhdata');
+
+        $user->emails()->attach(Email::first(), ['is_main' => true]);
     }
 }

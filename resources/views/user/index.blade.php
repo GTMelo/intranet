@@ -27,7 +27,7 @@
                             @permission('read-rhdata') <td>{{ $user->cpf }}</td> @endpermission
                             <td>{{ $user->unidade->sigla }}</td>
                             <td>{{ $user->main_telefone()->numero }}</td>
-                            <td>gustavo.ericson@gmail.com</td>
+                            <td>{{ $user->main_email()->adress }}</td>
                         @endforeach
                     </tr>
                     </tbody>
