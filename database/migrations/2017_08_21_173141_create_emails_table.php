@@ -15,7 +15,7 @@ class CreateEmailsTable extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('adress')->unique();
+            $table->string('address')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

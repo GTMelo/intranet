@@ -20,7 +20,7 @@ class EmailTableSeeder extends Seeder
 
         foreach ($emails as $email){
             Email::create([
-                'adress' => $email,
+                'address' => $email,
             ]);
         }
 
