@@ -14,7 +14,7 @@ class AddStatusIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table){
-            $table->integer('status_id')->nullable()->unsigned()->after('password');
+            $table->integer('status_id')->default(1)->unsigned()->after('password');
         });
 
         Schema::table('users', function (Blueprint $table){

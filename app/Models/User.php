@@ -38,10 +38,10 @@ class User extends Authenticatable
     }
 
     public function telefones(){
-        return self::belongsToMany(Telefone::class);
+        return self::belongsToMany(Telefone::class)->withPivot('is_main');
     }
 
     public function main_telefone(){
-        return self::belongsToMany(Telefone::class)->where('is_primary', true)->first();
+        return self::belongsToMany(Telefone::class)->wherePivot('is_main', true)->first();
     }
 }
