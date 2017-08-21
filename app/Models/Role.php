@@ -6,5 +6,7 @@ use Laratrust\LaratrustRole;
 
 class Role extends LaratrustRole
 {
-    //
+
+
+
 }
