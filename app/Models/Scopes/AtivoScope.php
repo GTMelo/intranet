@@ -25,6 +25,6 @@ class AtivoScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('ativo', 1);
+        $builder->where('deleted_at', null);
     }
 }
