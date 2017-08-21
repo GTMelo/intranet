@@ -16,10 +16,10 @@ class CreateUnidadesTable extends Migration
         Schema::create('unidades', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('unidade_superior_id')->unsigned()->nullable();
-            $table->string('sigla', 10);
-            $table->string('descricao');
+            $table->string('sigla', 10)->nullable();
+            $table->string('descricao')->nullable();
             $table->text('tldr')->nullable();
-            $table->boolean('ativo')->default(true);
+            $table->integer('status_id')->unsigned()->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

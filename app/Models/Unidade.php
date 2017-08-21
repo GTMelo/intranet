@@ -16,6 +16,10 @@ class Unidade extends Model
 
     }
 
+    protected $fillable = [
+        'sigla', 'unidade_superior_id', 'descricao', 'tldr', 'status_id'
+    ];
+
     public function unidade_superior(){
 
         return $this->hasOne(self::class, 'id', 'unidade_superior_id');
