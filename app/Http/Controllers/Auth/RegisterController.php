@@ -47,8 +47,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'cpf' => 'required|string|digits:11|unique:users',
+            'cpf' => 'required|string|unique:users',
             'nome_completo' => 'required|string|max:255',
             'nome_curto' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
@@ -63,6 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        dd($data['cpf']);
+
         return User::create([
             'cpf' => $data['cpf'],
             'nome_completo' => $data['nome_completo'],

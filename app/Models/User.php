@@ -66,4 +66,12 @@ class User extends Authenticatable
         return $mask;
     }
 
+    public function setCpfAttribute($value){
+
+        $value = str_replace([' ', '/', '.', '-'], "", $value);
+
+        $this->attributes['cpf'] = $value;
+
+    }
+
 }
