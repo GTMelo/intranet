@@ -13,8 +13,8 @@
                 <table class="table is-striped is-fullwidth">
                     <thead>
                     <tr>
-                        <th>Nome Curto</th>
-                        <th>CPF</th>
+                        <th>Nome</th>
+                        @permission('read-rhdata') <th>CPF</th> @endpermission
                         <th>Unidade</th>
                         <th>Telefone</th>
                         <th>e-mail</th>
@@ -24,9 +24,9 @@
                     <tr>
                         @foreach($users as $user)
                             <td>{{ $user->nome_curto }}</td>
-                            <td> {{ $user->cpf }}</td>
+                            @permission('read-rhdata') <td>{{ $user->cpf }}</td> @endpermission
                             <td>{{ $user->unidade->sigla }}</td>
-                            <td>{{ $user->main_telefone()->telefone }}</td>
+                            <td>{{ $user->main_telefone()->numero }}</td>
                             <td>gustavo.ericson@gmail.com</td>
                         @endforeach
                     </tr>
