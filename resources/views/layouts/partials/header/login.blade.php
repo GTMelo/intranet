@@ -8,7 +8,10 @@
         </div>
         <div class="user-data">
             <span id="user-name">{{ Auth::user()->nome_curto }}</span>
-            <span id="user-unidade">{{ Auth::user()->unidade->sigla }} &nbsp <a href="/sair">(sair)</a></span>
+            <span id="user-unidade">
+                @if(isset($user->unidade)) {{ Auth::user()->unidade->sigla }} @else Sem unidade @endif
+                &nbsp <a href="/sair">(sair)</a>
+            </span>
         </div>
     </div>
 @else
