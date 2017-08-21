@@ -38,3 +38,28 @@ header[role="document-header"]{
     color: white;
   }
 }
+
+#login-badge{
+  @extend .is-flex;
+  flex-direction: row-reverse;
+  .user-image{
+    margin-left: 0.5rem;
+    width: 40px;
+    height: 40px;
+    & img{
+      border-radius: 50%;
+    }
+  }
+  .user-data{
+    @extend .is-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: right;
+    #user-name{
+      font-size: 1.1rem;
+    }
+    #user-unidade{
+      font-size: 0.8rem
+    }
+  }
+}
