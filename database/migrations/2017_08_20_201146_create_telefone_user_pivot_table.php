@@ -17,7 +17,7 @@ class CreateTelefoneUserPivotTable extends Migration
             $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->boolean('is_primary')->default(false);
+            $table->boolean('is_main')->default(false);
             $table->primary(['telefone_id', 'user_id']);
         });
     }
