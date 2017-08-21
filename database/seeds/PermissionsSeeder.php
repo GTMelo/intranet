@@ -14,7 +14,16 @@ class PermissionsSeeder extends Seeder
     {
 
         $permissions = [
-            ['name' => 'list-users', 'display-name' => 'Listar Usuários', 'description' => 'Ver a lista de usuários cadastrados'],
+            [
+                'name' => 'list-users',
+                'display-name' => 'Listar Usuários',
+                'description' => 'Ver a lista de usuários cadastrados'
+            ],
+            [
+                'name' => 'read-rhdata',
+                'display-name' => 'Ver dados de RH',
+                'description' => 'Ver dados de um usuário referentes a área de gestão de pessoas'
+            ],
         ];
 
         foreach ($permissions as $permission){

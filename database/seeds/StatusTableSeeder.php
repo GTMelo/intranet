@@ -13,9 +13,9 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         Status::create([
-            'slug' => 'starter',
+            'slug' => 'pending',
             'display_name' => 'Validação Pendente',
-            'description' => 'Item recém cadastrado, aguardando validação.'
+            'description' => 'Item aguardando validação.'
         ]);
         Status::create([
             'slug' => 'validated',
