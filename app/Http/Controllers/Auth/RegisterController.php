@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Email;
+use App\Models\Telefone;
+use App\Models\Unidade;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -66,11 +69,17 @@ class RegisterController extends Controller
     {
 //        dd($data['cpf']);
 
-        return User::create([
+        $user = User::create([
             'cpf' => $data['cpf'],
             'nome_completo' => $data['nome_completo'],
             'nome_curto' => $data['nome_curto'],
             'password' => bcrypt($data['password']),
+            'unidade_id' => Unidade::find(1)->id,
         ]);
+
+        $user->telefones()->attach(Telefone::find(1), ['is_main' => true]);
+        $user->emails()->attach(Email::find(1), ['is_main' => true]);
+
+        return $user;
     }
 }

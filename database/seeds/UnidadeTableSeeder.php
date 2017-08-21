@@ -14,6 +14,11 @@ class UnidadeTableSeeder extends Seeder
     {
         $unidades = [
             [
+                'sigla' => 'S/N',
+                'descricao' => 'Sem Unidade',
+                'tldr' => 'O usuário ainda não possui uma unidade definida',
+            ],
+            [
                 'sigla' => 'SAIN',
                 'descricao' => 'Secretaria de Assuntos Internacionais',
                 'tldr' => 'Some SAIN tldr here',

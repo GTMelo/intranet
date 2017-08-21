@@ -14,6 +14,7 @@ class EmailTableSeeder extends Seeder
     {
 
         $emails = [
+            'Sem E-mail',
             'owneradmin@admin.com',
             'someothermail@mail.com',
         ];

@@ -25,12 +25,10 @@
                     @foreach($users as $user)
                         <tr>
                             <td>{{ $user->nome_curto }}</td>
-                            @permission('read-rhdata')
-                            <td>{{ $user->cpf }}</td> @endpermission
-                            <td>@if(isset($user->unidade)){{ $user->unidade->sigla }}@else Sem unidade @endif </td>
-                            <td>@if(count($user->telefones)){{ $user->main_telefone()->numero }}@else Sem
-                                telefone @endif </td>
-                            <td>@if(count($user->emails)){{ $user->main_email()->address }}@else Sem e-mail @endif </td>
+                            @permission('read-rhdata')<td>{{ $user->cpf }}</td> @endpermission
+                            <td>{{ $user->unidade->sigla }}</td>
+                            <td>{{ $user->main_telefone()->numero }}</td>
+                            <td>{{ $user->main_email()->address }}</td>
                         </tr>
                     @endforeach
                     </tbody>

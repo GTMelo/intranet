@@ -13,6 +13,7 @@ class TelefoneTableSeeder extends Seeder
     public function run()
     {
         $telefones = [
+            ['numero' => 'Sem Número'],
             ['numero' => '1234-1234'],
             ['numero' => '3216-4354'],
             ['numero' => '4588-1236'],

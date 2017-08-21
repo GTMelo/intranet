@@ -14,7 +14,7 @@ class AddUnidadeIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('unidade_id')->unsigned()->nullable()->after('password');
+            $table->integer('unidade_id')->unsigned()->default(1)->nullable()->after('password');
         });
 
         Schema::table('users', function (Blueprint $table) {
