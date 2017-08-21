@@ -7,6 +7,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts" !default;
 @import "config/bulma";
 
 $use-all: true;
+$base-duration: 0.2s !default;
 @import "node_modules/animate-sass/animate";
 
 @import "common/typography";
