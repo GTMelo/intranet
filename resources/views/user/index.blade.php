@@ -18,7 +18,7 @@
                         <th>Cargo</th>
                         <th>Unidade</th>
                         <th>Telefone</th>
-                        <th>e-mail</th>
+                        <th>E-mail</th>
                     </tr>
                     </thead>
                     <tbody>

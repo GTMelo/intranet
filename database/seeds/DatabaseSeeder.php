@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Sexo;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TelefoneTableSeeder::class);
         $this->call(EmailTableSeeder::class);
         $this->call(CargoTableSeeder::class);
+        $this->call(Sexo::class);
         $this->call(UserTableSeeder::class);
 
     }

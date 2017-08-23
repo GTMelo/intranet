@@ -19,58 +19,76 @@ class User extends Authenticatable
     }
 
     protected $fillable = [
-        'cpf', 'nome_completo', 'nome_curto', 'password', 'ativo', 'unidade_id',
+        'cpf',
+        'nome_completo',
+        'nome_curto',
+        'password',
+        'ativo',
+        'unidade_id',
+        'data_nascimento',
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    protected $dates = ['last_access'];
+    protected $dates = ['last_access', 'data_nascimento'];
+
+    public function rh(){
+        return self::hasOne(UserRH::class);
+    }
 
     public function unidade()
     {
         return $this->belongsTo(Unidade::class);
     }
 
-    public function scopeValido($query){
+    public function scopeValido($query)
+    {
         return $query->where('status_id', '!==', Status::ofSlug('inactive'));
     }
 
-    public function telefones(){
+    public function telefones()
+    {
         return self::belongsToMany(Telefone::class)->withPivot('is_main');
     }
 
-    public function main_telefone(){
+    public function main_telefone()
+    {
         return self::belongsToMany(Telefone::class)->wherePivot('is_main', true)->first();
     }
 
-    public function emails(){
+    public function emails()
+    {
         return self::belongsToMany(Email::class)->withPivot('is_main');
     }
 
-    public function main_email(){
+    public function main_email()
+    {
         return self::belongsToMany(Email::class)->wherePivot('is_main', true)->first();
     }
 
-    public function cargo(){
+    public function cargo()
+    {
         return self::belongsTo(Cargo::class);
     }
 
-    public function getCpfAttribute($value){
+    public function getCpfAttribute($value)
+    {
 
         $mask = '###.###.###-##';
 
-        $str = str_replace(" ","",$value);
+        $str = str_replace(" ", "", $value);
 
-        for($i=0;$i<strlen($value);$i++){
-            $mask[strpos($mask,"#")] = $value[$i];
+        for ($i = 0; $i < strlen($value); $i++) {
+            $mask[strpos($mask, "#")] = $value[$i];
         }
 
         return $mask;
     }
 
-    public function setCpfAttribute($value){
+    public function setCpfAttribute($value)
+    {
 
         $value = str_replace([' ', '/', '.', '-'], "", $value);
 
