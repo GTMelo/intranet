@@ -22,6 +22,7 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('owneradmin'),
             'status_id' => 2,
             'unidade_id' => 1,
+            'cargo_id' => 1,
         ]);
 
         $user->telefones()->attach(Telefone::first(), ['is_main' => true]);

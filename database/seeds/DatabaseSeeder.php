@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UnidadeTableSeeder::class);
         $this->call(TelefoneTableSeeder::class);
         $this->call(EmailTableSeeder::class);
+        $this->call(CargoTableSeeder::class);
         $this->call(UserTableSeeder::class);
+
     }
 }

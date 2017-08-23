@@ -53,6 +53,10 @@ class User extends Authenticatable
         return self::belongsToMany(Email::class)->wherePivot('is_main', true)->first();
     }
 
+    public function cargo(){
+        return self::belongsTo(Cargo::class);
+    }
+
     public function getCpfAttribute($value){
 
         $mask = '###.###.###-##';
