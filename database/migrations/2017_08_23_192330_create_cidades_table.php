@@ -15,9 +15,11 @@ class CreateCidadesTable extends Migration
     {
         Schema::create('cidades', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('nome');
-            $table->string('codigo_telefone');
-            $table->integer('pais_id')->nullable()->unsigned();
+            $table->integer('estado_id')->nullable()->unsigned()->comment('Estado, Condado, Província, Distrito, etc.');
+            $table->boolean('is_capital')->default(false);
+
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSexosTable extends Migration
+class AddNaturalidadeIdToUsersRh extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateSexosTable extends Migration
      */
     public function up()
     {
-        Schema::create('sexos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('abreviacao')->limit(1);
-            $table->string('descricao');
-            $table->string('titulo');
-            $table->timestamps();
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->foreign('naturalidade_id')->references('id')->on('cidades');
         });
+
+
     }
 
     /**
@@ -29,6 +27,8 @@ class CreateSexosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sexos');
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->dropForeign('users_rh_naturalidade_id_foreign');
+        });
     }
 }

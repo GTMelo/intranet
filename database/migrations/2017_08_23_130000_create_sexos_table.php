@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFksToPaisAndCidade extends Migration
+class CreateSexosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class AddFksToPaisAndCidade extends Migration
      */
     public function up()
     {
+        Schema::create('sexos', function (Blueprint $table) {
+            $table->increments('id');
 
-        Schema::table('cidades', function (Blueprint $table) {
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->string('abreviacao')->limit(1);
+            $table->string('descricao');
+            $table->string('titulo');
+            
+            $table->timestamps();
         });
-
-        Schema::table('paises', function (Blueprint $table) {
-            $table->foreign('capital_id')->references('id')->on('cidades');
-        });
-
     }
 
     /**
@@ -31,6 +31,6 @@ class AddFksToPaisAndCidade extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sexos');
     }
 }

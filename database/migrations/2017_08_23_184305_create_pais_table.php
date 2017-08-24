@@ -15,11 +15,13 @@ class CreatePaisTable extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('iso')->nullable();
+
             $table->string('nome');
             $table->string('nome_completo')->nullable();
+            $table->string('iso')->nullable();
+            $table->string('adjeto_patrio')->nullable();
             $table->string('codigo_telefone')->nullable();
-            $table->integer('capital_id')->unsigned();
+
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreatePaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pais');
+        Schema::dropIfExists('paises');
     }
 }
