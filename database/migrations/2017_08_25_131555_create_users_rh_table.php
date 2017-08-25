@@ -19,7 +19,7 @@ class CreateUsersRhTable extends Migration
             $table->integer('naturalidade_id')->unsigned()->nullable();
             $table->integer('unidade_id')->unsigned()->default(1)->nullable();
             $table->integer('cargo_id')->default(1)->unsigned();
-            $table->integer('sexo_id')->unsigned()->nullable();
+            $table->enum('sexo', ['m', 'f'])->nullable();
             $table->integer('telefone_residencial_id')->unsigned()->nullable();
             $table->integer('telefone_celular_id')->unsigned()->nullable();
             $table->integer('email_particular_id')->unsigned()->nullable();
@@ -42,7 +42,7 @@ class CreateUsersRhTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('set null');
             $table->foreign('cargo_id')->references('id')->on('cargos');
-            $table->foreign('sexo_id')->references('id')->on('sexos');
+            $table->foreign('naturalidade_id')->references('id')->on('cidades');
 
         });
     }
@@ -58,7 +58,7 @@ class CreateUsersRhTable extends Migration
             $table->dropForeign('users_rh_user_id_foreign');
             $table->dropForeign('users_rh_unidade_id_foreign');
             $table->dropForeign('users_rh_cargo_id_foreign');
-            $table->dropForeign('users_rh_sexo_id_foreign');
+            $table->dropForeign('users_rh_naturalidade_id_foreign');
         });
         Schema::dropIfExists('users_rh');
     }

@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTelefoneUserPivotTable extends Migration
+class CreateTelefoneUserRhPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,14 @@ class CreateTelefoneUserPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('telefone_user', function (Blueprint $table) {
+        Schema::create('telefone_user_rh', function (Blueprint $table) {
             $table->integer('telefone_id')->unsigned()->index();
-            $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('is_main')->default(false);
+
+            $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('users_rh')->onDelete('cascade');
+
             $table->primary(['telefone_id', 'user_id']);
         });
     }

@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmailUserPivotTable extends Migration
+class CreateEmailUserRhPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +17,7 @@ class CreateEmailUserPivotTable extends Migration
             $table->integer('email_id')->unsigned()->index();
             $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('users_rh')->onDelete('cascade');
             $table->boolean('is_main')->default(false);
             $table->primary(['email_id', 'user_id']);
         });
