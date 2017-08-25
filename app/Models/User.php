@@ -35,7 +35,7 @@ class User extends Authenticatable
     protected $dates = ['last_access', 'data_nascimento'];
 
     public function rh(){
-        return self::hasOne(UserRH::class);
+        return self::hasOne(UserRh::class);
     }
 
     public function unidade()
@@ -48,19 +48,9 @@ class User extends Authenticatable
         return $query->where('status_id', '!==', Status::ofSlug('inactive'));
     }
 
-    public function telefones()
-    {
-        return self::belongsToMany(Telefone::class)->withPivot('is_main');
-    }
-
     public function main_telefone()
     {
         return self::belongsToMany(Telefone::class)->wherePivot('is_main', true)->first();
-    }
-
-    public function emails()
-    {
-        return self::belongsToMany(Email::class)->withPivot('is_main');
     }
 
     public function main_email()

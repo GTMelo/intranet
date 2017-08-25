@@ -20,19 +20,11 @@ class CidadeTableSeeder extends Seeder
             ],
         ];
 
-
-
-
-
-
-
         foreach ($cidades as $cidade){
             Cidade::create([
                 'nome' => $cidade['nome'],
-                'codigo_telefone' => $cidade['codigo_telefone'],
-                'pais_id' => $cidade['pais_id'],
+                'estado_id' => $cidade['estado_id'],
                 'is_capital' => $cidade['is_capital'],
-                'entidade_subnacional' => $cidade['entidade_subnacional'],
             ]);
         }
     }

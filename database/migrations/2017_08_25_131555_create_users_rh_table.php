@@ -18,19 +18,14 @@ class CreateUsersRhTable extends Migration
 
             $table->integer('naturalidade_id')->unsigned()->nullable();
             $table->integer('unidade_id')->unsigned()->default(1)->nullable();
-            $table->integer('cargo_id')->default(1)->unsigned();
+            $table->integer('cargo_id')->default(1)->unsigned()->nullable();
             $table->enum('sexo', ['m', 'f'])->nullable();
-            $table->integer('telefone_residencial_id')->unsigned()->nullable();
-            $table->integer('telefone_celular_id')->unsigned()->nullable();
-            $table->integer('email_particular_id')->unsigned()->nullable();
-            $table->string('nome_completo');
+            $table->string('nome_completo')->nullable();
             $table->date('data_nascimento')->nullable();
             $table->string('pai')->nullable();
             $table->string('mae')->nullable();
             $table->string('estado_civil')->nullable();
             $table->string('conjuge')->nullable();
-            $table->string('endereco');
-            $table->string('CEP');
 
             $table->timestamps();
             $table->softDeletes();

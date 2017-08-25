@@ -13,13 +13,13 @@ class AddStatusIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table){
-            $table->integer('status_id')->default(1)->unsigned()->after('password');
-        });
-
-        Schema::table('users', function (Blueprint $table){
-            $table->foreign('status_id')->references('id')->on('statuses');
-        });
+//        Schema::table('users', function (Blueprint $table){
+//            $table->integer('status_id')->default(1)->unsigned()->after('password');
+//        });
+//
+//        Schema::table('users', function (Blueprint $table){
+//            $table->foreign('status_id')->references('id')->on('statuses');
+//        });
 
     }
 
@@ -30,9 +30,9 @@ class AddStatusIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_status_id_foreign');
-            $table->dropColumn('status_id');
-        });
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->dropForeign('users_status_id_foreign');
+//            $table->dropColumn('status_id');
+//        });
     }
 }

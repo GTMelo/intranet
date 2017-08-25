@@ -17,22 +17,10 @@ class UserTableSeeder extends Seeder
         // Criar superuser
         $user = User::create([
             'cpf' => '00000000000',
-            'nome_completo' => 'Owner Admin',
             'nome_curto' => 'Owner Admin',
             'password' => bcrypt('owneradmin'),
-            'status_id' => 2,
-            'unidade_id' => 1,
-            'cargo_id' => 1,
         ]);
 
-        $user->telefones()->attach(Telefone::first(), ['is_main' => true]);
-        $user->telefones()->attach(Telefone::find(2));
-        $user->telefones()->attach(Telefone::find(3));
-        $user->telefones()->attach(Telefone::find(4));
-        $user->telefones()->attach(Telefone::find(5));
-
         $user->attachPermission('read-rhdata');
-
-        $user->emails()->attach(Email::first(), ['is_main' => true]);
     }
 }

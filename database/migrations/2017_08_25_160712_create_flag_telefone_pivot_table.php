@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTelefoneUserRhPivotTable extends Migration
+class CreateFlagTelefonePivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +12,12 @@ class CreateTelefoneUserRhPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('telefone_user_rh', function (Blueprint $table) {
+        Schema::create('flag_telefone', function (Blueprint $table) {
+            $table->integer('flag_id')->unsigned()->index();
+            $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
             $table->integer('telefone_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
-            $table->boolean('is_main')->default(false);
-
             $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
-            $table->foreign('user_id')->references('user_id')->on('users_rh')->onDelete('cascade');
-
-            $table->primary(['telefone_id', 'user_id']);
+            $table->primary(['flag_id', 'telefone_id']);
         });
     }
 
@@ -32,6 +28,6 @@ class CreateTelefoneUserRhPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('telefone_user');
+        Schema::drop('flag_telefone');
     }
 }
