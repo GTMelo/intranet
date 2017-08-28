@@ -34,4 +34,8 @@ class UserRh extends Model
     {
         return $this->belongsToMany(Email::class, 'email_user_rh', 'user_rh_id');
     }
+
+    public function naturalidade(){
+        return $this->belongsTo(Cidade::class, 'naturalidade_id');
+    }
 }
