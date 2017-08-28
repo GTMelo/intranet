@@ -42,7 +42,6 @@ class CreateCidadeEstadoPaisTables extends Migration
 
             $table->string('nome');
             $table->integer('estado_id')->nullable()->unsigned();
-            $table->boolean('is_capital')->default(false);
 
             $table->timestamps();
         });

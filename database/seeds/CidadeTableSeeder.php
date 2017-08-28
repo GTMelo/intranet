@@ -16,7 +16,6 @@ class CidadeTableSeeder extends Seeder
             [
                 'nome' => 'Brasília',
                 'estado_id' => 1,
-                'is_capital' => true,
             ],
         ];
 
@@ -24,7 +23,6 @@ class CidadeTableSeeder extends Seeder
             Cidade::create([
                 'nome' => $cidade['nome'],
                 'estado_id' => $cidade['estado_id'],
-                'is_capital' => $cidade['is_capital'],
             ]);
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Pais extends Model
 {
@@ -11,16 +12,42 @@ class Pais extends Model
 
     protected $guarded = ['id'];
 
-    public function cidades(){
-        return self::hasMany(Cidade::class);
+    /**
+     * Lista os estados de um país
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Lista de estados do país
+     */
+    public function estados(){
+        return $this->hasMany(Estado::class);
     }
 
-    public function capitais(){
+    /**
+     * Lista as cidades de um país, a partir dos estados que o país tem
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough cidades a partir do estado
+     */
+    public function cidades()
+    {
+        return $this->hasManyThrough(Cidade::class, Estado::class);
+    }
 
-        return self::hasMany(Cidade::class)
-            ->where('is_capital', true)
-            ->get();
+    /**
+     * Lista as cidades de um país que tenha sido marcadas como capitais
+     * @return Collection A lista de capitais de um país
+     */
+    public function capitais()
+    {
 
+        return $this->cidades->filter(function ($value){
+            return $value->hasFlag('is-capital');
+        });
+
+    }
+
+    /**
+     * Função apenas para açúcar, já que a maioria dos país tem somente uma capital
+     * @return static
+     */
+    public function capital(){
+        return $this->capitais();
     }
 
 }
