@@ -15,7 +15,7 @@ class UserRhTableSeeder extends Seeder
     public function run()
     {
 
-        $user = UserRh::create([
+        $user = \App\Models\UserRh::create([
             'user_id' => 1,
             'naturalidade_id' => 1,
             'unidade_id' => 1,

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Telefone extends Model
 {
 
-//    use Flaggable;
+    use Flaggable;
 
     protected $fillable = ['numero'];
 

@@ -25,5 +25,7 @@ class EmailTableSeeder extends Seeder
             ]);
         }
 
+        Email::first()->addFlag('personal');
+
     }
 }

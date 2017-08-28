@@ -16,12 +16,12 @@ class CreateTelefoneUserRhPivotTable extends Migration
         Schema::create('telefone_user_rh', function (Blueprint $table) {
 
             $table->integer('telefone_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_rh_id')->unsigned();
 
             $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
-            $table->foreign('user_id')->references('user_id')->on('users_rh')->onDelete('cascade');
+            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
 
-            $table->primary(['telefone_id', 'user_id']);
+            $table->primary(['telefone_id', 'user_rh_id']);
         });
     }
 
