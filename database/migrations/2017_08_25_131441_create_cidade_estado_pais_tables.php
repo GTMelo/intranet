@@ -19,7 +19,7 @@ class CreateCidadeEstadoPaisTables extends Migration
             $table->string('nome');
             $table->string('nome_completo')->nullable();
             $table->string('iso')->nullable();
-            $table->string('adjeto_patrio')->nullable();
+            $table->string('adjetivo_patrio')->nullable();
             $table->string('codigo_telefone')->nullable();
 
             $table->timestamps();

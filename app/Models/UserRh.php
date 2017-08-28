@@ -38,4 +38,8 @@ class UserRh extends Model
     public function naturalidade(){
         return $this->belongsTo(Cidade::class, 'naturalidade_id');
     }
+
+    public function nacionalidade(){
+        return $this->naturalidade->estado->pais->adjetivo_patrio;
+    }
 }

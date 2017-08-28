@@ -16,7 +16,7 @@ class PaisTableSeeder extends Seeder
             'nome' => 'Brasil',
             'nome_completo' => 'República Federativa do Brasil',
             'iso' => 'BRA',
-            'adjeto_patrio' => 'Brasileiro',
+            'adjetivo_patrio' => 'Brasileiro',
             'codigo_telefone' => '55',
         ]);
     }
