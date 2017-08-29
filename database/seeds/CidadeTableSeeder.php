@@ -14,8 +14,12 @@ class CidadeTableSeeder extends Seeder
     {
         $cidades = [
             [
-                'nome' => 'Brasília',
+                'nome' => 'Sem Cidade',
                 'estado_id' => 1,
+            ],
+            [
+                'nome' => 'Brasília',
+                'estado_id' => 2,
             ],
         ];
 

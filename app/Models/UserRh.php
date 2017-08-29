@@ -55,4 +55,8 @@ class UserRh extends Model
     public function telefone_celular(){
         return $this->filterFlag($this->telefones, 'is-cellphone');
     }
+
+    public function endereco(){
+        return $this->belongsTo(Endereco::class);
+    }
 }
