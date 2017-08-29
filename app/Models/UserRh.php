@@ -59,4 +59,8 @@ class UserRh extends Model
     public function endereco(){
         return $this->belongsTo(Endereco::class);
     }
+
+    public function dado_bancario(){
+        return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
+    }
 }
