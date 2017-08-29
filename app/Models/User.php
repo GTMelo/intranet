@@ -20,12 +20,8 @@ class User extends Authenticatable
 
     protected $fillable = [
         'cpf',
-        'nome_completo',
         'nome_curto',
         'password',
-        'ativo',
-        'unidade_id',
-        'data_nascimento',
     ];
 
     protected $hidden = [
@@ -41,26 +37,6 @@ class User extends Authenticatable
     public function unidade()
     {
         return $this->belongsTo(Unidade::class);
-    }
-
-    public function scopeValido($query)
-    {
-        return $query->where('status_id', '!==', Status::ofSlug('inactive'));
-    }
-
-    public function main_telefone()
-    {
-        return self::belongsToMany(Telefone::class)->wherePivot('is_main', true)->first();
-    }
-
-    public function main_email()
-    {
-        return self::belongsToMany(Email::class)->wherePivot('is_main', true)->first();
-    }
-
-    public function cargo()
-    {
-        return self::belongsTo(Cargo::class);
     }
 
     public function getCpfAttribute($value)
