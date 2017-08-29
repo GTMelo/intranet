@@ -19,8 +19,9 @@ class CreateUsersRhTable extends Migration
             $table->integer('naturalidade_id')->unsigned()->nullable();
             $table->integer('unidade_id')->unsigned()->default(1)->nullable();
             $table->integer('cargo_id')->default(1)->unsigned()->nullable();
-            $table->enum('sexo', ['m', 'f'])->nullable();
+
             $table->string('nome_completo')->nullable();
+            $table->enum('sexo', ['m', 'f'])->nullable();
             $table->date('data_nascimento')->nullable();
             $table->string('pai')->nullable();
             $table->string('mae')->nullable();

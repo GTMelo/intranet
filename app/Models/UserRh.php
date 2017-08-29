@@ -36,10 +36,19 @@ class UserRh extends Model
     }
 
     public function naturalidade(){
+
         return $this->belongsTo(Cidade::class, 'naturalidade_id');
     }
 
     public function nacionalidade(){
         return $this->naturalidade->estado->pais->adjetivo_patrio;
+    }
+
+    public function telefone_residencial(){
+        return $this->filterFlag($this->telefones, 'personal');
+    }
+
+    public function email_pessoal(){
+        return $this->filterFlag($this->emails, 'personal');
     }
 }
