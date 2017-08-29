@@ -75,4 +75,16 @@ trait Flaggable
         return self::flags()->detach();
     }
 
+    /**
+     * Filters a collection by a given flag code
+     * @param Collection $collection
+     * @param $flag
+     * @return Collection
+     */
+    public function filterFlag(Collection $collection, $flag){
+        return $collection->filter(function ($value) use ($flag) {
+            return $value->hasFlag($flag);
+        });
+    }
+
 }
