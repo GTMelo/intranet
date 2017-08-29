@@ -51,4 +51,8 @@ class UserRh extends Model
     public function email_pessoal(){
         return $this->filterFlag($this->emails, 'personal');
     }
+
+    public function telefone_celular(){
+        return $this->filterFlag($this->telefones, 'is-cellphone');
+    }
 }
