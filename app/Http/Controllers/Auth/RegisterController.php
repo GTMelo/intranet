@@ -7,6 +7,7 @@ use App\Models\Telefone;
 use App\Models\Unidade;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\UserRh;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -67,18 +68,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-//        dd($data['cpf']);
 
         $user = User::create([
             'cpf' => $data['cpf'],
-            'nome_completo' => $data['nome_completo'],
             'nome_curto' => $data['nome_curto'],
             'password' => bcrypt($data['password']),
             'unidade_id' => Unidade::find(1)->id,
         ]);
 
-        $user->telefones()->attach(Telefone::find(1), ['is_main' => true]);
-        $user->emails()->attach(Email::find(1), ['is_main' => true]);
+        $userRh = UserRh::create([
+            'user_id' => $user->id,
+            'nome_completo' => $data['nome_completo'],
+        ]);
+
+        $userRh->telefones()->attach(Telefone::find(1));
+        $userRh->emails()->attach(Email::find(1));
 
         return $user;
     }

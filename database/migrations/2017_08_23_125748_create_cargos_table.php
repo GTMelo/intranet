@@ -15,11 +15,10 @@ class CreateCargosTable extends Migration
     {
         Schema::create('cargos', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
 
             $table->string('abreviacao');
             $table->string('descricao');
-
-            $table->timestamps();
         });
     }
 

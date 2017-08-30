@@ -15,6 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->string('cpf')->unique();
             $table->string('nome_curto');
@@ -22,8 +24,7 @@ class CreateUsersTable extends Migration
 
             $table->rememberToken();
             $table->timestamp('last_access')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+
         });
     }
 

@@ -32,8 +32,8 @@ class AddFksEnderecoDadoBancarioToUserRh extends Migration
     public function down()
     {
         Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('endereco_id');
-            $table->dropForeign('dado_bancario_id');
+            $table->dropForeign('users_rh_endereco_id_foreign');
+            $table->dropForeign('users_rh_dado_bancario_id_foreign');
             $table->dropColumn(['endereco_id', 'dado_bancario_id']);
         });
     }

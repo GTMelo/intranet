@@ -15,12 +15,11 @@ class CreateFlagsTable extends Migration
     {
         Schema::create('flags', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
 
             $table->string('code');
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
-
-            $table->timestamps();
         });
     }
 

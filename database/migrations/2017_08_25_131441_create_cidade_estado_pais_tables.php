@@ -15,14 +15,13 @@ class CreateCidadeEstadoPaisTables extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
 
             $table->string('nome');
             $table->string('nome_completo')->nullable();
             $table->string('iso')->nullable();
             $table->string('adjetivo_patrio')->nullable();
             $table->string('codigo_telefone')->nullable();
-
-            $table->timestamps();
         });
 
         Schema::create('estados', function (Blueprint $table) {

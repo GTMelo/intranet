@@ -15,15 +15,14 @@ class CreateUnidadesTable extends Migration
     {
         Schema::create('unidades', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->integer('unidade_superior_id')->unsigned()->nullable();
             $table->integer('status_id')->unsigned()->default(1);
             $table->string('sigla', 10)->nullable();
             $table->string('descricao')->nullable();
             $table->text('tldr')->nullable();
-
-            $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::table('unidades', function (Blueprint $table) {

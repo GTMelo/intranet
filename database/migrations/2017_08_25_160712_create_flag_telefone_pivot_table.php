@@ -13,10 +13,13 @@ class CreateFlagTelefonePivotTable extends Migration
     public function up()
     {
         Schema::create('flag_telefone', function (Blueprint $table) {
+
             $table->integer('flag_id')->unsigned()->index();
             $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
+
             $table->integer('telefone_id')->unsigned()->index();
             $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
+
             $table->primary(['flag_id', 'telefone_id']);
         });
     }

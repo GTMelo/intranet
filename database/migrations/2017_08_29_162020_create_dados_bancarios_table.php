@@ -15,17 +15,20 @@ class CreateDadosBancariosTable extends Migration
     {
         Schema::create('dados_bancarios', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
+
             $table->integer('banco_id')->default(1)->unsigned()->nullable();
+
             $table->string('agencia')->nullable();
             $table->string('conta')->nullable();
-            $table->timestamps();
         });
 
         Schema::create('bancos', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
+
             $table->integer('codigo_banco');
             $table->string('nome');
-            $table->timestamps();
         });
 
         Schema::table('dados_bancarios', function (Blueprint $table) {

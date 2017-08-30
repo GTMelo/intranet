@@ -22,10 +22,7 @@ class UserRhTableSeeder extends Seeder
             'cargo_id' => 1,
             'sexo' => 'm',
             'nome_completo' => 'Owner Admin',
-            'pai' => 'Owner Dad',
-            'mae' => 'Owner Mom',
             'estado_civil' => 'Solteiro',
-            'conjuge' => 'Owner Spouse',
         ]);
 
         $user->telefones()->attach(Telefone::first());
