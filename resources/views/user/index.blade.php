@@ -24,12 +24,12 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td>{{ $user->nome_curto }}</td>
-                            @permission('read-rhdata')<td>{{ $user->cpf }}</td> @endpermission
+                            <td>{{ $user->user->nome_curto }}</td>
+                            @permission('read-rhdata') <td>{{ $user->user->cpf }}</td> @endpermission
                             <td>{{ $user->cargo->abreviacao }}</td> {{-- TODO Abreviação on hover = mostrar descrição --}}
                             <td>{{ $user->unidade->sigla }}</td>
-                            <td>{{ $user->main_telefone()->numero }}</td>
-                            <td>{{ $user->main_email()->address }}</td>
+                            <td>@if(count($user->ramal())) {{ $user->ramal()->numero }} @endif</td>
+                            <td>@if(count($user->email_funcional())) {{ $user->email_funcional()->address }} @endif</td>
                         </tr>
                     @endforeach
                     </tbody>

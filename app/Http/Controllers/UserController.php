@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserRh;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -10,9 +11,15 @@ class UserController extends Controller
 
     public function index(){
 
-        $users = User::all();
+        $users = UserRh::paginate(15);
 
-        return view('user/index', compact('users'));
+        return view('user/index', compact('users', 'tab'));
+    }
+
+    public function show(User $user){
+
+        return view('user/show', compact('user'));
+
     }
 
 }

@@ -30,6 +30,14 @@ class UserRh extends Model
         return $this->telefones();
     }
 
+    public function telefone_residencial(){
+        return $this->filterFlag($this->telefones, 'personal');
+    }
+
+    public function ramal(){
+        return $this->filterFlag($this->telefones, 'is-work')->first();
+    }
+
     public function emails()
     {
         return $this->belongsToMany(Email::class, 'email_user_rh', 'user_rh_id');
@@ -44,12 +52,12 @@ class UserRh extends Model
         return $this->naturalidade->estado->pais->adjetivo_patrio;
     }
 
-    public function telefone_residencial(){
-        return $this->filterFlag($this->telefones, 'personal');
+    public function email_pessoal(){
+        return $this->filterFlag($this->emails, 'is-personal')->first();
     }
 
-    public function email_pessoal(){
-        return $this->filterFlag($this->emails, 'personal');
+    public function email_funcional(){
+        return $this->filterFlag($this->emails, 'is-work')->first();
     }
 
     public function telefone_celular(){
@@ -62,5 +70,14 @@ class UserRh extends Model
 
     public function dado_bancario(){
         return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
+    }
+
+    public function unidade()
+    {
+        return $this->belongsTo(Unidade::class);
+    }
+
+    public function cargo(){
+        return $this->belongsTo(Cargo::class);
     }
 }

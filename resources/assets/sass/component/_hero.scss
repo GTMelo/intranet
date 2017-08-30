@@ -1,0 +1,24 @@
+.hero-with-image{
+
+  & .hero-body{
+    .container{
+      @extend .is-flex;
+      align-items: center;
+    }
+
+  }
+
+  & .hero-image{
+    margin-right: 1rem;
+  }
+
+  & img {
+    border-radius: 50%;
+  }
+
+  & .hero-content{
+    @extend .is-flex;
+    flex-direction: column;
+  }
+
+}

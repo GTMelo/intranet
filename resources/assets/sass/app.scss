@@ -13,8 +13,10 @@ $base-duration: 0.2s !default;
 @import "common/typography";
 @import "document/components";
 @import "common/mixins";
-@import "common/_placeholders";
+@import "common/placeholders";
 
 @import "partials/header";
 @import "partials/footer";
 @import "document/master";
+
+@import "component/_components";

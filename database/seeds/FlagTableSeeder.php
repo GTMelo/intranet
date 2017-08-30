@@ -15,9 +15,14 @@ class FlagTableSeeder extends Seeder
 
         // Common flags
         Flag::create([
-            'code' => 'personal',
+            'code' => 'is-personal',
             'display_name' => 'Pessoal',
             'description' => 'Item pertence a uma pessoa. Ex: e-mails pessoais, telefones residenciais, etc.',
+        ]);
+        Flag::create([
+            'code' => 'is-work',
+            'display_name' => 'Profissional',
+            'description' => 'O item é relacionado ao exercício profissional de uma pessoa. Ex: e-mail profissiona, ramal, etc.',
         ]);
 
         // Phone flags

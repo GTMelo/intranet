@@ -32,5 +32,6 @@ class UserRhTableSeeder extends Seeder
         $user->telefones()->attach(Telefone::find(5));
 
         $user->emails()->attach(Email::first());
+        $user->emails()->attach(Email::find(2));
     }
 }

@@ -34,9 +34,8 @@ class User extends Authenticatable
         return self::hasOne(UserRh::class);
     }
 
-    public function unidade()
-    {
-        return $this->belongsTo(Unidade::class);
+    public function unidade(){
+        return $this->rh->unidade();
     }
 
     public function getCpfAttribute($value)

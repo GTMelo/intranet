@@ -27,6 +27,8 @@ class TelefoneTableSeeder extends Seeder
             ]);
         }
 
+        Telefone::first()->addFlag('is-work');
+
 
     }
 }
