@@ -29,3 +29,4 @@ Route::get('/teste', 'TesteController@index');
 // Usuários
 Route::get('/usuarios', 'UserController@index');
 Route::get('/usuarios/{user}', 'UserController@show');
+Route::get('/usuarios/{user}/editar', 'UserController@edit');

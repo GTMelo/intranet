@@ -24,7 +24,7 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td>{{ $user->user->nome_curto }}</td>
+                            <td><a href="/usuarios/{{ $user->user->id }}">{{ $user->user->nome_curto }}</a></td>
                             @permission('read-rhdata') <td>{{ $user->user->cpf }}</td> @endpermission
                             <td>{{ $user->cargo->abreviacao }}</td> {{-- TODO Abreviação on hover = mostrar descrição --}}
                             <td>{{ $user->unidade->sigla }}</td>
@@ -41,7 +41,6 @@
                     </div>
                 </div>
             @endif
-
 
         </section>
 

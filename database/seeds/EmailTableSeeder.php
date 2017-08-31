@@ -26,7 +26,7 @@ class EmailTableSeeder extends Seeder
         }
 
         Email::first()->addFlag('is-personal');
-        Email::find(2)->addFlag('is-work');
+        Email::find(1)->addFlag('is-work');
 
     }
 }
