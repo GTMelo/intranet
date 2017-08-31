@@ -28,7 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $dates = ['last_access', 'data_nascimento'];
+    protected $dates = ['last_access'];
 
     public function rh(){
         return self::hasOne(UserRh::class);
