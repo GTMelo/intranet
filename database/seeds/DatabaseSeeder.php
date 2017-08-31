@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BancoTableSeeder::class);
         $this->call(DadoBancarioTableSeeder::class);
         $this->call(UserRhTableSeeder::class);
+        $this->call(TipoDocumentoTableSeeder::class);
     }
 }
