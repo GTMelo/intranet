@@ -20,10 +20,12 @@
                 <button type="submit">Enviar</button>
             </form>
 
-            <img src="{{ Storage::disk('local')->url(App\Models\Documento::latest()->first()->imagem) }}">
-            <pre>
+            @if(\App\Models\Documento::latest()->first())
+                <img src="{{ Storage::disk('local')->url(App\Models\Documento::latest()->first()->imagem) }}">
+                <pre>
                 {{ \App\Models\Documento::latest()->first() }}
-            </pre>
+                </pre>
+            @endif
             <pre>
             </pre>
         </section>

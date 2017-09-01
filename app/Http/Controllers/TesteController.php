@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documento;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TesteController extends Controller
@@ -17,17 +16,25 @@ class TesteController extends Controller
     public function docStore(Request $request)
     {
         $doc = Documento::create([
-            'imagem' => $request->file('imagem')->store('documentos'),
+            'imagem' => $request->file('imagem')->store('public/documentos'),
             'identificacao' => $request['identificacao'],
-            'orgao_expeditor' => $request['orgao_expeditor'],
-            'data_emissao' => Carbon::createFromFormat('d/m/Y', $request['data_emissao']),
-            'validade' => $request['validade'],
-            'zona' => $request['zona'],
-            'secao' => $request['secao'],
-            'serie' => $request['serie'],
             'tipo_documento_id' => $request['tipo_documento_id'],
             'user_rh_id' => $request['user_rh_id'],
         ]);
+
+        $others = [
+            'orgao_expeditor',
+            'validade',
+            'zona',
+            'secao',
+            'serie',
+        ];
+
+        foreach ($others as $item){
+            if($request[$item]) $doc->$item = $request[$item];
+        }
+
+        $doc->save();
 
         return back();
     }
