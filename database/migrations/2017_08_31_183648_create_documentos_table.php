@@ -15,6 +15,7 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_rh_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->string('imagem')->nullable();
@@ -26,6 +27,10 @@ class CreateDocumentosTable extends Migration
             $table->string('secao')->nullable();
             $table->string('serie')->nullable();
 
+        });
+
+        Schema::table('documentos', function (Blueprint $table) {
+            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
         });
     }
 

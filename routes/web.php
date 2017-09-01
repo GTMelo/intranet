@@ -25,6 +25,7 @@ Route::get('/sair', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/teste', 'TesteController@index');
+Route::post('/teste', 'TesteController@docStore');
 
 // Usuários
 Route::get('/usuarios', 'UserController@index');

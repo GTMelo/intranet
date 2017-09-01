@@ -9,4 +9,9 @@ class TipoDocumento extends Model
 
     protected $guarded = ['id'];
 
+
+    public function documentos(){
+        return $this->hasMany(Documento::class);
+    }
+
 }

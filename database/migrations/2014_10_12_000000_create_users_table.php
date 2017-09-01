@@ -23,7 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             $table->rememberToken();
-            $table->timestamp('last_access')->nullable();
+            $table->timestamp('previous_last_login')->nullable();
+            $table->timestamp('current_last_login')->nullable();
 
         });
     }

@@ -82,4 +82,8 @@ class UserRh extends Model
     public function cargo(){
         return $this->belongsTo(Cargo::class);
     }
+
+    public function documentos(){
+        return $this->hasMany(Documento::class);
+    }
 }
