@@ -23,6 +23,10 @@ class UserRh extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function cpf(){
+        return $this->user->cpf;
+    }
+
     public function telefones()
     {
         return $this->belongsToMany(Telefone::class, 'telefone_user_rh', 'user_rh_id');
@@ -85,5 +89,9 @@ class UserRh extends Model
 
     public function documentos(){
         return $this->hasMany(Documento::class);
+    }
+
+    public function escolaridades(){
+        return $this->hasMany(Escolaridade::class, 'user_id');
     }
 }
