@@ -15,7 +15,7 @@ class UserRh extends Model
 
     protected $guarded = [];
 
-    protected $dates = ['data_nascimento'];
+    protected $dates = ['data_nascimento', 'entrada_sain'];
 
     public $incrementing = false;
 

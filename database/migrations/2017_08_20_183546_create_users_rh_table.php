@@ -22,6 +22,8 @@ class CreateUsersRhTable extends Migration
             $table->enum('sexo', ['m', 'f'])->nullable();
             $table->date('data_nascimento')->nullable();
             $table->string('estado_civil')->nullable();
+            $table->date('entrada_sain')->nullable();
+            $table->string('matricula')->nullable();
         });
 
         Schema::table('users_rh', function (Blueprint $table) {
