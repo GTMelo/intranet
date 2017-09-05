@@ -94,4 +94,9 @@ class UserRh extends Model
     public function escolaridades(){
         return $this->hasMany(Escolaridade::class, 'user_id');
     }
+
+    public function idiomas(){
+        return $this->belongsToMany(Idioma::class, 'idioma_user_rh', 'user_rh_id', 'idioma_id')
+            ->withPivot(['leitura','escrita','compreensao','conversacao',]);
+    }
 }
