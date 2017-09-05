@@ -13,10 +13,20 @@ class CreateDocumentosTable extends Migration
      */
     public function up()
     {
+        Schema::create('tipo_documentos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+
+            $table->string('descricao');
+        });
+
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_rh_id')->unsigned()->nullable();
             $table->timestamps();
+
+            $table->integer('tipo_documento_id')->unsigned()->nullable();
+            $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos')->onDelete('set null');
 
             $table->string('imagem')->nullable();
             $table->string('identificacao')->nullable();
@@ -41,6 +51,12 @@ class CreateDocumentosTable extends Migration
      */
     public function down()
     {
+        Schema::table('documentos', function (Blueprint $table) {
+            $table->dropForeign('documentos_tipo_documento_id_foreign');
+        });
+
         Schema::dropIfExists('documentos');
+
+        Schema::dropIfExists('tipo_documentos');
     }
 }

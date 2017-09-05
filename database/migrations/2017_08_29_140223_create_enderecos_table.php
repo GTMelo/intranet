@@ -28,6 +28,11 @@ class CreateEnderecosTable extends Migration
             $table->foreign('cidade_id')->references('id')->on('cidades')->onDelete('set null');
 
         });
+
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->integer('endereco_id')->default(1)->unsigned()->nullable();
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('set null');
+        });
     }
 
     /**
@@ -37,6 +42,10 @@ class CreateEnderecosTable extends Migration
      */
     public function down()
     {
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->dropForeign('users_rh_endereco_id_foreign');
+            $table->dropColumn('endereco_id');
+        });
         Schema::dropIfExists('enderecos');
     }
 }

@@ -20,6 +20,11 @@ class CreateCargosTable extends Migration
             $table->string('abreviacao');
             $table->string('descricao');
         });
+
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->integer('cargo_id')->default(1)->unsigned()->nullable();
+            $table->foreign('cargo_id')->references('id')->on('cargos');
+        });
     }
 
     /**
@@ -29,6 +34,9 @@ class CreateCargosTable extends Migration
      */
     public function down()
     {
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->dropForeign('users_rh_cargo_id_foreign');
+        });
         Schema::dropIfExists('cargos');
     }
 }

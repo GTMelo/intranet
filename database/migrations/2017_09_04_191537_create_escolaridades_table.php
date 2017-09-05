@@ -13,6 +13,16 @@ class CreateEscolaridadesTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('tipo_escolaridades', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->string('descricao');
+
+        });
+
         Schema::create('escolaridades', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -26,15 +36,6 @@ class CreateEscolaridadesTable extends Migration
             $table->string('instituicao')->nullable();
             $table->date('inicio')->nullable();
             $table->date('termino')->nullable();
-
-        });
-
-        Schema::create('tipo_escolaridades', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->string('descricao');
 
         });
 

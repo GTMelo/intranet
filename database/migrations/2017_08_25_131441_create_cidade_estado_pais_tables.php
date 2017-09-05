@@ -53,6 +53,21 @@ class CreateCidadeEstadoPaisTables extends Migration
             $table->foreign('pais_id')->references('id')->on('paises');
         });
 
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->integer('naturalidade_id')->default(1)->unsigned()->nullable();
+            $table->foreign('naturalidade_id')->references('id')->on('cidades');
+        });
+
+        Schema::create('cidade_flag', function (Blueprint $table) {
+
+            $table->integer('cidade_id')->unsigned()->index();
+            $table->foreign('cidade_id')->references('id')->on('cidades')->onDelete('cascade');
+
+            $table->integer('flag_id')->unsigned()->index();
+            $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
+
+            $table->primary(['cidade_id', 'flag_id']);
+        });
 
     }
 
@@ -63,6 +78,11 @@ class CreateCidadeEstadoPaisTables extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('cidade_flag');
+
+        Schema::table('users_rh', function (Blueprint $table) {
+            $table->dropForeign('users_rh_naturalidade_id_foreign');
+        });
 
         Schema::table('cidades', function (Blueprint $table) {
             $table->dropForeign('cidades_estado_id_foreign');

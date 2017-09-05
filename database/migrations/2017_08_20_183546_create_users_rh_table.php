@@ -18,10 +18,6 @@ class CreateUsersRhTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('naturalidade_id')->default(1)->unsigned()->nullable();
-            $table->integer('unidade_id')->default(1)->unsigned()->nullable();
-            $table->integer('cargo_id')->default(1)->unsigned()->nullable();
-
             $table->string('nome_completo')->nullable();
             $table->enum('sexo', ['m', 'f'])->nullable();
             $table->date('data_nascimento')->nullable();
@@ -30,12 +26,18 @@ class CreateUsersRhTable extends Migration
 
         Schema::table('users_rh', function (Blueprint $table) {
             $table->primary('user_id');
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('set null');
-            $table->foreign('cargo_id')->references('id')->on('cargos');
-            $table->foreign('naturalidade_id')->references('id')->on('cidades');
+        });
 
+        Schema::create('flag_user_rh', function (Blueprint $table) {
+
+            $table->integer('flag_id')->unsigned()->index();
+            $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
+
+            $table->integer('user_rh_id')->unsigned()->index();
+            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
+
+            $table->primary(['flag_id', 'user_rh_id']);
         });
     }
 
@@ -46,12 +48,10 @@ class CreateUsersRhTable extends Migration
      */
     public function down()
     {
-        Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('users_rh_user_id_foreign');
-            $table->dropForeign('users_rh_unidade_id_foreign');
-            $table->dropForeign('users_rh_cargo_id_foreign');
-            $table->dropForeign('users_rh_naturalidade_id_foreign');
-        });
+        Schema::drop('flag_user_rh');
+//        Schema::table('users_rh', function (Blueprint $table) {
+//            $table->dropForeign('users_rh_user_id_foreign');
+//        });
         Schema::dropIfExists('users_rh');
     }
 }
