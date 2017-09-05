@@ -99,4 +99,8 @@ class UserRh extends Model
         return $this->belongsToMany(Idioma::class, 'idioma_user_rh', 'user_rh_id', 'idioma_id')
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
     }
+
+    public function dependentes(){
+        return $this->hasMany(Dependente::class, 'user_rh_id');
+    }
 }
