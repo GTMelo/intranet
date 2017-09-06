@@ -6,6 +6,7 @@
 
 <body>
     <div class="document-content" id="app">
+
         {{--Header do Site--}}
         @include('layouts.partials.header')
 

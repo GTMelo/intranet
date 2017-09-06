@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\RegistrationRequest;
 use App\Models\Email;
 use App\Models\Telefone;
 use App\Models\Unidade;
@@ -51,13 +52,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
-        return Validator::make($data, [
-            'cpf' => 'required|string|unique:users',
-            'nome_completo' => 'required|string|max:255',
-            'nome_curto' => 'required|string|max:255',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
     }
 
     /**
@@ -66,7 +60,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(RegistrationRequest $data)
     {
 
         $user = User::create([

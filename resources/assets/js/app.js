@@ -41,7 +41,8 @@ if (token) {
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
-Vue.component('message', require('./components/Message.vue'))
+Vue.component('message', require('./components/Message.vue'));
+Vue.component('form-item', require('./components/Form-item.vue'));
 
 const app = new Vue({
     el: '#app',
