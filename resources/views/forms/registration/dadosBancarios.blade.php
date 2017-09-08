@@ -5,8 +5,10 @@
     <div class="field has-addons">
         <div class="select is-expanded">
             <select name="banco">
-                <option value="1">Banco do Brasil</option>
-                <option value="2">Outro</option>
+
+                @foreach(\App\Models\Banco::all()->sortBy('nome') as $banco)
+                    <option value="{{ $banco->id }}" @if($banco->nome == 'Banco do Brasil S/A') selected="selected" @endif>{{ $banco->nome }}</option>
+                @endforeach
             </select>
         </div>
         <div class="control is-expanded">
