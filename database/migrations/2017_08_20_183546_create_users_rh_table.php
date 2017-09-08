@@ -18,7 +18,6 @@ class CreateUsersRhTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->string('nome_completo')->nullable();
             $table->enum('sexo', ['m', 'f'])->nullable();
             $table->date('data_nascimento')->nullable();
             $table->string('estado_civil')->nullable();

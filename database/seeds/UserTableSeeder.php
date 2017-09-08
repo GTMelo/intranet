@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder
         $user = User::create([
             'cpf' => '00000000000',
             'nome_curto' => 'Owner Admin',
+            'nome_completo' => 'Owner Admin',
             'password' => bcrypt('owneradmin'),
         ]);
 

@@ -10,12 +10,14 @@
         </div>
         <p class="help">Digite apenas os números</p>
     </div>
+
     <div class="field">
         <label class="label">Nome Completo</label>
         <div class="control">
             <input name="nome_completo" class="input" type="text">
         </div>
     </div>
+
     <div class="field">
         <label class="label">Nome Curto</label>
         <div class="control">
@@ -24,6 +26,7 @@
         <p class="help">O nome curto geralmente é a combinação do primeiro e último nomes.
             O nome curto é utilizado em recursos como e-mails, crachás e outros formulários.</p>
     </div>
+
     <div class="field">
         <label class="label">Senha</label>
         <div class="field has-addons">
@@ -32,6 +35,7 @@
         </div>
         <p class="help">A senha precisa ter no mínimo 6 dígitos</p>
     </div>
+
 </form>
 <div slot="footer" class="field">
     <button class="button is-primary" form="formRegistration">Criar nova Conta</button>

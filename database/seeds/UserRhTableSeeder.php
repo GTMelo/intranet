@@ -21,7 +21,6 @@ class UserRhTableSeeder extends Seeder
             'unidade_id' => 1,
             'cargo_id' => 1,
             'sexo' => 'm',
-            'nome_completo' => 'Owner Admin',
             'estado_civil' => 'Solteiro',
         ]);
 

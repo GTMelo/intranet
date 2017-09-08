@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\RegistrationRequest;
 use App\Models\Email;
 use App\Models\Telefone;
 use App\Models\Unidade;
@@ -32,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -52,6 +51,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        return Validator::make($data, [
+            'cpf' => 'required|string|unique:users',
+            'nome_completo' => 'required|string|max:255',
+            'nome_curto' => 'required|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
     }
 
     /**
@@ -60,19 +66,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(RegistrationRequest $data)
+    protected function create(array $data)
     {
 
         $user = User::create([
             'cpf' => $data['cpf'],
             'nome_curto' => $data['nome_curto'],
+            'nome_completo' => $data['nome_completo'],
             'password' => bcrypt($data['password']),
-            'unidade_id' => Unidade::find(1)->id,
         ]);
 
         $userRh = UserRh::create([
             'user_id' => $user->id,
-            'nome_completo' => $data['nome_completo'],
+            'unidade_id' => Unidade::first()->id,
         ]);
 
         $userRh->telefones()->attach(Telefone::find(1));
