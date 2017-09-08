@@ -27,7 +27,7 @@ class CreateDadosBancariosTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('codigo_banco');
+            $table->string('codigo_banco')->limit(3);
             $table->string('nome');
         });
 
