@@ -1,4 +1,4 @@
-<table class="table is-fullwidth user-profile">
+<table class="table is-fullwidth user-profile animated fadeInDown">
     <tr>
         <td>Data de Criação</td>
         <td>{{ $user->created_at }}</td>
