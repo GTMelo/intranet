@@ -8,51 +8,43 @@
                     <img src="http://via.placeholder.com/150x150">
                 </div>
                 <div class="hero-content animated fadeInDown">
-                    <h1 class="title">{{ $user->rh->nome_completo }}</h1>
+                    <h1 class="title">{{ $user->nome_completo }}</h1>
                     <h2 class="subtitle">{{ $user->rh->cargo->descricao }} - {{ $user->rh->unidade->descricao }}</h2>
+                    <div class="user-infocard">
+                        <div>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span>{{ $user->rh->telefones->first()->numero }}</span>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <a href="mailto:{{ $user->rh->emails->first()->address}}"><span>{{ $user->rh->emails->first()->address}}</span></a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="hero-foot">
+            <nav class="tabs">
+                <div class="container">
+                    <ul>
+                        <li @if(request()->get('secao') == 'dados_basicos' ) class="is-active @endif><a href="/usuarios/{{$user->id}}?secao=dados_basicos">Dados Básicos</a></li>
+                        <li @if(request()->get('secao') == 'dados_pessoais' ) class="is-active @endif><a href="/usuarios/{{$user->id}}?secao=dados_pessoais">Dados Pessoais</a></li>
+                        <li @if(request()->get('secao') == 'dados_funcionais' ) class="is-active @endif><a href="/usuarios/{{$user->id}}?secao=dados_funcionais">Dados Funcionais</a></li>
+                        <li @if(request()->get('secao') == 'dados_academicos' ) class="is-active @endif><a href="/usuarios/{{$user->id}}?secao=dados_academicos">Conhecimentos</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </section>
 
     <main class="container">
-        <table class="table is-fullwidth user-profile">
-            <tr>
-                <td>Data de Criação</td>
-                <td>{{ $user->created_at }}</td>
-            </tr>
-            <tr>
-                <td>Naturalidade</td>
-                <td>{{ $user->rh->naturalidade->nome }}</td>
-            </tr>
-            <tr>
-                <td>Sexo</td>
-                <td>
-                    @if($user->rh->sexo == 'm')
-                        Masculino
-                    @elseif($user->rh->sexo == 'f')
-                        Feminino
-                    @else Não informado
-                    @endif
-                </td>
-            </tr>
-            <tr>
-                <td>Data de Nascimento</td>
-                <td>{{ $user->rh->data_nascimento }}</td>
-            </tr>
-            <tr>
-                <td>Estado Civil</td>
-                <td>{{ $user->rh->estado_civil }}</td>
-            </tr>
-            <tr>
-                <td>Endereço</td>
-                <td>
-                    {{ $user->rh->endereco->logradouro }}<br>
-                    {{ $user->rh->endereco->cep }}<br>
-                    {{ $user->rh->endereco->cidade->nome }} - {{ $user->rh->endereco->cidade->estado->pais->nome }}
-                </td>
-            </tr>
-        </table>
-
+        @if(request()->get('secao'))
+            @if(request()->get('secao') == 'dados_basicos') @include('user.show.dados_basicos') @endif
+            @if(request()->get('secao') == 'dados_pessoais') @include('user.show.dados_pessoais') @endif
+            @if(request()->get('secao') == 'dados_funcionais') @include('user.show.dados_funcionais') @endif
+            @if(request()->get('secao') == 'dados_academicos') @include('user.show.dados_academicos') @endif
+        @else
+            @include('user.show.dados_basicos')
+        @endif
     </main>
 @endsection
