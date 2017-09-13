@@ -23,6 +23,10 @@ class UserRh extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function slug(){
+        return $this->user->slug();
+    }
+
     public function cpf(){
         return $this->user->cpf;
     }

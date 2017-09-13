@@ -29,5 +29,5 @@ Route::post('/teste', 'TesteController@docStore');
 
 // Usuários
 Route::get('/usuarios', 'UserController@index');
-Route::get('/usuarios/{user}', 'UserController@show');
-Route::get('/usuarios/{user}/editar', 'UserController@edit');
+Route::get('/usuarios/{slug}', 'UserController@show');
+Route::get('/usuarios/{slug}/editar', 'UserController@edit');

@@ -39,6 +39,14 @@ class User extends Authenticatable
         return $this->rh->unidade();
     }
 
+    public function slug(){
+        return str_slug($this->nome_curto);
+    }
+
+    public static function ofSlug($slug){
+        return self::where('nome_curto', 'like', str_replace('-', ' ', $slug))->first();
+    }
+
     public function getCpfAttribute($value)
     {
 

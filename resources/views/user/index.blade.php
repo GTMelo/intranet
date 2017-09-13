@@ -24,10 +24,10 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td><a href="/usuarios/{{ $user->user->id }}">{{ $user->user->nome_curto }}</a></td>
+                            <td><a href="/usuarios/{{ $user->user->slug() }}">{{ $user->user->nome_curto }}</a></td>
                             @permission('read-rhdata') <td>{{ $user->user->cpf }}</td> @endpermission
-                            <td>{{ $user->cargo->abreviacao }}</td> {{-- TODO Abreviação on hover = mostrar descrição --}}
-                            <td>{{ $user->unidade->sigla }}</td>
+                            <td title="{{ $user->cargo->descricao }}">{{ $user->cargo->abreviacao }}</td> {{-- TODO Abreviação on hover = mostrar descrição --}}
+                            <td title="{{ $user->unidade->descricao }}">{{ $user->unidade->sigla }}</td>
                             <td>@if(count($user->ramal())) {{ $user->ramal()->numero }} @endif</td>
                             <td>@if(count($user->email_funcional())) {{ $user->email_funcional()->address }} @endif</td>
                         </tr>

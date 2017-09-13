@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
 
             $table->string('cpf')->unique();
-            $table->string('nome_curto');
+            $table->string('nome_curto')->unique();
             $table->string('nome_completo')->nullable();
             $table->string('password');
 

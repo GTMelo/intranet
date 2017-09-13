@@ -16,7 +16,9 @@ class UserController extends Controller
         return view('user/index', compact('users', 'tab'));
     }
 
-    public function show(User $user){
+    public function show($slug){
+
+        $user = User::ofSlug($slug);
 
         return view('user/show', compact('user'));
 
