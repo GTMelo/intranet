@@ -20,6 +20,8 @@ class UserController extends Controller
 
         $user = User::ofSlug($slug);
 
+        if(!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$slug\" não foi encontrado"]);
+
         return view('user/show', compact('user'));
 
     }
