@@ -3,8 +3,8 @@
 @section('content')
 
     @include('layouts.partials.page_header', [
-    'title' => 'Cadastrar novo usuário',
-    'sub' => 'Preencha os dados abaixo para criar sua conta na intraSAIN'
+    'title' => 'Cadastrar Novo Usuário',
+    'sub' => 'Preencha os dados abaixo para criar sua conta na IntraSAIN'
      ])
 
     <main class="container">

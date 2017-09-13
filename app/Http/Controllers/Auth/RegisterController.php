@@ -8,6 +8,7 @@ use App\Models\Unidade;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\UserRh;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -55,7 +56,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'cpf' => 'required|string|unique:users',
             'nome_completo' => 'required|string|max:255',
-            'nome_curto' => 'required|string|max:255|unique',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -71,7 +71,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'cpf' => $data['cpf'],
-            'nome_curto' => $data['nome_curto'],
+            'nome_curto' => generate_nome_curto($data['nome_completo']),
             'nome_completo' => $data['nome_completo'],
             'password' => bcrypt($data['password']),
         ]);
@@ -83,6 +83,8 @@ class RegisterController extends Controller
 
         $userRh->telefones()->attach(Telefone::find(1));
         $userRh->emails()->attach(Email::find(1));
+
+        Session::flash('messages', 'Sua conta foi criada com sucesso.');
 
         return $user;
     }

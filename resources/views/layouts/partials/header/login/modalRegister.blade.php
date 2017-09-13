@@ -18,14 +18,14 @@
         </div>
     </div>
 
-    <div class="field">
-        <label class="label">Nome Curto</label>
-        <div class="control">
-            <input name="nome_curto" class="input" type="text">
-        </div>
-        <p class="help">O nome curto geralmente é a combinação do primeiro e último nomes.
-            O nome curto é utilizado em recursos como e-mails, crachás e outros formulários.</p>
-    </div>
+    {{--<div class="field">--}}
+        {{--<label class="label">Nome Curto</label>--}}
+        {{--<div class="control">--}}
+            {{--<input name="nome_curto" class="input" type="text">--}}
+        {{--</div>--}}
+        {{--<p class="help">O nome curto geralmente é a combinação do primeiro e último nomes.--}}
+            {{--O nome curto é utilizado em recursos como e-mails, crachás e outros formulários.</p>--}}
+    {{--</div>--}}
 
     <div class="field">
         <label class="label">Senha</label>

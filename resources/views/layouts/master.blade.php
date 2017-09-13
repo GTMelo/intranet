@@ -12,6 +12,7 @@
 
         {{--Mensagens e erros--}}
         @include('layouts.partials.errors')
+        @include('layouts.partials.success')
 
         {{--Tudo entre header e footer--}}
         @yield('content')

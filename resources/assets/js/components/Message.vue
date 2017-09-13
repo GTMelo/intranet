@@ -28,6 +28,9 @@
                     case ('warning'):
                         result += ' is-warning';
                         break;
+                    case ('success'):
+                        result += ' is-success';
+                        break;
                     default:
                 }
 
