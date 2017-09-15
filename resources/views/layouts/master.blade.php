@@ -18,7 +18,7 @@
         @yield('content')
 
         {{--Footer do site--}}
-        @include('layouts.partials.footer')
+        {{--@include('layouts.partials.footer')--}}
 
     </div>
 
