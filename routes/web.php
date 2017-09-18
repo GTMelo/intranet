@@ -30,4 +30,7 @@ Route::post('/teste', 'TesteController@docStore');
 // Usuários
 Route::get('/usuarios', 'UserController@index');
 Route::get('/usuarios/{slug}', 'UserController@show');
-Route::get('/usuarios/{slug}/editar', 'UserController@edit');
+Route::get('/usuarios/{slug}/rh/{subsecao}', 'UserController@show');
+Route::get('/usuarios/{slug}/rh/{subsecao}/editar', 'UserController@edit');
+
+//Route::get('/usuarios/{slug}/editar', 'UserController@edit');

@@ -26,7 +26,7 @@ class TesteController extends Controller
             'orgao_expeditor',
             'validade',
             'zona',
-            'secao',
+            'subsecao',
             'serie',
         ];
 

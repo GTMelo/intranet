@@ -1,4 +1,16 @@
 .user-profile {
+
+  @extend .is-flex;
+  aside{
+    margin-right: 1rem;
+  }
+  main{
+    flex: 1;
+  }
+  & .menu-list{
+    font-size: small;
+  }
+
   font-size: 150%;
 }
 

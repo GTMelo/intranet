@@ -25,7 +25,7 @@
                 {{--<input name="data_emissao" type="datetime-local" placeholder="data_emis">--}}
                 {{--<input name="validade" type="datetime-local" placeholder="valid">--}}
                 {{--<input name="zona" type="text" placeholder="zona">--}}
-                {{--<input name="secao" type="text" placeholder="secao">--}}
+                {{--<input name="subsecao" type="text" placeholder="subsecao">--}}
                 {{--<input name="serie" type="text" placeholder="serie">--}}
                 {{--<input name="tipo_documento_id" type="hidden" value="1">--}}
                 {{--<input name="user_rh_id" type="hidden" value="1">--}}

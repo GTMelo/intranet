@@ -34,7 +34,7 @@ class CreateDocumentosTable extends Migration
             $table->date('data_emissao')->nullable();
             $table->date('validade')->nullable();
             $table->string('zona')->nullable();
-            $table->string('secao')->nullable();
+            $table->string('subsecao')->nullable();
             $table->string('serie')->nullable();
 
         });

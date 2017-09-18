@@ -16,19 +16,21 @@ class UserController extends Controller
         return view('user/index', compact('users', 'tab'));
     }
 
-    public function show($slug){
+    public function show($slug, $subsecao = null){
 
         $user = User::ofSlug($slug);
 
         if(!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$slug\" não foi encontrado"]);
 
-        return view('user/show', compact('user'));
+        return view('user/show', compact('user', 'subsecao'));
 
     }
 
-    public function edit(User $user){
+    public function edit($slug, $subsecao){
 
-        return view('user/edit', compact('user'));
+        $user = User::ofSlug($slug);
+
+        return view('user/edit', compact('user', 'subsecao'));
 
     }
 
