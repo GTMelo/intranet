@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserRhTableSeeder::class);
         $this->call(TipoDocumentoTableSeeder::class);
         $this->call(TipoEscolaridadeTableSeeder::class);
+        $this->call(TipoDependenteTableSeeder::class);
     }
 }

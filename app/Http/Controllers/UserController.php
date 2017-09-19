@@ -17,29 +17,21 @@ class UserController extends Controller
 
     }
 
-    public function show(User $slug, $secao = null){
+    public function show(User $user, $secao = null){
 
+        if (!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$user\" não foi encontrado"]);
 
+        $secoes = collect(['basico', 'pessoal', 'funcional', 'escolaridade', 'documentos']);
 
-//        $user = User::ofSlug($slug);
-//
-//        if(!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$slug\" não foi encontrado"]);
-//
-//        switch($secao){
-//            default:
-//                return view('user/show/secao/basico', compact('user', 'secao'));
-//        }
-//
-//        return view('user/show', compact('user'));
-
+        if($secoes->contains($secao)){
+            return view('user/show/secao/' . $secao, compact('user', 'secao'));
+        } else {
+            $secao = 'basico';
+            return view('user/show/secao/basico', compact('user', 'secao'))->withErrors('A página não foi encontrada');
+        }
     }
 
     public function edit($slug, $subsecao){
-
-        $user = User::ofSlug($slug);
-
-        return view('user/edit', compact('user', 'subsecao'));
-
     }
 
 

@@ -41,7 +41,11 @@ class UserRh extends Model
     }
 
     public function telefone_residencial(){
-        return $this->filterFlag($this->telefones, 'personal');
+        return $this->filterFlag($this->telefones, 'personal')->first();
+    }
+
+    public function telefone_celular(){
+        return $this->filterFlag($this->telefones, 'is-cellphone')->first();
     }
 
     public function ramal(){
@@ -53,13 +57,18 @@ class UserRh extends Model
         return $this->belongsToMany(Email::class, 'email_user_rh', 'user_rh_id');
     }
 
-    public function naturalidade(){
+    public function naturalidadeCidade(){
 
         return $this->belongsTo(Cidade::class, 'naturalidade_id');
     }
 
+    public function naturalidade(){
+
+        return $this->naturalidadeCidade;
+    }
+
     public function nacionalidade(){
-        return $this->naturalidade->estado->pais->adjetivo_patrio;
+        return $this->naturalidadeCidade->estado->pais->adjetivo_patrio;
     }
 
     public function email_pessoal(){
@@ -68,10 +77,6 @@ class UserRh extends Model
 
     public function email_funcional(){
         return $this->filterFlag($this->emails, 'is-work')->first();
-    }
-
-    public function telefone_celular(){
-        return $this->filterFlag($this->telefones, 'is-cellphone');
     }
 
     public function endereco(){
@@ -106,5 +111,22 @@ class UserRh extends Model
 
     public function dependentes(){
         return $this->hasMany(Dependente::class, 'user_rh_id');
+    }
+
+    public function pai(){
+        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('pai')->id)->first();
+    }
+
+    public function mae(){
+        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('mãe')->id)->first();
+    }
+
+    public function conjuge(){
+        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('conjuge')->id)->first();
+    }
+
+    public function getSexoAttribute($value){
+        if($value == 'm') return 'masculino';
+        if($value == 'f') return 'feminino';
     }
 }

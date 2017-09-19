@@ -2,6 +2,6 @@
 
 @section('user-content')
 
-    <h3 class="is-size-3">Dados Básicos</h3>
+    <h3 class="is-size-3">Escolaridade</h3>
 
 @endsection

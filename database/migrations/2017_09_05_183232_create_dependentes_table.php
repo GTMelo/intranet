@@ -16,7 +16,6 @@ class CreateDependentesTable extends Migration
 
         Schema::create('tipo_dependentes', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('descricao');
         });
 
@@ -31,6 +30,7 @@ class CreateDependentesTable extends Migration
             $table->string('nome');
             $table->date('data_nascimento')->nullable();
             $table->string('cpf')->limit(11)->nullable();
+            $table->boolean('is_dependente')->default(false);
 
         });
 
