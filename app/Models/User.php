@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Model\Status;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
@@ -21,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'cpf',
         'nome_curto',
+        'slug',
         'nome_completo',
         'password',
     ];
@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $dates = ['last_access'];
+    protected $dates = ['previous_last_login', 'current_last_login'];
 
     public function rh(){
         return self::hasOne(UserRh::class);
@@ -39,12 +39,13 @@ class User extends Authenticatable
         return $this->rh->unidade();
     }
 
-    public function slug(){
-        return str_slug($this->nome_curto);
+    public static function ofSlug($slug){
+        return self::where('slug', $slug)->first();
     }
 
-    public static function ofSlug($slug){
-        return self::where('nome_curto', 'like', str_replace('-', ' ', $slug))->first();
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function getCpfAttribute($value)

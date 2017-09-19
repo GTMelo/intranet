@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
 
             $table->string('cpf')->unique();
             $table->string('nome_curto')->unique();
+            $table->string('slug')->unique();
             $table->string('nome_completo')->nullable();
             $table->string('password');
 

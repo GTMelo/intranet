@@ -14,12 +14,13 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        // Criar superuser
+        // Criar mock superuser
         $user = User::create([
             'cpf' => '00000000000',
-            'nome_curto' => 'Owner Admin',
-            'nome_completo' => 'Owner Admin',
-            'password' => bcrypt('owneradmin'),
+            'nome_completo' => 'Owner T. Admin',
+            'nome_curto' => makeNomeCurto('Owner T. Admin'),
+            'slug' => makeSlug('Owner T. Admin'),
+            'password' => bcrypt('admin'),
         ]);
 
         $user->attachPermission('read-rhdata');

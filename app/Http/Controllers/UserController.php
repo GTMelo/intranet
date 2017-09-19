@@ -14,15 +14,23 @@ class UserController extends Controller
         $users = UserRh::paginate(15);
 
         return view('user/index', compact('users', 'tab'));
+
     }
 
-    public function show($slug, $subsecao = null){
+    public function show(User $slug, $secao = null){
 
-        $user = User::ofSlug($slug);
 
-        if(!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$slug\" não foi encontrado"]);
 
-        return view('user/show', compact('user', 'subsecao'));
+//        $user = User::ofSlug($slug);
+//
+//        if(!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$slug\" não foi encontrado"]);
+//
+//        switch($secao){
+//            default:
+//                return view('user/show/secao/basico', compact('user', 'secao'));
+//        }
+//
+//        return view('user/show', compact('user'));
 
     }
 

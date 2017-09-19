@@ -2,17 +2,39 @@
 
 use App\Models\User;
 
-function generate_nome_curto($nome_completo){
+function makeNomeCurto($nome_completo){
 
     $toArray = collect(explode(' ', $nome_completo));
 
     $nome_curto = $toArray->first() . ' ' . $toArray->last();
-    $i = 0;
 
-    while(User::ofSlug(str_slug($nome_curto))){
-        $i++;
-        $nome_curto .= $i;
+    $result = $nome_curto;
+
+    if(User::where('nome_curto', $nome_curto)->get()->isNotEmpty()){
+        $i = 0;
+        while(User::where('nome_curto', $result)->get()->isNotEmpty()){
+            $result = $nome_curto . $i;
+            $i++;
+        }
     }
 
-    return $nome_curto;
+    return $result;
+}
+
+function makeSlug($nome_completo){
+
+    $nome_curto = makeNomeCurto($nome_completo);
+
+    $slug = str_slug($nome_curto);
+
+    if(User::where('slug', $slug)->get()->isNotEmpty()){
+        $i = 0;
+        while(User::where('slug', $slug)->get()->isNotEmpty()){
+            $slug = str_slug($nome_curto) . $i;
+            $i++;
+        }
+    }
+
+    return $slug;
+
 }

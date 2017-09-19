@@ -71,7 +71,8 @@ class RegisterController extends Controller
 
         $user = User::create([
             'cpf' => $data['cpf'],
-            'nome_curto' => generate_nome_curto($data['nome_completo']),
+            'nome_curto' => makeNomeCurto($data['nome_completo']),
+            'slug' => makeSlug($data['nome_completo']),
             'nome_completo' => $data['nome_completo'],
             'password' => bcrypt($data['password']),
         ]);
