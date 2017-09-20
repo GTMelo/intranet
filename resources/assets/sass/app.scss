@@ -8,12 +8,10 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts" !default;
 @import "config/animate";
 
 @import "common/typography";
-@import "document/components";
+@import "document/page";
 @import "common/mixins";
 @import "common/placeholders";
 
-@import "partials/header";
-@import "partials/footer";
 @import "document/master";
 
-@import "component/_components";
+@import "component/components";

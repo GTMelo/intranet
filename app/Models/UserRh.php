@@ -97,7 +97,7 @@ class UserRh extends Model
     }
 
     public function documentos(){
-        return $this->hasMany(Documento::class);
+        return $this->hasMany(Documento::class, 'user_rh_id');
     }
 
     public function escolaridades(){

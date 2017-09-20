@@ -74,4 +74,30 @@
         </tbody>
     </table>
 
+    <h3 class="is-size-3">Dados Bancários</h3>
+
+    <table class="table is-fullwidth">
+        <tbody>
+        <tr>
+            <th>Banco</th>
+            <td>
+                <p>{{ $user->rh->dado_bancario->banco->nome }}</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Agência</th>
+            <td>
+                <p>{{ $user->rh->dado_bancario->agencia }}</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Conta</th>
+            <td>
+                <p>{{ $user->rh->dado_bancario->conta }}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
 @endsection

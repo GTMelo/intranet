@@ -1,0 +1,38 @@
+.documento-card {
+  @extend .is-flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  & .documento-header{
+    text-transform: uppercase;
+    padding-bottom: 0.1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid $color-faded;
+    h1{
+      font-weight: 300;
+    }
+  }
+
+  & .documento-image {
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid $color-faded;
+    img {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+  & .documento-body{
+    @extend .is-flex;
+  }
+
+  & .documento-content {
+    table td{
+      font-size: 1.2rem;
+      font-weight: 300;
+      &:first-child{
+        font-weight: normal;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
