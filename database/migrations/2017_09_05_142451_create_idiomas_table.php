@@ -15,9 +15,6 @@ class CreateIdiomasTable extends Migration
     {
         Schema::create('idiomas', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->string('descricao');
         });
 
@@ -29,10 +26,10 @@ class CreateIdiomasTable extends Migration
             $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
             $table->primary(['idioma_id', 'user_rh_id']);
 
-            $table->enum('leitura', ['basico','avancado','fluente']);
-            $table->enum('escrita', ['basico','avancado','fluente']);
-            $table->enum('compreensao', ['basico','avancado','fluente']);
-            $table->enum('conversacao', ['basico','avancado','fluente']);
+            $table->enum('leitura', ['básico','avançado','fluente']);
+            $table->enum('escrita', ['básico','avançado','fluente']);
+            $table->enum('compreensao', ['básico','avançado','fluente']);
+            $table->enum('conversacao', ['básico','avançado','fluente']);
         });
     }
 

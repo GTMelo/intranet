@@ -9,6 +9,8 @@ class Escolaridade extends Model
 
     protected $guarded = ['id'];
 
+    protected $dates = ['inicio', 'termino'];
+
     public function tipo(){
         return $this->belongsTo(TipoEscolaridade::class, 'tipo_escolaridade_id');
     }

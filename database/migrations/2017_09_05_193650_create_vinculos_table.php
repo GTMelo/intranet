@@ -15,16 +15,16 @@ class CreateVinculosTable extends Migration
     {
         Schema::create('tipo_vinculos', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('codigo')->unique();
             $table->string('descricao');
         });
 
         Schema::create('vinculos', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
 
             $table->integer('user_rh_id')->unsigned();
             $table->integer('supervisor_id')->unsigned()->nullable();
+            $table->integer('tipo_vinculo_id')->unsigned()->nullable();
 
             $table->string('orgao_origem')->nullable();
             $table->string('matricula_origem')->nullable();
@@ -47,6 +47,7 @@ class CreateVinculosTable extends Migration
         Schema::table('vinculos', function (Blueprint $table) {
             $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
             $table->foreign('supervisor_id')->references('user_id')->on('users_rh')->onDelete('set null');
+            $table->foreign('tipo_vinculo_id')->references('id')->on('tipo_vinculos')->onDelete('set null');
         });
 
     }

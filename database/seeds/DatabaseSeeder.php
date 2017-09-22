@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoDocumentoTableSeeder::class);
         $this->call(TipoEscolaridadeTableSeeder::class);
         $this->call(TipoDependenteTableSeeder::class);
+        $this->call(TipoVinculoTableSeeder::class);
     }
 }

@@ -15,8 +15,6 @@ class CreateUsersRhTable extends Migration
     {
         Schema::create('users_rh', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
-            $table->softDeletes();
 
             $table->enum('sexo', ['m', 'f'])->nullable();
             $table->date('data_nascimento')->nullable();

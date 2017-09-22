@@ -8,6 +8,7 @@ use App\Models\Unidade;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\UserRh;
+use App\Models\Vinculo;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -80,6 +81,10 @@ class RegisterController extends Controller
         $userRh = UserRh::create([
             'user_id' => $user->id,
             'unidade_id' => Unidade::first()->id,
+        ]);
+
+        Vinculo::create([
+            'user_rh_id' => $user->id,
         ]);
 
         $userRh->telefones()->attach(Telefone::find(1));

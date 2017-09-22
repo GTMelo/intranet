@@ -46,6 +46,7 @@ Vue.component('message', require('./components/Message.vue'));
 Vue.component('input-text', require('./components/Input-text.vue'));
 Vue.component('input-password', require('./components/Input-password.vue'));
 Vue.component('documento-card', require('./components/Documento-card.vue'));
+Vue.component('escolaridade-item', require('./components/Escolaridade-item.vue'));
 
 
 const app = new Vue({

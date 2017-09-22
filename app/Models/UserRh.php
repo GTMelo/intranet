@@ -15,6 +15,8 @@ class UserRh extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     protected $dates = ['data_nascimento', 'entrada_sain'];
 
     public $incrementing = false;
@@ -104,6 +106,10 @@ class UserRh extends Model
         return $this->hasMany(Escolaridade::class, 'user_id');
     }
 
+    public function grau_escolaridade(){
+        // TODO get escolaridades in list, grade them, check the highest grade and return 'fundamental', 'médio'...'pós-graduação'
+    }
+
     public function idiomas(){
         return $this->belongsToMany(Idioma::class, 'idioma_user_rh', 'user_rh_id', 'idioma_id')
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
@@ -126,7 +132,11 @@ class UserRh extends Model
     }
 
     public function getSexoAttribute($value){
-        if($value == 'm') return 'masculino';
-        if($value == 'f') return 'feminino';
+        if($value == 'm') return 'Masculino';
+        if($value == 'f') return 'Feminino';
+    }
+
+    public function vinculo(){
+        return $this->hasOne(Vinculo::class, 'user_rh_id');
     }
 }

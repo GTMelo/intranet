@@ -2,86 +2,57 @@
 
 @section('user-content')
 
-    <div class="curso">
-        <h1 class="is-size-3">
-            Escolaridade
-        </h1>
+    <section>
+        <h1 class="is-size-2">Escolaridade</h1>
+
+        <escolaridade-item
+                tipo="Graduação"
+                instituicao="Teste Ins"
+                curso="Curso Ins"
+                situacao="Completo"
+                inicio="xx/xx/xxxx"
+                termino="xx/xx/xxxx"
+        ></escolaridade-item>
+
+        @foreach($user->rh->escolaridades as $item)
+            <escolaridade-item
+                    tipo="{{ $item->tipo->descricao }}"
+                    instituicao="{{ $item->instituicao }}"
+                    curso="{{ $item->titulo }}"
+                    situacao="{{ $item->situacao }}"
+                    inicio="{{ $item->inicio }}"
+                    termino="{{ $item->termino }}"
+            ></escolaridade-item>
+        @endforeach
+
+    </section>
+
+    <section>
+        <h1 class="is-size-2">Idiomas</h1>
+
         <table class="table is-fullwidth">
+            <thead>
             <tr>
-                <th>Escolaridade</th>
-                <td>XXXXX</td>
+                <th>Idioma</th>
+                <th>Leitura</th>
+                <th>Escrita</th>
+                <th>Compreensão</th>
+                <th>Conversação</th>
             </tr>
+            </thead>
+            <tbody>
+            @forelse($user->rh->idiomas as $idioma)
+                <tr>
+                    <th>{{ $idioma->descricao }}</th>
+                    @foreach($idioma->nivel() as $item)
+                        <td>{{ $item }}</td>
+                    @endforeach
+                </tr>
+            @empty
+                <td colspan="5">Nenhum idioma registrado</td>
+            @endforelse
+            </tbody>
         </table>
-    </div>
-
-    <div class="curso">
-        <h1 class="is-size-3">Graduação</h1>
-        <table class="table is-fullwidth">
-            <tr>
-                <th>Curso</th>
-                <td>XXXXX (cursando/completo)</td>
-            </tr>
-            <tr>
-                <th>Instituição</th>
-                <td>XXXXXXXX XXX XXXXX</td>
-            </tr>
-            <tr>
-                <th>Início</th>
-                <td>XXXXX</td>
-            </tr>
-            <tr>
-                <th>Término</th>
-                <td>XXXXX</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="curso">
-        <h1 class="is-size-3">Especialização</h1>
-        <table class="table is-fullwidth">
-            <tr>
-                <th>Instituição</th>
-                <td>XXXXXXXX XXX XXXXX</td>
-            </tr>
-            <tr>
-                <th>Início</th>
-                <td>XXXXX</td>
-            </tr>
-            <tr>
-                <th>Término</th>
-                <td>XXXXX</td>
-            </tr>
-        </table>
-    </div>
-
-    {{--<h1 class="is-size-2">Títulos</h1>--}}
-
-    {{--<div class="curso">--}}
-        {{--<div class="curso-header">--}}
-            {{--<h1 class="is-size-3">Tecnologia em Análise e Desenvolvimento de Sistemas</h1>--}}
-        {{--</div>--}}
-        {{--<div class="curso-body">--}}
-            {{--<table class="table is-fullwidth">--}}
-                {{--<tbody>--}}
-                {{--<tr>--}}
-                    {{--<td>Tipo</td>--}}
-                    {{--<td>Graduação/pós-graduação/mba...</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td>Instituição</td>--}}
-                    {{--<td>ajdsh flasdf</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td>Data de início</td>--}}
-                    {{--<td>xx/xx/xxxx</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td>Data de término</td>--}}
-                    {{--<td>xx/xx/xxxx</td>--}}
-                {{--</tr>--}}
-                {{--</tbody>--}}
-            {{--</table>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    </section>
 
 @endsection
