@@ -23,11 +23,15 @@ class UserController extends Controller
 
         $secoes = collect(['basico', 'pessoal', 'funcional', 'escolaridade', 'documentos']);
 
+        if(!$secao) return view('user/show/secao/basico', compact('user', 'secao'));
+
         if($secoes->contains($secao)){
             return view('user/show/secao/' . $secao, compact('user', 'secao'));
-        } else {
+        }
+        else {
+            $wrongPage = $secao;
             $secao = 'basico';
-            return view('user/show/secao/basico', compact('user', 'secao'))->withErrors('A página não foi encontrada');
+            return view('user/show/secao/basico', compact('user', 'secao'))->withErrors("A página \"$wrongPage\" não foi encontrada");
         }
     }
 
