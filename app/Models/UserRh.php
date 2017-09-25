@@ -107,7 +107,26 @@ class UserRh extends Model
     }
 
     public function grau_escolaridade(){
-        // TODO get escolaridades in list, grade them, check the highest grade and return 'fundamental', 'médio'...'pós-graduação'
+
+        $escolaridades = $this->escolaridades;
+        $grauMaisAlto = 0;
+        foreach ($escolaridades as $escolaridade){
+            $grau = $escolaridade->tipo->nivel;
+            if($grau > $grauMaisAlto) $grauMaisAlto = $grau;
+        }
+
+        switch ($grauMaisAlto){
+            case 1:
+                return 'Ensino Fundamental';
+            case 2:
+                return 'Ensino Médio';
+            case 3:
+                return 'Graduação';
+            case 4||5:
+                return 'Pós-Graduação';
+            default:
+                return 'Não avaliado';
+        }
     }
 
     public function idiomas(){

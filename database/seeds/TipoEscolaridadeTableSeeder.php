@@ -12,12 +12,12 @@ class TipoEscolaridadeTableSeeder extends Seeder
      */
     public function run()
     {
-        TipoEscolaridade::create(['descricao' => 'ensino fundamental']);
-        TipoEscolaridade::create(['descricao' => 'ensino médio']);
-        TipoEscolaridade::create(['descricao' => 'graduação']);
-        TipoEscolaridade::create(['descricao' => 'especialização']);
-        TipoEscolaridade::create(['descricao' => 'MBA']);
-        TipoEscolaridade::create(['descricao' => 'Mestrado']);
-        TipoEscolaridade::create(['descricao' => 'Doutorado']);
+        TipoEscolaridade::create(['descricao' => 'ensino fundamental', 'nivel' => 1]);
+        TipoEscolaridade::create(['descricao' => 'ensino médio', 'nivel' => 2]);
+        TipoEscolaridade::create(['descricao' => 'graduação', 'nivel' => 3]);
+        TipoEscolaridade::create(['descricao' => 'especialização', 'nivel' => 4]);
+        TipoEscolaridade::create(['descricao' => 'MBA', 'nivel' => 4]);
+        TipoEscolaridade::create(['descricao' => 'Mestrado', 'nivel' => 4]);
+        TipoEscolaridade::create(['descricao' => 'Doutorado', 'nivel' => 4]);
     }
 }

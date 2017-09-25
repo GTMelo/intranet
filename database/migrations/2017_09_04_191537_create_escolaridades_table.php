@@ -16,11 +16,8 @@ class CreateEscolaridadesTable extends Migration
 
         Schema::create('tipo_escolaridades', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->softDeletes();
-
             $table->string('descricao');
-
+            $table->tinyInteger('nivel')->unsigned()->default(0)->comment('Reflete o nível de escolaridade do tipo, numa escala de ensino fundamental a pós-graduação. 0 significa que o tipo não possui nível definido');
         });
 
         Schema::create('escolaridades', function (Blueprint $table) {
