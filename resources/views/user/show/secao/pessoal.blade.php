@@ -5,102 +5,61 @@
     <section>
         <h1 class="is-size-2">Dados Pessoais</h1>
 
-        <table class="table is-fullwidth">
-            <tbody>
-            <tr>
-                <th>Filiação</th>
-                <td>
-                    <p>{{ $user->rh->pai()->nome or '' }}</p>
-                    <p>{{ $user->rh->mae()->nome or '' }}</p>
-                </td>
-            </tr>
-            <tr>
-                <th>Data de Nascimento</th>
-                <td>
-                    {{ $user->rh->data_nascimento }}
-                </td>
-            </tr>
-            <tr>
-                <th>Sexo</th>
-                <td>
-                    {{ $user->rh->sexo }}
-                </td>
-            </tr>
-            <tr>
-                <th>Nacionalidade</th>
-                <td>
-                    {{ $user->rh->nacionalidade() }}
-                </td>
-            </tr>
-            <tr>
-                <th>Naturalidade</th>
-                <td>
-                    {{ $user->rh->naturalidade()->nome }}/{{ $user->rh->naturalidade()->estado->sigla }}
-                </td>
-            </tr>
-            <tr>
-                <th>Estado Civil</th>
-                <td>
-                    {{ $user->rh->estado_civil }}
-                    @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome }}</p> @endif
-                </td>
-            </tr>
-            <tr>
-                <th>Endereço</th>
-                <td>
-                    <p>{{ $user->rh->endereco->logradouro }}</p>
-                    <p>{{ $user->rh->endereco->cep }}</p>
-                    <p>{{ $user->rh->endereco->cidade->nome }}/{{ $user->rh->endereco->cidade->estado->sigla }}</p>
-                </td>
-            </tr>
-            <tr>
-                <th>Telefone Residencial</th>
-                <td>
-                    {{ $user->rh->telefone_residencial() }}
-                </td>
-            </tr>
-            <tr>
-                <th>Telefone Celular</th>
-                <td>
-                    {{ $user->rh->telefone_celular() }}
-                </td>
-            </tr>
-            <tr>
-                <th>E-mail Pessoal</th>
-                <td>
-                    {{ $user->rh->email_pessoal()->address }}
-                </td>
-            </tr>
+        <info-table>
+            <it-item label="Filiação">
+                <p>{{ $user->rh->pai()->nome or 'Não informado' }}</p>
+                <p>{{ $user->rh->mae()->nome or 'Não informado' }}</p>
+            </it-item>
 
-            </tbody>
-        </table>
+            <it-item label="Data de Nascimento">
+                {{ $user->rh->data_nascimento or 'Não informado' }}
+            </it-item>
+
+            <it-item label="Sexo">
+                {{ $user->rh->sexo or 'Não informado' }}
+            </it-item>
+
+            <it-item label="Nacionalidade">
+                {{ $user->rh->nacionalidade() }}
+            </it-item>
+
+            <it-item label="Naturalidade">
+                {{ $user->rh->naturalidade()->nome }}/{{ $user->rh->naturalidade()->estado->sigla }}
+            </it-item>
+
+            <it-item label="Estado Civil">
+                {{ $user->rh->estado_civil }}
+                @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome }}</p> @endif</it-item>
+
+            <it-item label="Endereço">
+                <p>{{ $user->rh->endereco->logradouro }}</p>
+                <p>{{ $user->rh->endereco->cep }}</p>
+                <p>{{ $user->rh->endereco->cidade->nome }}/{{ $user->rh->endereco->cidade->estado->sigla }}</p>
+            </it-item>
+
+            <it-item label="Telefone residencial">
+                {{ $user->rh->telefone_residencial() }}
+            </it-item>
+
+            <it-item label="Telefone celular">
+                {{ $user->rh->telefone_celular() }}
+            </it-item>
+
+            <it-item label="Email particular">
+                {{ $user->rh->email_pessoal()->address }}
+            </it-item>
+        </info-table>
     </section>
 
     <section>
         <h1 class="is-size-2">Dados Bancários</h1>
 
-        <table class="table is-fullwidth">
-            <tbody>
-            <tr>
-                <th>Banco</th>
-                <td>
-                    <p>{{ $user->rh->dado_bancario->banco->nome }}</p>
-                </td>
-            </tr>
-            <tr>
-                <th>Agência</th>
-                <td>
-                    <p>{{ $user->rh->dado_bancario->agencia }}</p>
-                </td>
-            </tr>
-            <tr>
-                <th>Conta</th>
-                <td>
-                    <p>{{ $user->rh->dado_bancario->conta }}</p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <info-table>
+            <it-item label="Banco">{{ $user->rh->dado_bancario->banco->nome }}</it-item>
+            <it-item label="Agência">{{ $user->rh->dado_bancario->agencia }}</it-item>
+            <it-item label="Conta">{{ $user->rh->dado_bancario->conta }}</it-item>
+        </info-table>
+
     </section>
 
     <section>

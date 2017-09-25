@@ -5,15 +5,24 @@
     <section>
         <h1 class="is-size-2">Documentos</h1>
 
-        <documento-card tipo="CPF/Identidade" img="http://via.placeholder.com/150x150" numero="0000000"
-                        cpf="00000000000" expedidor="xxx/xx" emissao="xx/xx/xxxx"></documento-card>
-        <documento-card tipo="PIS/PASEP" img="http://via.placeholder.com/150x150" numero="numero"></documento-card>
-        <documento-card tipo="Título de Eleitor" img="http://via.placeholder.com/150x150" numero="00000" zona="000"
-                        secao="000"></documento-card>
-        <documento-card tipo="Carteira Profissional" img="http://via.placeholder.com/150x150" numero="00000000"
-                        serie="000000" emissao="xx/xx/xxxx"></documento-card>
-        <documento-card tipo="Passaporte" img="http://via.placeholder.com/150x150" emissao="xx/xx/xxxx"
-                        validade="xx/xx/xxxx"></documento-card>
+        <div>
+            @forelse($user->rh->documentos as $documento)
+                <documento-card
+                tipo="{{ $documento->tipo->descricao or '' }}"
+                img="http://via.placeholder.com/150x150"
+                numero="{{ $documento->identificacao or '' }}"
+                cpf="{{ $documento->cpf or '' }}"
+                expedidor="{{ $documento->orgao_expedidor or '' }}"
+                emissao="{{ $documento->data_emissao or '' }}"
+                validade="{{ $documento->validade or '' }}"
+                zona="{{ $documento->zona or '' }}"
+                secao="{{ $documento->secao or '' }}"
+                serie="{{ $documento->serie or '' }}">
+                </documento-card>
+            @empty
+                <span>Nenhum documento encontrado.</span>
+            @endforelse
+        </div>
     </section>
 
 @endsection

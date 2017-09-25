@@ -5,132 +5,70 @@
     <section>
         <h1 class="is-size-2">Exercício</h1>
 
-        <table class="table is-fullwidth">
-            <tr>
-                <th>Lotação</th>
-                <td>{{ $user->rh->unidade->descricao }} </td>
-            </tr>
-            <tr>
-                <th>Data de ingresso</th>
-                <td>{{ $user->rh->entrada_sain }}</td>
-            </tr>
-            <tr>
-                <th>Ramal</th>
-                <td>{{ $user->rh->ramal()->numero }}</td>
-            </tr>
-        </table>
+        <info-table>
+            <it-item label="Lotação">{{ $user->rh->unidade->descricao }}</it-item>
+            <it-item label="Data de Ingresso">{{ $user->rh->entrada_sain }}</it-item>
+            <it-item label="Ramal">{{ $user->rh->ramal()->numero }}</it-item>
+        </info-table>
+
     </section>
 
     <section>
         <h1 class="is-size-2">Tipo de Vínculo com a Administração Pública</h1>
-        <table class="table is-fullwidth">
 
-            <tr>
-                <th>Tipo</th>
-                <td>{{ $user->rh->vinculo->tipo->descricao }}</td>
-            </tr>
-
-            <tr class="servidor-com-vinculo">
-                <th>Matrícula</th>
-                <td>{{ $user->rh->matricula }}</td>
-            </tr>
-
-            <tr>
-                <th>Órgão de Origem</th>
-                <td>{{ $user->rh->vinculo->orgao_origem }}</td>
-            <tr>
-
-                <th>Matrícula de Origem</th>
-                <td>{{ $user->rh->vinculo->matricula_origem }}</td>
-            </tr>
-
-            <tr>
-                <th>Cargo efetivo de Origem</th>
-                <td>{{ $user->rh->vinculo->cargo_origem }}</td>
-            </tr>
-
-            <tr>
-                <th>Classe</th>
-                <td>{{ $user->rh->vinculo->classe }}</td>
-            </tr>
-
-            <tr>
-                <th>Padrão</th>
-                <td>{{ $user->rh->vinculo->padrao }}</td>
-            </tr>
-
-            <tr>
-                <th>Função</th>
-                <td>{{ $user->rh->vinculo->funcao }}</td>
-            </tr>
-
-            <tr>
-                <th>Denominação da Função</th>
-                <td>{{ $user->rh->vinculo->denominacao_funcao }}</td>
-            </tr>
-
-            <tr>
-                <th>Ato de Nomeação</th>
-                <td>{{ $user->rh->vinculo->ato_nomeacao }}</td>
-            </tr>
-
-            <tr>
-                <th>Data DOU</th>
-                <td>{{ $user->rh->vinculo->data_dou }}</td>
-            </tr>
-
-            <tr>
-                <th>Cargo</th>
-                <td>{{ $user->rh->cargo->descricao }}</td>
-            </tr>
-
-            <tr>
-                <th>Data de Admissão</th>
-                <td>{{ $user->rh->vinculo->tipo->descricao }}</td>
-            </tr>
-
-            <tr>
-                <th>Empresa</th>
-                <td>{{ $user->rh->vinculo->empresa }}</td>
-            </tr>
-
-            <tr>
-                <th>Instituição de Ensino</th>
-                <td>{{ $user->rh->vinculo->instituicao_ensino }}</td>
-            </tr>
-
-            <tr>
-                <th>Nível</th>
-                <td>{{ $user->rh->vinculo->nivel }}</td>
-            </tr>
-
-            <tr>
-                <th>Curso</th>
-                <td>{{ $user->rh->vinculo->curso }}</td>
-            </tr>
-
-            <tr>
-                <th>Semestre</th>
-                <td>{{ $user->rh->vinculo->semestre }}º</td>
-            </tr>
-
-            <tr>
-                <th>Número do Contrato</th>
-                <td>{{ $user->rh->vinculo->numero_contrato }}</td>
-            </tr>
-
-            <tr>
-                <th>Data do Contrato</th>
-                <td>{{ $user->rh->vinculo->data_contrato }}</td>
-            </tr>
-
-            <tr>
-                <th>Supervisor</th>
-                <td>{{ $user->rh->vinculo->supervisor->user->nome_curto or '' }}</td>
-            </tr>
-
-        </table>
+        @if($user->rh->vinculo)
+            <info-table>
+                @if($user->rh->vinculo->tipo)
+                    <it-item label="Tipo">{{ $user->rh->vinculo->tipo->descricao or '' }}</it-item>@endif
+                @if($user->rh->matricula)
+                    <it-item label="Matrícula">{{ $user->rh->matricula or '' }}</it-item>@endif
+                @if($user->rh->vinculo->orgao_origem)
+                    <it-item label="Órgão de Origem">{{ $user->rh->vinculo->orgao_origem or '' }}</it-item>@endif
+                @if($user->rh->vinculo->matricula_origem)
+                    <it-item
+                            label="Matrícula de Origem">{{ $user->rh->vinculo->matricula_origem or '' }}</it-item>@endif
+                @if($user->rh->vinculo->cargo_origem)
+                    <it-item label="Cargo de Origem">{{ $user->rh->vinculo->cargo_origem or '' }}</it-item>@endif
+                @if($user->rh->vinculo->classe)
+                    <it-item label="Classe">{{ $user->rh->vinculo->classe or '' }}</it-item>@endif
+                @if($user->rh->vinculo->padrao)
+                    <it-item label="Padrão">{{ $user->rh->vinculo->padrao or '' }}</it-item>@endif
+                @if($user->rh->vinculo->funcao)
+                    <it-item label="Função">{{ $user->rh->vinculo->funcao or '' }}</it-item>@endif
+                @if($user->rh->vinculo->denominacao_funcao)
+                    <it-item
+                            label="Denominação da Função">{{ $user->rh->vinculo->denominacao_funcao or '' }}</it-item>@endif
+                @if($user->rh->vinculo->ato_nomeacao)
+                    <it-item label="Ato de Nomeação">{{ $user->rh->vinculo->ato_nomeacao or '' }}</it-item>@endif
+                @if($user->rh->vinculo->data_dou)
+                    <it-item label="Data DOU">{{ $user->rh->vinculo->data_dou or '' }}</it-item>@endif
+                @if($user->rh->cargo)
+                    <it-item label="Cargo">{{ $user->rh->cargo->descricao or '' }}</it-item>@endif
+                @if($user->rh->vinculo->data_admissao)
+                    <it-item label="Data de Admissão">{{ $user->rh->vinculo->data_admissao or '' }}</it-item>@endif
+                @if($user->rh->vinculo->empresa)
+                    <it-item label="Empresa">{{ $user->rh->vinculo->empresa or '' }}</it-item>@endif
+                @if($user->rh->vinculo->instituicao_ensino)
+                    <it-item
+                            label="Instituição de Ensino">{{ $user->rh->vinculo->instituicao_ensino or '' }}</it-item>@endif
+                @if($user->rh->vinculo->nivel)
+                    <it-item label="Nível">{{ $user->rh->vinculo->nivel or '' }}</it-item>@endif
+                @if($user->rh->vinculo->curso)
+                    <it-item label="Curso">{{ $user->rh->vinculo->curso or '' }}</it-item>@endif
+                @if($user->rh->vinculo->semestre)
+                    <it-item label="Semestre">{{ $user->rh->vinculo->semestre or '' }}</it-item>@endif
+                @if($user->rh->vinculo->numero_contrato)
+                    <it-item label="Número do Contrato">{{ $user->rh->vinculo->numero_contrato or '' }}</it-item>@endif
+                @if($user->rh->vinculo->data_contrato)
+                    <it-item label="Data do Contrato">{{ $user->rh->vinculo->data_contrato or '' }}</it-item>@endif
+                @if($user->rh->vinculo->supervisor)
+                    <it-item
+                            label="Supervisor">{{ $user->rh->vinculo->supervisor->user->nome_curto or '' }}</it-item>@endif
+            </info-table>
+        @else
+            <div>
+                <span>Nenhum dado de vínculo encontrado.</span>
+            </div>
+        @endif
     </section>
-
-
 @endsection

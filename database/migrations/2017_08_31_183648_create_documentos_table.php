@@ -30,7 +30,7 @@ class CreateDocumentosTable extends Migration
 
             $table->string('imagem')->nullable();
             $table->string('identificacao')->nullable();
-            $table->string('orgao_expeditor')->nullable();
+            $table->string('orgao_expedidor')->nullable();
             $table->date('data_emissao')->nullable();
             $table->date('validade')->nullable();
             $table->string('zona')->nullable();

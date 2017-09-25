@@ -4,12 +4,13 @@
 
     <section>
         <h1 class="is-size-2">Escolaridade</h1>
-        <table class="table is-fullwidth">
-            <tr>
-                <th>Grau de escolaridade:</th>
-                <td>{{ $user->rh->grau_escolaridade() }}</td>
-            </tr>
-        </table>
+
+        <info-table>
+            <it-item label="Grau de Escolaridade">
+                {{ $user->rh->grau_escolaridade() }}
+            </it-item>
+        </info-table>
+
     </section>
 
     <section>
