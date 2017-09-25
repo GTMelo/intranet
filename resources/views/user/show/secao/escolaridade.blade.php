@@ -4,7 +4,16 @@
 
     <section>
         <h1 class="is-size-2">Escolaridade</h1>
+        <table class="table is-fullwidth">
+            <tr>
+                <th>Grau de escolaridade:</th>
+                <td>{{ $user->rh->grau_escolaridade() }}</td>
+            </tr>
+        </table>
+    </section>
 
+    <section>
+        <h1 class="is-size-2">Títulos</h1>
         <escolaridade-item
                 tipo="Graduação"
                 instituicao="Teste Ins"

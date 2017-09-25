@@ -126,7 +126,7 @@
 
             <tr>
                 <th>Supervisor</th>
-                <td>{{ $user->rh->vinculo->supervisor->user->nome_curto }}</td>
+                <td>{{ $user->rh->vinculo->supervisor->user->nome_curto or '' }}</td>
             </tr>
 
         </table>

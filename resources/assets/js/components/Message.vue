@@ -1,14 +1,16 @@
 <template>
 
-    <article :class="this.typeOfMessage">
-        <div class="message-header">
-            <p>{{title}}</p>
-            <button class="delete" aria-label="delete"></button>
-        </div>
-        <div class="message-body">
-            <slot></slot>
-        </div>
-    </article>
+    <transition leaveActiveClass="animated zoomOutDown">
+        <article :class="this.typeOfMessage" v-show="isVisible">
+            <div class="message-header">
+                <p>{{title}}</p>
+                <button class="delete" aria-label="delete" v-on:click="hide"></button>
+            </div>
+            <div class="message-body">
+                <slot></slot>
+            </div>
+        </article>
+    </transition>
 
 </template>
 
@@ -17,11 +19,23 @@
     export default{
         props: ['cat', 'title'],
 
+        data() {
+            return {
+                isVisible: true
+            }
+        },
+
+        methods: {
+            hide(){
+                this.isVisible = false;
+            }
+        },
+
         computed: {
             typeOfMessage(){
-                let result = "message";
+                let result = "message notification";
 
-                switch (this.cat){
+                switch (this.cat) {
                     case('danger'):
                         result += ' is-danger';
                         break;
@@ -36,7 +50,7 @@
 
                 return result;
             }
-        }
+        },
     }
 
 </script>
