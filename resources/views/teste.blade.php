@@ -4,17 +4,23 @@
 
     <main class="container">
 
-        <section>
+        {{--<section>--}}
+            {{--<i-table>--}}
+                {{--<i-item label="thing">thang</i-item>--}}
+            {{--</i-table>--}}
+        {{--</section>--}}
 
-            <form>
-                <ul>
-                    <li v-for="item in testArray" v-text="item" ></li>
-                    <input type="text"> <button v-on="click">Add</button>
-                </ul>
-            </form>
+        {{--<section>--}}
+
+            {{--<form>--}}
+                {{--<ul>--}}
+                    {{--<li v-for="item in testArray" v-text="item" ></li>--}}
+                    {{--<input type="text"> <button v-on="click">Add</button>--}}
+                {{--</ul>--}}
+            {{--</form>--}}
 
 
-        </section>
+        {{--</section>--}}
 
         {{--<section>--}}
             {{--<form enctype="multipart/form-data" method="post" action="/teste">--}}

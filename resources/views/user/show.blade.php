@@ -6,7 +6,7 @@
 
     <main class="container user-profile">
 
-        @include('user/show/sidebar')
+        @include('user.sidebar')
 
         <main>
             @yield('user-content')

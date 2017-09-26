@@ -5,60 +5,60 @@
     <section>
         <h1 class="is-size-2">Dados Pessoais</h1>
 
-        <info-table>
-            <it-item label="Filiação">
+        <i-table>
+            <i-item label="Filiação">
                 <p>{{ $user->rh->pai()->nome or 'Não informado' }}</p>
                 <p>{{ $user->rh->mae()->nome or 'Não informado' }}</p>
-            </it-item>
+            </i-item>
 
-            <it-item label="Data de Nascimento">
+            <i-item label="Data de Nascimento">
                 {{ $user->rh->data_nascimento or 'Não informado' }}
-            </it-item>
+            </i-item>
 
-            <it-item label="Sexo">
+            <i-item label="Sexo">
                 {{ $user->rh->sexo or 'Não informado' }}
-            </it-item>
+            </i-item>
 
-            <it-item label="Nacionalidade">
+            <i-item label="Nacionalidade">
                 {{ $user->rh->nacionalidade() }}
-            </it-item>
+            </i-item>
 
-            <it-item label="Naturalidade">
+            <i-item label="Naturalidade">
                 {{ $user->rh->naturalidade()->nome }}/{{ $user->rh->naturalidade()->estado->sigla }}
-            </it-item>
+            </i-item>
 
-            <it-item label="Estado Civil">
+            <i-item label="Estado Civil">
                 {{ $user->rh->estado_civil }}
-                @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome }}</p> @endif</it-item>
+                @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome }}</p> @endif</i-item>
 
-            <it-item label="Endereço">
+            <i-item label="Endereço">
                 <p>{{ $user->rh->endereco->logradouro }}</p>
                 <p>{{ $user->rh->endereco->cep }}</p>
                 <p>{{ $user->rh->endereco->cidade->nome }}/{{ $user->rh->endereco->cidade->estado->sigla }}</p>
-            </it-item>
+            </i-item>
 
-            <it-item label="Telefone residencial">
+            <i-item label="Telefone residencial">
                 {{ $user->rh->telefone_residencial() }}
-            </it-item>
+            </i-item>
 
-            <it-item label="Telefone celular">
+            <i-item label="Telefone celular">
                 {{ $user->rh->telefone_celular() }}
-            </it-item>
+            </i-item>
 
-            <it-item label="Email particular">
+            <i-item label="Email particular">
                 {{ $user->rh->email_pessoal()->address }}
-            </it-item>
-        </info-table>
+            </i-item>
+        </i-table>
     </section>
 
     <section>
         <h1 class="is-size-2">Dados Bancários</h1>
 
-        <info-table>
-            <it-item label="Banco">{{ $user->rh->dado_bancario->banco->nome }}</it-item>
-            <it-item label="Agência">{{ $user->rh->dado_bancario->agencia }}</it-item>
-            <it-item label="Conta">{{ $user->rh->dado_bancario->conta }}</it-item>
-        </info-table>
+        <i-table>
+            <i-item label="Banco">{{ $user->rh->dado_bancario->banco->nome }}</i-item>
+            <i-item label="Agência">{{ $user->rh->dado_bancario->agencia }}</i-item>
+            <i-item label="Conta">{{ $user->rh->dado_bancario->conta }}</i-item>
+        </i-table>
 
     </section>
 

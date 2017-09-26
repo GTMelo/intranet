@@ -47,8 +47,8 @@ Vue.component('input-text', require('./components/Input-text.vue'));
 Vue.component('input-password', require('./components/Input-password.vue'));
 Vue.component('documento-card', require('./components/Documento-card.vue'));
 Vue.component('escolaridade-item', require('./components/Escolaridade-item.vue'));
-Vue.component('info-table', require('./components/Info-table.vue'));
-Vue.component('it-item', require('./components/It-item.vue'));
+Vue.component('i-table', require('./components/I-table.vue'));
+Vue.component('i-item', require('./components/I-item.vue'));
 
 
 const app = new Vue({
