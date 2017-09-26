@@ -28,5 +28,76 @@
   }
 }
 
+.escolaridade-item{
+  @extend .is-flex;
+  //* {
+  //  border: 1px solid purple;
+  //}
+  border: 1px solid $color-faded;
+  margin-bottom: 1rem;
+
+  .escolaridade-tipo{
+    @extend .is-flex;
+    align-items: center;
+    margin-right: 1rem;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    background-color: $color-faded;
+  }
+
+  .escolaridade-detalhes{
+    flex: 1;
+  }
+  & table{
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  & .escolaridade-label {
+    font-weight:bold;
+    padding-right: 1rem;
+    width: 9rem;
+  }
+}
+
+.documento-card {
+  @extend .is-flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  & .documento-header{
+    text-transform: uppercase;
+    padding-bottom: 0.1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid $color-faded;
+    h1{
+      font-weight: 300;
+    }
+  }
+
+  & .documento-image {
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid $color-faded;
+    img {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+  & .documento-body{
+    @extend .is-flex;
+  }
+
+  & .documento-content {
+    table td{
+      font-size: 1.2rem;
+      font-weight: 300;
+      &:first-child{
+        font-weight: normal;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
 
 

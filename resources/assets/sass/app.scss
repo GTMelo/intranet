@@ -1,17 +1,13 @@
 @import "common/colors";
-
-//font-awesome
-$fa-font-path: "../../../node_modules/font-awesome/fonts" !default;
-@import 'node_modules/font-awesome/scss/font-awesome';
+@import "common/typography";
 
 @import "config/bulma";
 @import "config/animate";
+@import "config/font_awesome";
 
-@import "common/typography";
-@import "document/page";
 @import "common/mixins";
 @import "common/placeholders";
+@import "common/page";
+@import "common/master";
 
-@import "document/master";
-
-@import "component/components";
+@import "components";
