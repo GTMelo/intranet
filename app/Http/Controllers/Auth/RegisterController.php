@@ -87,8 +87,8 @@ class RegisterController extends Controller
             'user_rh_id' => $user->id,
         ]);
 
-        $userRh->telefones()->attach(Telefone::find(1));
-        $userRh->emails()->attach(Email::find(1));
+        $user->telefones()->attach(Telefone::find(1));
+        $user->emails()->attach(Email::find(1));
 
         Session::flash('messages', 'Sua conta foi criada com sucesso.');
 

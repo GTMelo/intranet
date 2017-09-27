@@ -33,30 +33,20 @@ class UserRh extends Model
         return $this->user->cpf;
     }
 
-    public function telefones()
-    {
-        return $this->belongsToMany(Telefone::class, 'telefone_user_rh', 'user_rh_id');
-    }
-
     public function telefone_pessoal(){
-        return $this->telefones();
+        return $this->user->telefones();
     }
 
     public function telefone_residencial(){
-        return $this->filterFlag($this->telefones, 'personal')->first();
+        return $this->filterFlag($this->user->telefones, 'personal')->first();
     }
 
     public function telefone_celular(){
-        return $this->filterFlag($this->telefones, 'is-cellphone')->first();
+        return $this->filterFlag($this->user->telefones, 'is-cellphone')->first();
     }
 
     public function ramal(){
-        return $this->filterFlag($this->telefones, 'is-work')->first();
-    }
-
-    public function emails()
-    {
-        return $this->belongsToMany(Email::class, 'email_user_rh', 'user_rh_id');
+        return $this->user->ramal();
     }
 
     public function naturalidadeCidade(){
@@ -74,11 +64,11 @@ class UserRh extends Model
     }
 
     public function email_pessoal(){
-        return $this->filterFlag($this->emails, 'is-personal')->first();
+        return $this->filterFlag($this->user->emails, 'is-personal')->first();
     }
 
     public function email_funcional(){
-        return $this->filterFlag($this->emails, 'is-work')->first();
+        return $this->user->email_funcional();
     }
 
     public function endereco(){

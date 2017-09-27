@@ -24,13 +24,13 @@ class UserRhTableSeeder extends Seeder
             'estado_civil' => 'Solteiro',
         ]);
 
-        $user->telefones()->attach(Telefone::first());
-        $user->telefones()->attach(Telefone::find(2));
-        $user->telefones()->attach(Telefone::find(3));
-        $user->telefones()->attach(Telefone::find(4));
-        $user->telefones()->attach(Telefone::find(5));
+        $user->user->telefones()->attach(Telefone::first());
+        $user->user->telefones()->attach(Telefone::find(2));
+        $user->user->telefones()->attach(Telefone::find(3));
+        $user->user->telefones()->attach(Telefone::find(4));
+        $user->user->telefones()->attach(Telefone::find(5));
 
-        $user->emails()->attach(Email::first());
-        $user->emails()->attach(Email::find(2));
+        $user->user->emails()->attach(Email::first());
+        $user->user->emails()->attach(Email::find(2));
     }
 }

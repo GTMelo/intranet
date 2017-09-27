@@ -39,5 +39,7 @@ class RoleTableSeeder extends Seeder
                 ]
             );
         }
+
+        Role::ofName('owner')->attachPermissions(\App\Models\Permission::all());
     }
 }

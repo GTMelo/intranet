@@ -31,15 +31,15 @@ class CreateTelefonesTable extends Migration
             $table->primary(['flag_id', 'telefone_id']);
         });
 
-        Schema::create('telefone_user_rh', function (Blueprint $table) {
+        Schema::create('telefone_user', function (Blueprint $table) {
 
             $table->integer('telefone_id')->unsigned();
-            $table->integer('user_rh_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
             $table->foreign('telefone_id')->references('id')->on('telefones')->onDelete('cascade');
-            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->primary(['telefone_id', 'user_rh_id']);
+            $table->primary(['telefone_id', 'user_id']);
         });
     }
 
@@ -50,7 +50,7 @@ class CreateTelefonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('telefone_user_rh');
+        Schema::dropIfExists('telefone_user');
         Schema::dropIfExists('flag_telefone');
         Schema::dropIfExists('telefones');
     }

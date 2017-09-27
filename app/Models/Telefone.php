@@ -13,6 +13,6 @@ class Telefone extends Model
     protected $fillable = ['numero'];
 
     public function users(){
-        return self::belongsToMany(UserRh::class);
+        return self::belongsToMany(User::class);
     }
 }

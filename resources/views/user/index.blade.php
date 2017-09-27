@@ -26,7 +26,7 @@
                         <tr>
                             <td><a href="/usuarios/{{ $user->user->slug }}">{{ $user->user->nome_curto }}</a></td>
                             @permission('read-rhdata') <td>{{ $user->user->cpf }}</td> @endpermission
-                            <td title="{{ $user->cargo->descricao }}">{{ $user->cargo->abreviacao }}</td> {{-- TODO Abreviação on hover = mostrar descrição --}}
+                            <td title="{{ $user->cargo->descricao }}">{{ $user->cargo->abreviacao }}</td>
                             <td title="{{ $user->unidade->descricao }}">{{ $user->unidade->sigla }}</td>
                             <td>@if(count($user->ramal())) {{ $user->ramal()->numero }} @endif</td>
                             <td>@if(count($user->email_funcional())) {{ $user->email_funcional()->address }} @endif</td>

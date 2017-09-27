@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Email;
+use App\Models\Role;
 use App\Models\Telefone;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,6 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
 
-        $user->attachPermission('read-rhdata');
+        $user->attachRole(Role::ofName('owner'));
     }
 }

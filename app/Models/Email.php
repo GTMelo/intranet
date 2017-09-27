@@ -14,4 +14,8 @@ class Email extends Model
         'address'
     ];
 
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
 }
