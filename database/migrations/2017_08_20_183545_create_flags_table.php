@@ -21,6 +21,16 @@ class CreateFlagsTable extends Migration
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
         });
+
+        Schema::create('flag_user', function (Blueprint $table) {
+            $table->integer('flag_id')->unsigned()->index();
+            $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
+
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->primary(['flag_id', 'user_id']);
+        });
     }
 
     /**
@@ -30,6 +40,7 @@ class CreateFlagsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('flag_user');
         Schema::dropIfExists('flags');
     }
 }

@@ -25,6 +25,11 @@ class PermissionsSeeder extends Seeder
                 'description' => 'Ver dados de um usuário referentes a área de gestão de pessoas'
             ],
             [
+                'name' => 'read-cpf',
+                'display-name' => 'Ver CPF',
+                'description' => 'Ver o CPF de um usuário'
+            ],
+            [
                 'name' => 'global-edit-user-rh',
                 'display-name' => 'Edição global de usuários (RH)',
                 'description' => 'Editar dados de Recursos Humanos de qualquer usuário'

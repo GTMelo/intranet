@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRh extends Model
 {
+
     use Flaggable;
 
     protected $table = 'users_rh';

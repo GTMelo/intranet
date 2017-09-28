@@ -27,17 +27,6 @@ class CreateUsersRhTable extends Migration
             $table->primary('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
-        Schema::create('flag_user_rh', function (Blueprint $table) {
-
-            $table->integer('flag_id')->unsigned()->index();
-            $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');
-
-            $table->integer('user_rh_id')->unsigned()->index();
-            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
-
-            $table->primary(['flag_id', 'user_rh_id']);
-        });
     }
 
     /**
@@ -47,10 +36,6 @@ class CreateUsersRhTable extends Migration
      */
     public function down()
     {
-        Schema::drop('flag_user_rh');
-//        Schema::table('users_rh', function (Blueprint $table) {
-//            $table->dropForeign('users_rh_user_id_foreign');
-//        });
         Schema::dropIfExists('users_rh');
     }
 }

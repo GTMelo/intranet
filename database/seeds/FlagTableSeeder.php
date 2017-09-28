@@ -43,6 +43,11 @@ class FlagTableSeeder extends Seeder
             'display_name' => 'Capital',
             'description' => 'A cidade é a capital ou uma das capitais do país.',
         ]);
+        Flag::create([
+            'code' => 'approval-pending',
+            'display_name' => 'Aprovação Pendente',
+            'description' => 'O usuário ainda precisa ser aprovado por um administrador de RH',
+        ]);
 
 
 

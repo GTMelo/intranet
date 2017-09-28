@@ -14,7 +14,7 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        @permission('read-rhdata') <th>CPF</th> @endpermission
+                        @permission('read-cpf') <th>CPF</th> @endpermission
                         <th>Cargo</th>
                         <th>Unidade</th>
                         <th>Telefone</th>
@@ -24,10 +24,10 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td><a href="/usuarios/{{ $user->user->slug }}">{{ $user->user->nome_curto }}</a></td>
-                            @permission('read-rhdata') <td>{{ $user->user->cpf }}</td> @endpermission
-                            <td title="{{ $user->cargo->descricao }}">{{ $user->cargo->abreviacao }}</td>
-                            <td title="{{ $user->unidade->descricao }}">{{ $user->unidade->sigla }}</td>
+                            <td><a href="/usuarios/{{ $user->slug }}">{{ $user->nome_curto }}</a></td>
+                            @permission('read-cpf') <td>{{ $user->cpf }}</td> @endpermission
+                            <td title="{{ $user->rh->cargo->descricao }}">{{ $user->rh->cargo->abreviacao }}</td>
+                            <td title="{{ $user->rh->unidade->descricao }}">{{ $user->rh->unidade->sigla }}</td>
                             <td>@if(count($user->ramal())) {{ $user->ramal()->numero }} @endif</td>
                             <td>@if(count($user->email_funcional())) {{ $user->email_funcional()->address }} @endif</td>
                         </tr>

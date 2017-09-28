@@ -81,7 +81,7 @@ trait Flaggable
      * @param $flag
      * @return Collection
      */
-    public function filterFlag(Collection $collection, $flag){
+    public static function filterFlag(Collection $collection, $flag){
         return $collection->filter(function ($value) use ($flag) {
             return $value->hasFlag($flag);
         });

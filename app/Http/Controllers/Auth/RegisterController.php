@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $userRh = UserRh::create([
+        UserRh::create([
             'user_id' => $user->id,
             'unidade_id' => Unidade::first()->id,
         ]);
@@ -89,6 +89,8 @@ class RegisterController extends Controller
 
         $user->telefones()->attach(Telefone::find(1));
         $user->emails()->attach(Email::find(1));
+
+        $user->addFlag('approval-pending');
 
         Session::flash('messages', 'Sua conta foi criada com sucesso.');
 

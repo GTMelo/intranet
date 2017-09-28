@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Flaggable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
@@ -67,8 +68,8 @@ class User extends Authenticatable
         return 'slug';
     }
 
-    public function ownOrAllowed($thing, $permission){
-        return $thing->user_id == $this->id || $this->hasPermission($permission);
+    public function canOrOwns($thing, $permissions, $fk = 'user_id'){
+        return $this->owns($thing, $fk) || $this->can($permissions);
     }
 
     public function getCpfAttribute($value)
@@ -92,6 +93,39 @@ class User extends Authenticatable
 
         $this->attributes['cpf'] = $value;
 
+    }
+
+    public function aprovar(){
+        $this->removeFlag('approval-pending');
+    }
+
+    /**
+     * @return mixed
+     * Suggar pra ver usuários aprovados
+     */
+    public static function aprovados(){
+        return self::aprovado()->get();
+    }
+
+    /**
+     * @return mixed
+     * Suggar pra ver usuários pendentes
+     */
+    public static function pendentes(){
+        return self::aprovado(true)->get();
+    }
+
+    public function scopeAprovado($query, $reversed = false){
+
+        if($reversed) {
+            return $query->whereHas('flags', function ($query){
+                $query->where('flag_id', Flag::ofCode('approval-pending')->id);
+            });
+        }
+
+        return $query->whereDoesntHave('flags', function ($query){
+            $query->where('flag_id', Flag::ofCode('approval-pending')->id);
+        });
     }
 
 }

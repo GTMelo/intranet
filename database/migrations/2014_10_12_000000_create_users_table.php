@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('current_last_login')->nullable();
 
         });
+
     }
 
     /**
