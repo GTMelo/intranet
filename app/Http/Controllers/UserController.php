@@ -11,7 +11,7 @@ class UserController extends Controller
 
     public function index(){
 
-        $users = UserRh::paginate(15);
+        $users = User::aprovado()->paginate(15);
 
         return view('user/index', compact('users', 'tab'));
 
@@ -19,11 +19,11 @@ class UserController extends Controller
 
     public function show(User $user, $secao = null){
 
-        if (!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$user\" não foi encontrado"]);
-
         $secoes = collect(['basico', 'pessoal', 'funcional', 'escolaridade', 'documentos']);
 
+        if (!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$user\" não foi encontrado"]);
         if(!$secao) return view('user/show/secao/basico', compact('user', 'secao'));
+
 
         if($secoes->contains($secao)){
             return view('user/show/secao/' . $secao, compact('user', 'secao'));

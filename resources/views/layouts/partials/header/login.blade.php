@@ -7,9 +7,10 @@
             <img src="http://via.placeholder.com/40x40">
         </div>
         <div class="user-data">
-            <span id="user-name">{{ auth()->user()->nome_curto }}</span>
+            <span id="user-name"><a href="/usuarios/{{auth()->user()->slug}}">{{ auth()->user()->nome_curto }}</a></span>
             <span id="user-unidade">
-                @if(auth()->user()->unidade) {{ auth()->user()->unidade->sigla }} @endif
+                @if(auth()->user()->rh->unidade) {{ auth()->user()->rh->unidade->sigla }} @endif
+                @if(auth()->user()->hasFlag('approval-pending')) (Usuário com aprovação pendente ) @endif
                 &nbsp <a href="/sair">(sair)</a>
             </span>
         </div>

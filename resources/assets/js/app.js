@@ -49,6 +49,8 @@ Vue.component('documento-card', require('./components/Documento-card.vue'));
 Vue.component('escolaridade-item', require('./components/Escolaridade-item.vue'));
 Vue.component('i-table', require('./components/I-table.vue'));
 Vue.component('i-item', require('./components/I-item.vue'));
+Vue.component('toolbar', require('./components/Toolbar.vue'));
+Vue.component('tool-button', require('./components/Toolbar-button.vue'));
 
 
 const app = new Vue({

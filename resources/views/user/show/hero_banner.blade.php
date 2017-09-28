@@ -1,19 +1,19 @@
 <section class="hero hero-with-image is-primary">
-    @if(auth()->check())
-        @if( auth()->user()->ownOrAllowed($user->rh, 'global-edit-user-rh'))
-            <div class="hero-head">
-                <div class="nav">
-                    <div class="container">
-                        <div class="nav-right nav-menu">
-                            <a class="nav-item">Editar</a>
-                            @permission('validate-user')<a class="nav-item">Validar</a>@endpermission
-                            @permission('delete-user')<a class="nav-item">Excluir</a>@endpermission
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-    @endif
+    {{--@if(auth()->check())--}}
+        {{--@if( auth()->user()->ownOrAllowed($user->rh, 'global-edit-user-rh'))--}}
+            {{--<div class="hero-head">--}}
+                {{--<div class="nav">--}}
+                    {{--<div class="container">--}}
+                        {{--<div class="nav-right nav-menu">--}}
+                            {{--<a class="nav-item">Editar</a>--}}
+                            {{--@permission('validate-user')<a class="nav-item">Validar</a>@endpermission--}}
+                            {{--@permission('delete-user')<a class="nav-item">Excluir</a>@endpermission--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--@endif--}}
+    {{--@endif--}}
 
     <div class="hero-body">
         <div class="container">
