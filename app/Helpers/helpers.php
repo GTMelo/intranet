@@ -38,3 +38,19 @@ function makeSlug($nome_completo){
     return $slug;
 
 }
+
+function makeAbrv($nome_completo){
+
+    $stripped = str_replace(['de', 'da', 'dos', 'das', 'para'], '' ,$nome_completo);
+    $toAbrv = collect(explode(' ', $stripped));
+    $result = '';
+
+    foreach ($toAbrv as $item){
+        $result .= substr($item, 0, 1);
+    }
+
+    $result = strtoupper($result);
+
+    return $result;
+
+}

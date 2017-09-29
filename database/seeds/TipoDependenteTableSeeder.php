@@ -14,7 +14,7 @@ class TipoDependenteTableSeeder extends Seeder
     {
 
         $tipos = [
-          'pai', 'mãe', 'filho', 'conjuge'
+          'pai', 'mãe', 'filho', 'cônjuge'
         ];
 
         foreach ($tipos as $tipo){

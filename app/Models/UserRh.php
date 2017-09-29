@@ -125,10 +125,6 @@ class UserRh extends Model
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
     }
 
-    public function dependentes(){
-        return $this->hasMany(Dependente::class, 'user_rh_id');
-    }
-
     public function pai(){
         return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('pai')->id)->first();
     }

@@ -12,28 +12,16 @@ class UnidadeTableSeeder extends Seeder
      */
     public function run()
     {
-        $unidades = [
-            [
-                'sigla' => 'S/N',
-                'descricao' => 'Sem Unidade',
-                'tldr' => 'O usuário ainda não possui uma unidade definida',
-            ],
-            [
-                'sigla' => 'SAIN',
-                'descricao' => 'Secretaria de Assuntos Internacionais',
-                'tldr' => 'Some SAIN tldr here',
-            ],
-        ];
+        Unidade::create([
+            'sigla' => 'S/N',
+            'descricao' => 'Sem Unidade',
+            'tldr' => 'O usuário ainda não possui uma unidade definida',
+        ]);
 
-        foreach ($unidades as $unidade) {
-
-            Unidade::create([
-                'sigla' => $unidade['sigla'],
-                'descricao' => $unidade['descricao'],
-                'tldr' => $unidade['tldr'],
-            ]);
-        }
-
-
+        Unidade::create([
+            'sigla' => 'SAIN',
+            'descricao' => 'Secretaria de Assuntos Internacionais',
+            'tldr' => 'Some SAIN tldr here',
+        ]);
     }
 }

@@ -25,7 +25,7 @@ class CreateDependentesTable extends Migration
             $table->timestamps();
 
             $table->integer('tipo_dependente_id')->unsigned()->nullable();
-            $table->integer('user_rh_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
 
             $table->string('nome');
             $table->date('data_nascimento')->nullable();
@@ -39,7 +39,7 @@ class CreateDependentesTable extends Migration
         });
 
         Schema::table('dependentes', function (Blueprint $table) {
-            $table->foreign('user_rh_id')->references('user_id')->on('users_rh');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

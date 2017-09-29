@@ -41,6 +41,10 @@ class User extends Authenticatable
         return $this->filterFlag($this->telefones, 'is-work')->first();
     }
 
+    public function dependentes(){
+        return $this->hasMany(Dependente::class, 'user_id');
+    }
+
     public function email_funcional(){
         return $this->filterFlag($this->emails, 'is-work')->first();
     }

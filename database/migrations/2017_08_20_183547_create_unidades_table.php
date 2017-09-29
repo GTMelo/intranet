@@ -19,11 +19,18 @@ class CreateUnidadesTable extends Migration
             $table->softDeletes();
 
             $table->integer('unidade_superior_id')->unsigned()->nullable();
-            $table->integer('status_id')->unsigned()->default(1);
             $table->string('sigla', 10)->nullable();
             $table->string('descricao')->nullable();
             $table->text('tldr')->nullable();
         });
+
+
+
+        Schema::table('unidades', function (Blueprint $table) {
+            $table->foreign('unidade_superior_id')->references('id')->on('unidades')->onDelete('set null');
+        });
+
+
 
         Schema::table('users_rh', function (Blueprint $table) {
             $table->integer('unidade_id')->default(1)->unsigned()->nullable();
