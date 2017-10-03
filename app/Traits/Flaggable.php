@@ -41,11 +41,13 @@ trait Flaggable
 
     /**
      * Check if the model has the queried flag
-     * @param $flag the interested code
+     * @param Flag|String $flag the interested code
      * @return bool true if model has flag
      */
     public function hasFlag($flag)
     {
+        if ($flag instanceof Flag) return self::flags()->get()->contains($flag);
+
         return self::flags(true)->contains($flag);
     }
 
@@ -54,7 +56,11 @@ trait Flaggable
      * @param $code
      * @return mixed
      */
-    public function addFlag($code){
+    public function addFlag($code)
+    {
+
+        if ($code instanceof Flag) return self::flags()->attach($code);
+
         return self::flags()->attach(Flag::ofCode($code));
     }
 
@@ -63,7 +69,11 @@ trait Flaggable
      * @param $code
      * @return mixed
      */
-    public function removeFlag($code){
+    public function removeFlag($code)
+    {
+
+        if ($code instanceof Flag) return self::flags()->detach($code);
+
         return self::flags()->detach(Flag::ofCode($code));
     }
 
@@ -71,20 +81,36 @@ trait Flaggable
      * Clears all flags of a model
      * @return mixed
      */
-    public function removeAllFlags(){
+    public function removeAllFlags()
+    {
         return self::flags()->detach();
     }
 
     /**
-     * Filters a collection by a given flag code
-     * @param Collection $collection
+     * Filters results for results that have an specific match
      * @param $flag
+     * @param int $chunkSize
      * @return Collection
      */
-    public static function filterFlag(Collection $collection, $flag){
-        return $collection->filter(function ($value) use ($flag) {
-            return $value->hasFlag($flag);
-        });
+    public static function filterFlag($flag, $chunkSize = 100)
+    {
+
+        $isTableBig = static::all()->count() > 1000;
+
+        if($isTableBig){
+            $result = collect([]);
+            static::chunk($chunkSize, function ($batch) use ($flag, $result) {
+                foreach ($batch as $item){
+                    if($item->hasFlag($flag)) $result->push($item);
+                }
+            });
+        } else {
+            return static::all()->filter(function ($value) use ($flag) {
+                return $value->hasFlag($flag);
+            });
+        }
+
+        return $result;
     }
 
 }
