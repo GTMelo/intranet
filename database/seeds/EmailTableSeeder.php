@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Email;
+use App\Models\Flag;
 use Illuminate\Database\Seeder;
 
 class EmailTableSeeder extends Seeder
@@ -12,21 +13,20 @@ class EmailTableSeeder extends Seeder
      */
     public function run()
     {
+        Email::clear();
 
-        $emails = [
-            'Sem E-mail',
-            'owneradmin@admin.com',
-            'someothermail@mail.com',
-        ];
+        Email::create([
+            'address' => 'Sem E-mail',
+        ]);
 
-        foreach ($emails as $email){
-            Email::create([
-                'address' => $email,
-            ]);
+        factory(Email::class, 100)->create();
+
+        $faker = \Faker\Factory::create();
+
+        foreach (Email::all() as $item){
+            $flag = $faker->randomElement([null, Flag::inRandomOrder()->take(1)->first()]);
+            if($flag && !$item->hasFlag($flag)) $item->addFlag($flag);
         }
-
-        Email::first()->addFlag('is-personal');
-        Email::find(1)->addFlag('is-work');
 
     }
 }

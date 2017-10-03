@@ -77,9 +77,9 @@ $factory->define(\App\Models\Dependente::class , function (Faker\Generator $fake
 
 
 
-$factory->define(\App\Models\Documento::class, function (Faker\Generator $faker) {
+$factory->define(\App\Models\Documento::class, function (Faker\Generator $faker, $tipo) {
 
-    $tipo = \App\Models\TipoDocumento::inRandomOrder()->take(1)->first();
+    $tipo = \App\Models\TipoDocumento::random();
 
     switch ($tipo->descricao){
         case 'cpf':
@@ -257,12 +257,12 @@ $factory->define(\App\Models\UserRh::class , function (Faker\Generator $faker) {
 $factory->define(\App\Models\Unidade::class, function (Faker\Generator $faker) {
 
     $us = \App\Models\Unidade::inRandomOrder()->take(1)->first();
-    if($us->id == 1) $us = \App\Models\Unidade::find(2);
+    if(!$us) $us = null;
 
     $nome = $faker->words(3, true);
 
     return [
-        'unidade_superior_id' => $faker->randomElement([null, $us->id]),
+        'unidade_superior_id' => $faker->randomElement([null, $us]),
         'descricao' => $nome,
         'sigla' => makeAbrv($nome),
         'tldr' => $faker->sentence(),

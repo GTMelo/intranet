@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use App\Models\Scopes\AtivoScope;
+use App\Traits\Seedable;
 use Illuminate\Database\Eloquent\Model;
 
 class Unidade extends Model
 {
+
+    use Seedable;
+
 
     protected static function boot()
     {
@@ -20,21 +24,23 @@ class Unidade extends Model
         'sigla', 'unidade_superior_id', 'descricao', 'tldr', 'status_id'
     ];
 
-    public function unidade_superior(){
+    public function unidade_superior()
+    {
 
         return $this->hasOne(self::class, 'id', 'unidade_superior_id');
 
     }
 
-    public function hierarquia(){
+    public function hierarquia()
+    {
 
-        $result = [];
+        $result = collect([]);
 
         $unidade_atual = $this->unidade_superior;
 
-        while($unidade_atual != null){
+        while ($unidade_atual != null) {
 
-            array_unshift($result, $unidade_atual);
+            $result->push($unidade_atual);
             $unidade_atual = $unidade_atual->unidade_superior;
 
         }

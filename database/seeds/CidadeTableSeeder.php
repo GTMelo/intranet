@@ -21,6 +21,10 @@ class CidadeTableSeeder extends Seeder
                 'nome' => 'Brasília',
                 'estado_id' => 2,
             ],
+            [
+                'nome' => 'New York',
+                'estado_id' => 3,
+            ],
         ];
 
         foreach ($cidades as $cidade){

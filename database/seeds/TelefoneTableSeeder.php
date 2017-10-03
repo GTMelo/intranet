@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Flag;
 use App\Models\Telefone;
 use Illuminate\Database\Seeder;
 
@@ -12,23 +13,21 @@ class TelefoneTableSeeder extends Seeder
      */
     public function run()
     {
-        $telefones = [
-            ['numero' => 'Sem Número'],
-            ['numero' => '1234-1234'],
-            ['numero' => '3216-4354'],
-            ['numero' => '4588-1236'],
-            ['numero' => '9874-6548'],
-            ['numero' => '1234-9687'],
-        ];
 
-        foreach ($telefones as $telefone){
-            Telefone::create([
-                'numero' => $telefone['numero']
-            ]);
+        Telefone::clear();
+
+        Telefone::create([
+            'numero' => 'Sem Número'
+        ]);
+
+        factory(Telefone::class, 100)->create();
+
+        $faker = \Faker\Factory::create();
+
+        foreach (Telefone::all() as $item){
+            $flag = $faker->randomElement([null, Flag::inRandomOrder()->take(1)->first()]);
+            if($flag && !$item->hasFlag($flag)) $item->addFlag($flag);
         }
-
-        Telefone::first()->addFlag('is-work');
-
 
     }
 }

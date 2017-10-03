@@ -27,5 +27,13 @@ class PaisTableSeeder extends Seeder
             'adjetivo_patrio' => 'Brasileiro',
             'codigo_telefone' => '55',
         ]);
+
+        Pais::create([
+            'nome' => 'Estados Unidos',
+            'nome_completo' => 'Estados Unidos da América',
+            'iso' => 'US',
+            'adjetivo_patrio' => 'Americano',
+            'codigo_telefone' => '16',
+        ]);
     }
 }

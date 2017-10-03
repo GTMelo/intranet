@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Flaggable;
+use App\Traits\Seedable;
 use Illuminate\Database\Eloquent\Model;
 
 class UserRh extends Model
 {
 
-    use Flaggable;
+    use Flaggable, Seedable;
 
     protected $table = 'users_rh';
 

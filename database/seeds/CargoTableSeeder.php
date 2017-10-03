@@ -13,10 +13,14 @@ class CargoTableSeeder extends Seeder
     public function run()
     {
 
+        Cargo::clear();
+
         Cargo::create([
             'abreviacao' => 'SC',
             'descricao' => 'Sem Cargo'
         ]);
+
+        factory(Cargo::class, 25)->create();
 
     }
 }

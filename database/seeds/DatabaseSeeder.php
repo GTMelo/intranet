@@ -24,11 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PaisTableSeeder::class);
         $this->call(EstadoTableSeeder::class);
         $this->call(CidadeTableSeeder::class);
-        $this->call(UserTableSeeder::class);
         $this->call(EnderecoTableSeeder::class);
         $this->call(BancoTableSeeder::class);
         $this->call(DadoBancarioTableSeeder::class);
-        $this->call(UserRhTableSeeder::class);
+        $this->call(UserTableSeeder::class);
         $this->call(TipoDocumentoTableSeeder::class);
         $this->call(TipoEscolaridadeTableSeeder::class);
         $this->call(TipoDependenteTableSeeder::class);

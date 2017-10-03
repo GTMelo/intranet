@@ -17,5 +17,7 @@ class DadoBancarioTableSeeder extends Seeder
             'agencia' => '0000-0',
             'conta' => '00000-0',
         ]);
+
+        factory(DadoBancario::class, 400)->create();
     }
 }

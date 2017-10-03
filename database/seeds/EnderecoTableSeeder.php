@@ -16,5 +16,7 @@ class EnderecoTableSeeder extends Seeder
             'logradouro' => 'Sem Endereço',
             'cep' => 'Sem CEP'
         ]);
+
+        factory(Endereco::class, 300)->create();
     }
 }

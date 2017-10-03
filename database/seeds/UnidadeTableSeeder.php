@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 
 class UnidadeTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -12,6 +13,9 @@ class UnidadeTableSeeder extends Seeder
      */
     public function run()
     {
+
+        Unidade::clear();
+
         Unidade::create([
             'sigla' => 'S/N',
             'descricao' => 'Sem Unidade',
@@ -23,5 +27,10 @@ class UnidadeTableSeeder extends Seeder
             'descricao' => 'Secretaria de Assuntos Internacionais',
             'tldr' => 'Some SAIN tldr here',
         ]);
+
+        factory(Unidade::class, 15)->create();
+        factory(Unidade::class, 15)->create();
+        factory(Unidade::class, 15)->create();
+        factory(Unidade::class, 50)->create();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Flaggable;
+use App\Traits\Seedable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +12,7 @@ use App\Models\Scopes\AtivoScope;
 
 class User extends Authenticatable
 {
-    use Notifiable, LaratrustUserTrait, Flaggable;
+    use Notifiable, LaratrustUserTrait, Flaggable, Seedable;
 
     protected $fillable = [
         'cpf',

@@ -44,7 +44,9 @@ class Cargo extends Base
         $c = collect($this->tema)->random();
         $d = collect($this->modifiers)->random();
 
-        return "$a de $b $c $d";
+        $result = "$a de $b $c $d";
+
+        return trim("$a de $b $c $d");
     }
 
 }

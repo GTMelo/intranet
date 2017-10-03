@@ -28,6 +28,12 @@ class EstadoTableSeeder extends Seeder
             'codigo_telefone' => '61',
         ]);
 
+        Estado::create([
+            'pais_id' => '3',
+            'sigla' => 'NY',
+            'nome' => 'New York',
+            'regiao' => 'East Coast',
+        ]);
 
     }
 }
