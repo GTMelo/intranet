@@ -12,6 +12,7 @@ namespace App\Traits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use PDO;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 trait Seedable
@@ -42,6 +43,15 @@ trait Seedable
 
         if($ammount == 1 && !$forceCollection) return static::inRandomOrder()->take($ammount)->first();
         return static::inRandomOrder()->take($ammount)->get();
+    }
+
+    public static function clearRelations(){
+
+        $tables = collect(func_get_args());
+
+        foreach ($tables as $table){
+            DB::table($table)->truncate();
+        }
     }
 
 }

@@ -19,9 +19,9 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
 
             $table->string('cpf')->unique();
+            $table->string('nome_completo')->nullable();
             $table->string('nome_curto')->unique();
             $table->string('slug')->unique();
-            $table->string('nome_completo')->nullable();
             $table->string('password');
 
             $table->rememberToken();
@@ -30,6 +30,17 @@ class CreateUsersTable extends Migration
 
         });
 
+
+        Schema::create('rhs', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index();
+
+            $table->enum('sexo', ['m', 'f'])->nullable();
+            $table->date('data_nascimento')->nullable();
+            $table->string('estado_civil')->nullable();
+
+            $table->primary('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 
     /**
@@ -39,6 +50,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('rhs');
         Schema::dropIfExists('users');
     }
 }

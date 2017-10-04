@@ -10,7 +10,7 @@ class Endereco extends Model
     protected $guarded = ['id'];
 
     public function users(){
-        return $this->hasMany(UserRh::class);
+        return $this->hasMany(Rh::class);
     }
 
     public function cidade(){

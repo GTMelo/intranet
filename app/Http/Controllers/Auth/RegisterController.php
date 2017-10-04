@@ -7,7 +7,7 @@ use App\Models\Telefone;
 use App\Models\Unidade;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Models\UserRh;
+use App\Models\Rh;
 use App\Models\Vinculo;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        UserRh::create([
+        Rh::create([
             'user_id' => $user->id,
             'unidade_id' => Unidade::first()->id,
         ]);

@@ -16,7 +16,7 @@ class Escolaridade extends Model
     }
 
     public function user(){
-        return $this->belongsTo(UserRh::class, 'user_id');
+        return $this->belongsTo(Rh::class, 'user_id');
     }
 
 }

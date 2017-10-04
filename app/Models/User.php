@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Traits\Flaggable;
 use App\Traits\Seedable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
@@ -35,23 +34,7 @@ class User extends Authenticatable
     }
 
     public function rh(){
-        return self::hasOne(UserRh::class);
-    }
-
-    public function ramal(){
-        return $this->filterFlag($this->telefones, 'is-work')->first();
-    }
-
-    public function dependentes(){
-        return $this->hasMany(Dependente::class, 'user_id');
-    }
-
-    public function email_funcional(){
-        return $this->filterFlag($this->emails, 'is-work')->first();
-    }
-
-    public function unidade(){
-        return $this->rh->unidade();
+        return self::hasOne(Rh::class);
     }
 
     public function telefones()
@@ -59,9 +42,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Telefone::class);
     }
 
+    public function ramal(){
+        return $this->filterFlag($this->telefones, 'is-work')->first();
+    }
+
     public function emails()
     {
         return $this->belongsToMany(Email::class);
+    }
+
+    public function email(){
+        return $this->filterFlag($this->emails, 'is-work')->first();
+    }
+
+    public function unidade(){
+        return $this->rh->unidade();
     }
 
     public static function ofSlug($slug){

@@ -6,14 +6,14 @@ use App\Traits\Flaggable;
 use App\Traits\Seedable;
 use Illuminate\Database\Eloquent\Model;
 
-class UserRh extends Model
+class Rh extends Model
 {
 
     use Flaggable, Seedable;
 
-    protected $table = 'users_rh';
-
     protected $primaryKey = 'user_id';
+
+    public $incrementing = false;
 
     protected $guarded = [];
 
@@ -21,38 +21,19 @@ class UserRh extends Model
 
     protected $dates = ['data_nascimento', 'entrada_sain'];
 
-    public $incrementing = false;
-
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function slug(){
-        return $this->user->slug();
+    public function dependentes(){
+        return $this->hasMany(Dependente::class);
     }
 
-    public function cpf(){
-        return $this->user->cpf;
-    }
-
-    public function telefone_pessoal(){
-        return $this->user->telefones();
-    }
-
-    public function telefone_residencial(){
-        return $this->filterFlag($this->user->telefones, 'personal')->first();
-    }
-
-    public function telefone_celular(){
-        return $this->filterFlag($this->user->telefones, 'is-cellphone')->first();
-    }
-
-    public function ramal(){
-        return $this->user->ramal();
+    public function vinculo(){
+        return $this->hasOne(Vinculo::class);
     }
 
     public function naturalidadeCidade(){
-
         return $this->belongsTo(Cidade::class, 'naturalidade_id');
     }
 
@@ -69,10 +50,6 @@ class UserRh extends Model
         return $this->filterFlag($this->user->emails, 'is-personal')->first();
     }
 
-    public function email_funcional(){
-        return $this->user->email_funcional();
-    }
-
     public function endereco(){
         return $this->belongsTo(Endereco::class);
     }
@@ -81,7 +58,7 @@ class UserRh extends Model
         return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
     }
 
-    public function unidade()
+    public function lotacao()
     {
         return $this->belongsTo(Unidade::class);
     }
@@ -91,11 +68,11 @@ class UserRh extends Model
     }
 
     public function documentos(){
-        return $this->hasMany(Documento::class, 'user_rh_id');
+        return $this->hasMany(Documento::class);
     }
 
     public function escolaridades(){
-        return $this->hasMany(Escolaridade::class, 'user_id');
+        return $this->hasMany(Escolaridade::class);
     }
 
     public function grau_escolaridade(){
@@ -122,7 +99,7 @@ class UserRh extends Model
     }
 
     public function idiomas(){
-        return $this->belongsToMany(Idioma::class, 'idioma_user_rh', 'user_rh_id', 'idioma_id')
+        return $this->belongsToMany(Idioma::class)
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
     }
 
@@ -138,12 +115,24 @@ class UserRh extends Model
         return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('conjuge')->id)->first();
     }
 
+    public function cpf(){
+        return $this->user->cpf;
+    }
+
+    public function telefone_pessoal(){
+        return $this->user->telefones();
+    }
+
+    public function telefone_residencial(){
+        return $this->filterFlag($this->user->telefones, 'personal')->first();
+    }
+
+    public function telefone_celular(){
+        return $this->filterFlag($this->user->telefones, 'is-cellphone')->first();
+    }
+
     public function getSexoAttribute($value){
         if($value == 'm') return 'Masculino';
         if($value == 'f') return 'Feminino';
-    }
-
-    public function vinculo(){
-        return $this->hasOne(Vinculo::class, 'user_rh_id');
     }
 }

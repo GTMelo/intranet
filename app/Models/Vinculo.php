@@ -18,6 +18,6 @@ class Vinculo extends Model
     }
 
     public function supervisor(){
-        return $this->belongsTo(UserRh::class, 'supervisor_id');
+        return $this->belongsTo(Rh::class, 'supervisor_id');
     }
 }

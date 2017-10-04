@@ -14,6 +14,6 @@ class Documento extends Model
     }
 
     public function user(){
-        return $this->belongsTo(UserRh::class, 'user_rh_id');
+        return $this->belongsTo(Rh::class, 'user_rh_id');
     }
 }

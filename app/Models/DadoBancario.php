@@ -16,7 +16,7 @@ class DadoBancario extends Model
     protected $table = 'dados_bancarios';
 
     public function user(){
-        return $this->belongsTo(UserRh::class);
+        return $this->belongsTo(Rh::class);
     }
 
     public function banco(){

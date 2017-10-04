@@ -2,7 +2,7 @@
 
 use App\Models\Email;
 use App\Models\Telefone;
-use App\Models\UserRh;
+use App\Models\Rh;
 use Illuminate\Database\Seeder;
 
 class UserRhTableSeeder extends Seeder
@@ -15,7 +15,7 @@ class UserRhTableSeeder extends Seeder
     public function run()
     {
 
-        $user = \App\Models\UserRh::create([
+        $user = \App\Models\Rh::create([
             'user_id' => 1,
             'naturalidade_id' => 1,
             'unidade_id' => 1,

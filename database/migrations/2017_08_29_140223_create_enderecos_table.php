@@ -29,7 +29,7 @@ class CreateEnderecosTable extends Migration
 
         });
 
-        Schema::table('users_rh', function (Blueprint $table) {
+        Schema::table('rhs', function (Blueprint $table) {
             $table->integer('endereco_id')->default(1)->unsigned()->nullable();
             $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('set null');
         });

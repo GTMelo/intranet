@@ -53,7 +53,7 @@ class CreateCidadeEstadoPaisTables extends Migration
             $table->foreign('pais_id')->references('id')->on('paises');
         });
 
-        Schema::table('users_rh', function (Blueprint $table) {
+        Schema::table('rhs', function (Blueprint $table) {
             $table->integer('naturalidade_id')->default(1)->unsigned()->nullable();
             $table->foreign('naturalidade_id')->references('id')->on('cidades');
         });

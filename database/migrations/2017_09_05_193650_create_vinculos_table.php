@@ -26,6 +26,8 @@ class CreateVinculosTable extends Migration
             $table->integer('supervisor_id')->unsigned()->nullable();
             $table->integer('tipo_vinculo_id')->unsigned()->nullable();
 
+            $table->date('entrada_sain')->nullable();
+            $table->string('matricula')->nullable();
             $table->string('orgao_origem')->nullable();
             $table->string('matricula_origem')->nullable();
             $table->string('cargo_origem')->nullable();

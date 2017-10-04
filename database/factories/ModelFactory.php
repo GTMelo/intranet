@@ -14,6 +14,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\TipoDependente;
+use App\Models\TipoVinculo;
+use App\Models\User;
+use App\Models\Rh;
 
 $factory->define( \App\Models\Cargo::class, function (Faker\Generator $faker) {
 
@@ -84,7 +87,7 @@ $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker,
     switch ($tipo->descricao){
         case 'cpf':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(),
@@ -93,7 +96,7 @@ $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker,
             ];
         case 'rg':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(),
@@ -102,20 +105,20 @@ $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker,
             ];
         case 'pis_pasep':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(),
             ];
         case 'certificado_reservista':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
             ];
         case 'titulo_eleitor':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(),
@@ -124,38 +127,38 @@ $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker,
             ];
         case 'carteira_motorista':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(11),
             ];
         case 'certificado_escolaridade':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
             ];
         case 'certificado_cnd':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
             ];
         case 'comprovante_residencia':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
             ];
         case 'foto':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
             ];
         case 'carteira_profissional':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(),
@@ -164,7 +167,7 @@ $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker,
             ];
         case 'passaporte':
             return [
-                'user_rh_id' => \App\Models\UserRh::inRandomOrder()->take(1)->first()->user_id,
+                'user_rh_id' => \App\Models\Rh::inRandomOrder()->take(1)->first()->user_id,
                 'tipo_documento_id' => $tipo->id,
                 'imagem' => $faker->image(null, 400, 400),
                 'identificacao' => $faker->randomNumber(),
@@ -237,13 +240,11 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(\App\Models\UserRh::class , function (Faker\Generator $faker) {
+$factory->define(\App\Models\Rh::class , function (Faker\Generator $faker) {
     return [
         'sexo' => $faker->randomElement(['m', 'f']),
         'data_nascimento' => $faker->dateTimeBetween('-50 years', '-20 years'),
         'estado_civil' => $faker->randomElement(['solteiro', 'casado']),
-        'entrada_sain' => $faker->dateTimeBetween('-10 years', '-2 days'),
-        'matricula' => $faker->randomNumber(7),
         'unidade_id' => \App\Models\Unidade::inRandomOrder()->take(1)->first()->id,
         'cargo_id' => \App\Models\Cargo::inRandomOrder()->take(1)->first()->id,
         'naturalidade_id' => \App\Models\Cidade::inRandomOrder()->take(1)->first()->id,
@@ -266,6 +267,37 @@ $factory->define(\App\Models\Unidade::class, function (Faker\Generator $faker) {
         'descricao' => $nome,
         'sigla' => makeAbrv($nome),
         'tldr' => $faker->sentence(),
+    ];
+});
+
+$factory->define(\App\Models\Vinculo::class, function (Faker\Generator $faker) {
+
+    $user_rh_id = Rh::random()->id;
+    $tipo_vinculo = TipoVinculo::random();
+
+    $entrada_sain = $faker->dateTimeBetween('-10 years', '-2 days');
+    $matricula = $faker->randomNumber(7);
+    $supervisor_id = null;
+    $orgao_origem = null;
+    $matricula_origem = null;
+    $cargo_origem = null;
+    $classe = null;
+    $padrao = null;
+    $funcao = null;
+    $denominacao_funcao = null;
+    $ato_nomeacao = null;
+    $data_dou = null;
+    $empresa = null;
+    $instituicao_ensino = null;
+    $nivel = null;
+    $curso = null;
+    $semestre = null;
+    $numero_contrato = null;
+    $data_contrato = null;
+
+    return [
+        'user_rh_id' => User::random(),
+        'supervisor_id' => $faker->randomElement([null, null, User::random()]),
     ];
 });
 
