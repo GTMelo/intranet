@@ -58,17 +58,16 @@ class Rh extends Model
         return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
     }
 
-    public function lotacao()
-    {
-        return $this->belongsTo(Unidade::class);
-    }
-
     public function cargo(){
         return $this->belongsTo(Cargo::class);
     }
 
     public function documentos(){
         return $this->hasMany(Documento::class);
+    }
+
+    public function foto(){
+        return $this->documentos()->where('tipo_documento_id', TipoDocumento::ofTipo('foto'));
     }
 
     public function escolaridades(){

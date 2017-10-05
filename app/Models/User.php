@@ -55,8 +55,8 @@ class User extends Authenticatable
         return $this->filterFlag($this->emails, 'is-work')->first();
     }
 
-    public function unidade(){
-        return $this->rh->unidade();
+    public function lotacao(){
+        return $this->belongsTo(Unidade::class);
     }
 
     public static function ofSlug($slug){
