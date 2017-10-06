@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\Seedable;
 use Illuminate\Database\Eloquent\Model;
 
 class Endereco extends Model
 {
 
+    use Seedable;
+
     protected $guarded = ['id'];
 
-    public function users(){
-        return $this->hasMany(Rh::class);
+    public function user(){
+        return $this->belongsTo(Rh::class);
     }
 
     public function cidade(){

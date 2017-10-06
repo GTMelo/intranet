@@ -22,7 +22,7 @@ class CreateVinculosTable extends Migration
         Schema::create('vinculos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('user_rh_id')->unsigned();
+            $table->integer('rh_id')->unsigned();
             $table->integer('supervisor_id')->unsigned()->nullable();
             $table->integer('tipo_vinculo_id')->unsigned()->nullable();
 
@@ -47,8 +47,8 @@ class CreateVinculosTable extends Migration
         });
 //
         Schema::table('vinculos', function (Blueprint $table) {
-            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
-            $table->foreign('supervisor_id')->references('user_id')->on('users_rh')->onDelete('set null');
+            $table->foreign('rh_id')->references('user_id')->on('rhs')->onDelete('cascade');
+            $table->foreign('supervisor_id')->references('user_id')->on('rhs')->onDelete('set null');
             $table->foreign('tipo_vinculo_id')->references('id')->on('tipo_vinculos')->onDelete('set null');
         });
 

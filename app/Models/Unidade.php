@@ -11,6 +11,10 @@ class Unidade extends Model
 
     use Seedable;
 
+    protected $fillable = [
+        'sigla', 'unidade_superior_id', 'descricao', 'tldr', 'status_id'
+    ];
+
 
     protected static function boot()
     {
@@ -20,9 +24,9 @@ class Unidade extends Model
 
     }
 
-    protected $fillable = [
-        'sigla', 'unidade_superior_id', 'descricao', 'tldr', 'status_id'
-    ];
+    public function users(){
+        return $this->hasMany(User::class);
+    }
 
     public function unidade_superior()
     {

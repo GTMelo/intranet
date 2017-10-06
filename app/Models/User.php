@@ -34,7 +34,11 @@ class User extends Authenticatable
     }
 
     public function rh(){
-        return self::hasOne(Rh::class);
+        return $this->hasOne(Rh::class);
+    }
+
+    public function unidade(){
+        return $this->belongsTo(Unidade::class);
     }
 
     public function telefones()
@@ -42,22 +46,18 @@ class User extends Authenticatable
         return $this->belongsToMany(Telefone::class);
     }
 
-    public function ramal(){
-        return $this->filterFlag($this->telefones, 'is-work')->first();
-    }
+//    public function ramal(){
+//        return $this->filterFlag($this->telefones, 'is-work')->first();
+//    }
 
     public function emails()
     {
         return $this->belongsToMany(Email::class);
     }
 
-    public function email(){
-        return $this->filterFlag($this->emails, 'is-work')->first();
-    }
-
-    public function lotacao(){
-        return $this->belongsTo(Unidade::class);
-    }
+//    public function email(){
+//        return $this->filterFlag($this->emails, 'is-work')->first();
+//    }
 
     public static function ofSlug($slug){
         return self::where('slug', $slug)->first();

@@ -42,8 +42,8 @@ class CreateEnderecosTable extends Migration
      */
     public function down()
     {
-        Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('users_rh_endereco_id_foreign');
+        Schema::table('rhs', function (Blueprint $table) {
+            $table->dropForeign('rhs_endereco_id_foreign');
             $table->dropColumn('endereco_id');
         });
         Schema::dropIfExists('enderecos');

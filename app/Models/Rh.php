@@ -21,55 +21,81 @@ class Rh extends Model
 
     protected $dates = ['data_nascimento', 'entrada_sain'];
 
+    // USER ===================================================
     public function user(){
         return $this->belongsTo(User::class);
     }
 
+    public function cpf(){
+        return $this->user->cpf;
+    }
+
+    // DEPENDENTES ============================================
     public function dependentes(){
         return $this->hasMany(Dependente::class);
     }
 
-    public function vinculo(){
-        return $this->hasOne(Vinculo::class);
-    }
+//    public function pai(){
+//        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('pai')->id)->first();
+//    }
+//
+//    public function mae(){
+//        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('mãe')->id)->first();
+//    }
+//
+//    public function conjuge(){
+//        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('conjuge')->id)->first();
+//    }
 
-    public function naturalidadeCidade(){
-        return $this->belongsTo(Cidade::class, 'naturalidade_id');
-    }
-
-    public function naturalidade(){
-
-        return $this->naturalidadeCidade;
-    }
-
-    public function nacionalidade(){
-        return $this->naturalidadeCidade->estado->pais->adjetivo_patrio;
-    }
-
-    public function email_pessoal(){
-        return $this->filterFlag($this->user->emails, 'is-personal')->first();
-    }
-
-    public function endereco(){
-        return $this->belongsTo(Endereco::class);
-    }
-
-    public function dado_bancario(){
-        return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
-    }
-
+    // CARGO ==================================================
     public function cargo(){
         return $this->belongsTo(Cargo::class);
     }
 
-    public function documentos(){
-        return $this->hasMany(Documento::class);
-    }
 
-    public function foto(){
-        return $this->documentos()->where('tipo_documento_id', TipoDocumento::ofTipo('foto'));
+    // VINCULO ================================================
+    public function vinculo(){
+        return $this->hasOne(Vinculo::class);
     }
+//
+//    public function naturalidadeCidade(){
+//        return $this->belongsTo(Cidade::class, 'naturalidade_id');
+//    }
+//
+//    public function naturalidade(){
+//
+//        return $this->naturalidadeCidade;
+//    }
+//
+//    public function nacionalidade(){
+//        return $this->naturalidadeCidade->estado->pais->adjetivo_patrio;
+//    }
+//
+//    public function email_pessoal(){
+//        return $this->filterFlag($this->user->emails, 'is-personal')->first();
+//    }
+//
+//    public function endereco(){
+//        return $this->belongsTo(Endereco::class);
+//    }
+//
+//    public function dado_bancario(){
+//        return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
+//    }
+//
 
+
+//
+//    public function documentos(){
+//        return $this->hasMany(Documento::class);
+//    }
+//
+//    public function foto(){
+//        return $this->documentos()->where('tipo_documento_id', TipoDocumento::ofTipo('foto'));
+//    }
+//
+
+    // ESCOLARIDADE============================================
     public function escolaridades(){
         return $this->hasMany(Escolaridade::class);
     }
@@ -97,38 +123,23 @@ class Rh extends Model
         }
     }
 
+    // IDIOMAS ================================================
     public function idiomas(){
         return $this->belongsToMany(Idioma::class)
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
     }
 
-    public function pai(){
-        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('pai')->id)->first();
-    }
-
-    public function mae(){
-        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('mãe')->id)->first();
-    }
-
-    public function conjuge(){
-        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('conjuge')->id)->first();
-    }
-
-    public function cpf(){
-        return $this->user->cpf;
-    }
-
-    public function telefone_pessoal(){
-        return $this->user->telefones();
-    }
-
-    public function telefone_residencial(){
-        return $this->filterFlag($this->user->telefones, 'personal')->first();
-    }
-
-    public function telefone_celular(){
-        return $this->filterFlag($this->user->telefones, 'is-cellphone')->first();
-    }
+//    public function telefone_pessoal(){
+//        return $this->filterFlag($this->user->telefones, '');
+//    }
+//
+//    public function telefone_residencial(){
+//        return $this->filterFlag($this->user->telefones, 'personal')->first();
+//    }
+//
+//    public function telefone_celular(){
+//        return $this->filterFlag($this->user->telefones, 'is-cellphone')->first();
+//    }
 
     public function getSexoAttribute($value){
         if($value == 'm') return 'Masculino';

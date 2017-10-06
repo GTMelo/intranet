@@ -17,6 +17,10 @@ class Vinculo extends Model
         return $this->belongsTo( TipoVinculo::class, 'tipo_vinculo_id' );
     }
 
+    public function user(){
+        return $this->belongsTo(Rh::class, 'user_id');
+    }
+
     public function supervisor(){
         return $this->belongsTo(Rh::class, 'supervisor_id');
     }

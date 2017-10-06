@@ -34,8 +34,8 @@ class CreateCargosTable extends Migration
      */
     public function down()
     {
-        Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('users_rh_cargo_id_foreign');
+        Schema::table('rhs', function (Blueprint $table) {
+            $table->dropForeign('rhs_cargo_id_foreign');
         });
         Schema::dropIfExists('cargos');
     }

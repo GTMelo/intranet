@@ -80,8 +80,8 @@ class CreateCidadeEstadoPaisTables extends Migration
     {
         Schema::dropIfExists('cidade_flag');
 
-        Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('users_rh_naturalidade_id_foreign');
+        Schema::table('rhs', function (Blueprint $table) {
+            $table->dropForeign('rhs_naturalidade_id_foreign');
         });
 
         Schema::table('cidades', function (Blueprint $table) {

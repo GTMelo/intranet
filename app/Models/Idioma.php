@@ -12,7 +12,7 @@ class Idioma extends Model
     public $timestamps = false;
 
     public function users(){
-        return $this->belongsToMany(Rh::class, 'idioma_user_rh', 'idioma_id', 'user_rh_id')
+        return $this->belongsToMany(Rh::class, 'idioma_rh')
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
     }
 

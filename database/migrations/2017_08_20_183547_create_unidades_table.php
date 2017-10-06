@@ -32,7 +32,7 @@ class CreateUnidadesTable extends Migration
 
 
 
-        Schema::table('rhs', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->integer('unidade_id')->default(1)->unsigned()->nullable();
             $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('set null');
         });
@@ -45,8 +45,8 @@ class CreateUnidadesTable extends Migration
      */
     public function down()
     {
-        Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('users_rh_unidade_id_foreign');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_unidade_id_foreign');
         });
         Schema::dropIfExists('unidades');
     }

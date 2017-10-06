@@ -18,13 +18,13 @@ class CreateIdiomasTable extends Migration
             $table->string('descricao');
         });
 
-        Schema::create('idioma_user_rh', function (Blueprint $table) {
+        Schema::create('idioma_rh', function (Blueprint $table) {
             $table->integer('idioma_id')->unsigned()->index();
-            $table->integer('user_rh_id')->unsigned()->index();
+            $table->integer('rh_id')->unsigned()->index();
 
             $table->foreign('idioma_id')->references('id')->on('idiomas')->onDelete('cascade');
-            $table->foreign('user_rh_id')->references('user_id')->on('users_rh')->onDelete('cascade');
-            $table->primary(['idioma_id', 'user_rh_id']);
+            $table->foreign('rh_id')->references('user_id')->on('rhs')->onDelete('cascade');
+            $table->primary(['idioma_id', 'rh_id']);
 
             $table->enum('leitura', ['básico','avançado','fluente']);
             $table->enum('escrita', ['básico','avançado','fluente']);
@@ -40,7 +40,7 @@ class CreateIdiomasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('idioma_user_rh');
+        Schema::drop('idioma_rh');
         Schema::dropIfExists('idiomas');
     }
 }

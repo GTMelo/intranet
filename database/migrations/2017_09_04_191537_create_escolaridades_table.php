@@ -37,7 +37,7 @@ class CreateEscolaridadesTable extends Migration
         });
 
         Schema::table('escolaridades', function (Blueprint $table) {
-            $table->foreign('user_id')->references('user_id')->on('users_rh')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('rhs')->onDelete('cascade');
             $table->foreign('tipo_escolaridade_id')->references('id')->on('tipo_escolaridades');
         });
     }

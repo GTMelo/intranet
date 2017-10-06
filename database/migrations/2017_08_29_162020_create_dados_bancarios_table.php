@@ -35,7 +35,7 @@ class CreateDadosBancariosTable extends Migration
             $table->foreign('banco_id')->references('id')->on('bancos')->onDelete('set null');
         });
 
-        Schema::table('users_rh', function (Blueprint $table) {
+        Schema::table('rhs', function (Blueprint $table) {
             $table->integer('dado_bancario_id')->default(1)->unsigned()->nullable();
             $table->foreign('dado_bancario_id')->references('id')->on('dados_bancarios')->onDelete('set null');
         });
@@ -49,8 +49,8 @@ class CreateDadosBancariosTable extends Migration
      */
     public function down()
     {
-        Schema::table('users_rh', function (Blueprint $table) {
-            $table->dropForeign('users_rh_dado_bancario_id_foreign');
+        Schema::table('rhs', function (Blueprint $table) {
+            $table->dropForeign('rhs_dado_bancario_id_foreign');
             $table->dropColumn('dado_bancario_id');
         });
 

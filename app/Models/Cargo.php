@@ -15,4 +15,8 @@ class Cargo extends Model
         'abreviacao', 'descricao'
     ];
 
+    public function users(){
+        return $this->hasMany(Rh::class);
+    }
+
 }

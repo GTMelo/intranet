@@ -15,7 +15,7 @@ class Dependente extends Model
     protected $dates = ['data_nascimento'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Rh::class);
     }
 
     public function tipo(){

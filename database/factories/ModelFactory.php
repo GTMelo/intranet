@@ -237,6 +237,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'slug' => makeSlug($nome_completo),
         'nome_completo' => $nome_completo,
         'password' => $password ?: $password = bcrypt('secret'),
+        'unidade_id' => \App\Models\Unidade::random()->id
     ];
 });
 
@@ -245,10 +246,9 @@ $factory->define(\App\Models\Rh::class , function (Faker\Generator $faker) {
         'sexo' => $faker->randomElement(['m', 'f']),
         'data_nascimento' => $faker->dateTimeBetween('-50 years', '-20 years'),
         'estado_civil' => $faker->randomElement(['solteiro', 'casado']),
-        'unidade_id' => \App\Models\Unidade::inRandomOrder()->take(1)->first()->id,
-        'cargo_id' => \App\Models\Cargo::inRandomOrder()->take(1)->first()->id,
-        'naturalidade_id' => \App\Models\Cidade::inRandomOrder()->take(1)->first()->id,
-        'endereco_id' => \App\Models\Endereco::inRandomOrder()->take(1)->first()->id,
+        'cargo_id' => \App\Models\Cargo::random()->id,
+        'naturalidade_id' => \App\Models\Cidade::random()->id,
+        'endereco_id' => \App\Models\Endereco::random()->id,
         'dado_bancario_id' => factory(\App\Models\DadoBancario::class, 1)->create()->first()->id,
     ];
 });
@@ -257,7 +257,7 @@ $factory->define(\App\Models\Rh::class , function (Faker\Generator $faker) {
 
 $factory->define(\App\Models\Unidade::class, function (Faker\Generator $faker) {
 
-    $us = \App\Models\Unidade::inRandomOrder()->take(1)->first();
+    $us = \App\Models\Unidade::random();
     if(!$us) $us = null;
 
     $nome = $faker->words(3, true);
@@ -272,7 +272,7 @@ $factory->define(\App\Models\Unidade::class, function (Faker\Generator $faker) {
 
 $factory->define(\App\Models\Vinculo::class, function (Faker\Generator $faker) {
 
-    $user_rh_id = Rh::random()->id;
+    $rh_id = Rh::random()->id;
     $tipo_vinculo = TipoVinculo::random();
 
     $entrada_sain = $faker->dateTimeBetween('-10 years', '-2 days');
@@ -295,9 +295,9 @@ $factory->define(\App\Models\Vinculo::class, function (Faker\Generator $faker) {
     $numero_contrato = null;
     $data_contrato = null;
 
-    return [
-        'user_rh_id' => User::random(),
-        'supervisor_id' => $faker->randomElement([null, null, User::random()]),
-    ];
+//    return [
+//        'user_rh_id' => User::random(),
+//        'supervisor_id' => $faker->randomElement([null, null, User::random()]),
+//    ];
 });
 
