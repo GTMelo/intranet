@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Traits\Seedable;
-use Illuminate\Database\Eloquent\Model;
+
 
 class TipoDocumento extends Model
 {
 
-    use Seedable;
+
 
     protected $guarded = ['id'];
 
@@ -18,7 +18,7 @@ class TipoDocumento extends Model
     }
 
     public static function ofTipo($tipo){
-        return static::where('descricao', $tipo);
+        return static::where('descricao', $tipo)->first();
     }
 
 }

@@ -12,6 +12,8 @@ class TipoEscolaridadeTableSeeder extends Seeder
      */
     public function run()
     {
+        TipoEscolaridade::clear();
+
         TipoEscolaridade::create(['descricao' => 'ensino fundamental', 'nivel' => 1]);
         TipoEscolaridade::create(['descricao' => 'ensino médio', 'nivel' => 2]);
         TipoEscolaridade::create(['descricao' => 'graduação', 'nivel' => 3]);

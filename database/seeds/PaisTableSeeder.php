@@ -12,6 +12,8 @@ class PaisTableSeeder extends Seeder
      */
     public function run()
     {
+        Pais::clear();
+
         Pais::create([
             'nome' => 'Sem País',
             'nome_completo' => 'Sem país',

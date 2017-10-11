@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Traits\Flaggable;
 use App\Traits\Seedable;
-use Illuminate\Database\Eloquent\Model;
+
 
 class Rh extends Model
 {
@@ -32,7 +32,7 @@ class Rh extends Model
 
     // DEPENDENTES ============================================
     public function dependentes(){
-        return $this->hasMany(Dependente::class);
+        return $this->hasMany(Dependente::class, 'rh_id');
     }
 
 //    public function pai(){
@@ -79,16 +79,14 @@ class Rh extends Model
 //        return $this->belongsTo(Endereco::class);
 //    }
 //
-//    public function dado_bancario(){
-//        return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
-//    }
+    public function dado_bancario(){
+        return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
+    }
 //
 
-
-//
-//    public function documentos(){
-//        return $this->hasMany(Documento::class);
-//    }
+    public function documentos(){
+        return $this->hasMany(Documento::class, 'rh_id');
+    }
 //
 //    public function foto(){
 //        return $this->documentos()->where('tipo_documento_id', TipoDocumento::ofTipo('foto'));

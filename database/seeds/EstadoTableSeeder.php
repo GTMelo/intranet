@@ -12,6 +12,8 @@ class EstadoTableSeeder extends Seeder
      */
     public function run()
     {
+        Estado::clear();
+
         Estado::create([
             'pais_id' => '1',
             'sigla' => 'S/N',

@@ -12,6 +12,8 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
+        Role::clear(['role_user']);
+
         $roles = [
             [
                 'name' => 'owner',

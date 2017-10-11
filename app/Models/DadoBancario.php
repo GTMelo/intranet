@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Encryptable;
-use Illuminate\Database\Eloquent\Model;
+
 
 class DadoBancario extends Model
 {

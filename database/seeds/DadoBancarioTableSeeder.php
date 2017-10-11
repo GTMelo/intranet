@@ -12,6 +12,8 @@ class DadoBancarioTableSeeder extends Seeder
      */
     public function run()
     {
+        DadoBancario::clear();
+
         DadoBancario::create([
             'banco_id' => 1,
             'agencia' => '0000-0',

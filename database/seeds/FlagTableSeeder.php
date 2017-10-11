@@ -12,6 +12,7 @@ class FlagTableSeeder extends Seeder
      */
     public function run()
     {
+        Flag::clear();
 
         // Common flags
         Flag::create([

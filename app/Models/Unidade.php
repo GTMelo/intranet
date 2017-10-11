@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Models\Scopes\AtivoScope;
 use App\Traits\Seedable;
-use Illuminate\Database\Eloquent\Model;
+
 
 class Unidade extends Model
 {
 
-    use Seedable;
+
 
     protected $fillable = [
         'sigla', 'unidade_superior_id', 'descricao', 'tldr', 'status_id'

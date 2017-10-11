@@ -3,10 +3,7 @@
 use App\Models\Dependente;
 use App\Models\Documento;
 use App\Models\Email;
-use App\Models\Escolaridade;
-use App\Models\Role;
 use App\Models\Telefone;
-use App\Models\TipoDependente;
 use App\Models\User;
 use App\Models\Rh;
 use Illuminate\Database\Seeder;
@@ -21,23 +18,58 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-        $image = $faker->image(null, 400, 400);
+        $imagePath = 'storage/app/public/documentos';
+        $image = $faker->image($imagePath, 400, 400);
 
         // Cleanup
-        User::clear();
+        User::clear(['email_user', 'telefone_user']);
         Rh::clear();
         Dependente::clear();
 
-        $users = factory(User::class, 100)->create();
+        $users = factory(User::class, 10)->create();
 
         foreach ($users as $user) {
 
             factory(Rh::class, 1)->create(['user_id' => $user->id]);
-            $user->emails()->attach(Email::random());
-            $user->telefones()->attach(Telefone::random($faker->numberBetween(1, 3)));
-            $user->dependentes()->attach(factory(Dependente::class, 1)->create(['user_id' => $user->id]));
-            $user->documentos()->attach(factory(Documento::class, 5)->create(['imagem' => $image,]));
+            $user->emails()->attach(Email::randomOrNew());
+            $user->telefones()->attach(Telefone::randomOrNew(3));
+
+            $dependentesQtd = $faker->numberBetween(0, 4);
+            if($dependentesQtd > 0) factory(Dependente::class, $dependentesQtd)->create(['rh_id' => $user->id]);
+
+            factory(Documento::class, 1)->states('foto')->create([
+                'rh_id' => $user->id,
+            ]);
+            factory(Documento::class, 1)->states('cpf')->create([
+                'rh_id' => $user->id,
+                'imagem' => null,
+                'identificacao' => $user->cpf,
+            ]);
+
+            $possibleAdditionalDocs = collect([
+                'rg',
+                'pis_pasep',
+                'certificado_reservista',
+                'titulo_eleitor',
+                'carteira_motorista',
+                'certificado_escolaridade',
+                'certificado_cnd',
+                'comprovante_residencia',
+                'carteira_profissional',
+                'passaporte',
+            ]);
+
+            $randomDocs = $possibleAdditionalDocs->random($faker->numberBetween(1,10));
+
+            foreach ($randomDocs as $doc){
+                factory(Documento::class, 1)->states($doc)->create([
+                    'rh_id' => $user->id,
+                    'imagem' => $image,
+                ]);
+            }
         }
+
+
 
 
 //        // Criar mock superuser

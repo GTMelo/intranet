@@ -12,6 +12,8 @@ class CidadeTableSeeder extends Seeder
      */
     public function run()
     {
+        Cidade::clear();
+
         $cidades = [
             [
                 'nome' => 'Sem Cidade',

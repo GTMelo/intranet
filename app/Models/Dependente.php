@@ -3,19 +3,17 @@
 namespace App\Models;
 
 use App\Traits\Seedable;
-use Illuminate\Database\Eloquent\Model;
+
 
 class Dependente extends Model
 {
-
-    use Seedable;
 
     protected $guarded = ['id'];
 
     protected $dates = ['data_nascimento'];
 
     public function user(){
-        return $this->belongsTo(Rh::class);
+        return $this->belongsTo(Rh::class, 'rh_id');
     }
 
     public function tipo(){

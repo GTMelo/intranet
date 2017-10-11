@@ -12,6 +12,7 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
+        Permission::clear(['permission_role', 'permission_user']);
 
         $permissions = [
             [

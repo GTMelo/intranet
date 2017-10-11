@@ -13,6 +13,8 @@ class TipoDocumentoTableSeeder extends Seeder
     public function run()
     {
 
+        TipoDocumento::clear();
+
         TipoDocumento::create([
             'descricao' => 'cpf',
         ]);

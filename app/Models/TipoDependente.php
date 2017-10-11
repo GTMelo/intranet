@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Seedable;
+
 
 class TipoDependente extends Model
 {
+
+
     protected $guarded = ['id'];
 
     public $timestamps = false;

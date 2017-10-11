@@ -12,6 +12,8 @@ class BancoTableSeeder extends Seeder
      */
     public function run()
     {
+        Banco::clear();
+
         $bancos = [
             ['codigo_banco' => '001', 'nome' => 'Banco do Brasil S/A'],
             ['codigo_banco' => '002', 'nome' => 'Banco Central do Brasil'],

@@ -22,7 +22,7 @@ class CreateDocumentosTable extends Migration
 
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('rh_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->integer('tipo_documento_id')->unsigned()->nullable();
@@ -40,7 +40,7 @@ class CreateDocumentosTable extends Migration
         });
 
         Schema::table('documentos', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('rh_id')->references('user_id')->on('rhs')->onDelete('cascade');
         });
     }
 

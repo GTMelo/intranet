@@ -11,6 +11,8 @@ class TipoVinculoTableSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\TipoVinculo::clear();
+
 
         \App\Models\TipoVinculo::create([
             'codigo' => 's-com-vinculo',

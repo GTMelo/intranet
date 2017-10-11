@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Traits\Flaggable;
 use App\Traits\Seedable;
-use Illuminate\Database\Eloquent\Model;
+
 
 class Cidade extends Model
 {
-    use Flaggable, Seedable;
+    use Flaggable;
 
     protected $guarded = ['id'];
 

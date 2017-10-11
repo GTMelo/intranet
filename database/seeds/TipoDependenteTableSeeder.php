@@ -13,6 +13,8 @@ class TipoDependenteTableSeeder extends Seeder
     public function run()
     {
 
+        TipoDependente::clear();
+
         $tipos = [
           'pai', 'mãe', 'filho', 'cônjuge'
         ];

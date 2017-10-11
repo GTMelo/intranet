@@ -12,6 +12,8 @@ class EnderecoTableSeeder extends Seeder
      */
     public function run()
     {
+        Endereco::clear();
+
         Endereco::create([
             'logradouro' => 'Sem Endereço',
             'cep' => 'Sem CEP'

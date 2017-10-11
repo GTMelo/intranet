@@ -25,7 +25,7 @@ class TelefoneTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         foreach (Telefone::all() as $item){
-            $flag = $faker->randomElement([null, Flag::inRandomOrder()->take(1)->first()]);
+            $flag = $faker->randomElement([null, Flag::random()]);
             if($flag && !$item->hasFlag($flag)) $item->addFlag($flag);
         }
 

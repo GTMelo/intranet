@@ -11,6 +11,8 @@ class IdiomaTableSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Idioma::clear();
+
         \App\Models\Idioma::create([
             'descricao' => 'inglês'
         ]);
