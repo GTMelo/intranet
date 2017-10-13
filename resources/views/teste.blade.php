@@ -4,6 +4,8 @@
 
     <main class="container">
 
+        <img src="{{Storage::url('documentos/' . \App\Models\User::first()->rh->documentos->first()->imagem)}}">
+
         {{--<section>--}}
             {{--<i-table>--}}
                 {{--<i-item label="thing">thang</i-item>--}}

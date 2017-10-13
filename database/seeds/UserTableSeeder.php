@@ -18,13 +18,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-        $imagePath = 'storage/app/public/documentos';
-        $image = $faker->image($imagePath, 400, 400);
+        $imagePath = 'storage/app/documentos';
+        $image = $faker->image($imagePath, 400, 400, null, false);
 
         // Cleanup
         User::clear(['email_user', 'telefone_user']);
         Rh::clear();
         Dependente::clear();
+        Documento::clear();
 
         $users = factory(User::class, 10)->create();
 

@@ -7,12 +7,12 @@ use App\Models\Rh;
 $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker) {
 
     $tipo = \App\Models\TipoDocumento::random();
-    $imagePath = 'storage/app/public/documentos';
+    $imagePath = 'storage/app/documentos';
 
     return [
         'tipo_documento_id' => $tipo->id,
         'rh_id' => Rh::random()->user_id,
-        'imagem' => $faker->image($imagePath, 400, 400),
+        'imagem' => $faker->image($imagePath, 400, 400, null, false),
         'identificacao' => 123456,
     ];
 });

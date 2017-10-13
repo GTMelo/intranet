@@ -33,7 +33,7 @@ $factory->define( \App\Models\Cargo::class, function (Faker\Generator $faker) {
 
 $factory->define( \App\Models\DadoBancario::class, function (Faker\Generator $faker) {
     return [
-        'banco_id' => \App\Models\Banco::inRandomOrder()->take(1)->first()->id,
+        'banco_id' => \App\Models\Banco::random()->id,
         'agencia' => $faker->randomNumber(3),
         'conta' => $faker->randomNumber(4),
     ];
