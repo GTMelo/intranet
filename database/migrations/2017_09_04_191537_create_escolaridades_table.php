@@ -25,7 +25,7 @@ class CreateEscolaridadesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('rh_id')->unsigned();
             $table->integer('tipo_escolaridade_id')->unsigned()->nullable();
 
             $table->string('titulo');
@@ -37,7 +37,7 @@ class CreateEscolaridadesTable extends Migration
         });
 
         Schema::table('escolaridades', function (Blueprint $table) {
-            $table->foreign('user_id')->references('user_id')->on('rhs')->onDelete('cascade');
+            $table->foreign('rh_id')->references('user_id')->on('rhs')->onDelete('cascade');
             $table->foreign('tipo_escolaridade_id')->references('id')->on('tipo_escolaridades');
         });
     }

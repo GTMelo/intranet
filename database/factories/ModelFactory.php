@@ -55,7 +55,7 @@ $factory->define(\App\Models\Endereco::class, function (Faker\Generator $faker) 
 
 $factory->define(\App\Models\Escolaridade::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => User::random()->id,
+        'rh_id' => User::random()->id,
         'tipo_escolaridade_id' => \App\Models\TipoEscolaridade::random()->id,
         'titulo' => $faker->sentence(10),
         'situacao' => $faker->randomElement(['cursando', 'completo']),

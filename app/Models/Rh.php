@@ -123,8 +123,26 @@ class Rh extends Model
 
     // IDIOMAS ================================================
     public function idiomas(){
-        return $this->belongsToMany(Idioma::class)
+        return $this->belongsToMany(Idioma::class, 'idioma_rh', 'rh_id')
             ->withPivot(['leitura','escrita','compreensao','conversacao',]);
+    }
+
+    public function addIdioma(Idioma $idioma, $leitura = null, $escrita = null, $compreensao = null, $conversacao = null){
+
+        return $this->idiomas()->attach($idioma, [
+            'leitura' => $leitura ?: 'básico',
+            'escrita' => $escrita ?: 'básico',
+            'compreensao' => $compreensao ?: 'básico',
+            'conversacao' => $conversacao ?: 'básico',
+        ]);
+    }
+
+    public function removeIdioma(Idioma $idioma = null){
+        return $this->idiomas()->detach($idioma);
+    }
+
+    public function updateIdioma(Idioma $idioma, $updatedData){
+        return $this->idiomas()->updateExistingPivot($idioma->id, $updatedData);
     }
 
 //    public function telefone_pessoal(){

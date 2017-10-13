@@ -7,7 +7,7 @@ use App\Models\Rh;
 $factory->define(\App\Models\Documento::class, function (Faker\Generator $faker) {
 
     $tipo = \App\Models\TipoDocumento::random();
-    $imagePath = 'storage/app/documentos';
+    $imagePath = 'public/storage/documentos';
 
     return [
         'tipo_documento_id' => $tipo->id,

@@ -33,8 +33,8 @@ $factory->define(\App\Models\Rh::class , function (Faker\Generator $faker) {
         'estado_civil' => $faker->randomElement(['solteiro', 'casado']),
         'cargo_id' => \App\Models\Cargo::randomOrNew()->id,
         'naturalidade_id' => \App\Models\Cidade::randomOrNew()->id,
-        'endereco_id' => \App\Models\Endereco::randomOrNew()->id,
-        'dado_bancario_id' => \App\Models\DadoBancario::randomOrNew()->id,
+        'endereco_id' => factory(\App\Models\Endereco::class, 1)->create()->first()->id,
+        'dado_bancario_id' => factory(\App\Models\DadoBancario::class, 1)->create()->first()->id,
     ];
 });
 
@@ -43,27 +43,52 @@ $factory->define(\App\Models\Vinculo::class, function (Faker\Generator $faker) {
     $rh_id = Rh::random()->user_id;
     $tipo_vinculo = TipoVinculo::random();
     $entrada_sain = $faker->dateTimeBetween('-10 years', '-2 days');
-    $matricula = $faker->randomNumber(7);
-    $supervisor_id = null;
-    $orgao_origem = null;
-    $matricula_origem = null;
-    $cargo_origem = null;
-    $classe = null;
-    $padrao = null;
-    $funcao = null;
-    $denominacao_funcao = null;
-    $ato_nomeacao = null;
-    $data_dou = null;
-    $empresa = null;
-    $instituicao_ensino = null;
-    $nivel = null;
-    $curso = null;
-    $semestre = null;
-    $numero_contrato = null;
-    $data_contrato = null;
 
-//    return [
-//        'user_rh_id' => User::random(),
-//        'supervisor_id' => $faker->randomElement([null, null, User::random()]),
-//    ];
+    return [
+        'rh_id' => $rh_id,
+        'tipo_vinculo_id' => $tipo_vinculo->id,
+        'entrada_sain' => $entrada_sain,
+        'matricula' => 123456
+    ];
+
+});
+
+$factory->state(\App\Models\Vinculo::class,'s-com-vinculo' ,function (Faker\Generator $faker) {
+    $faker->addProvider(new \Faker\Provider\Cargo($faker));
+    return [
+        'orgao_origem' => $faker->sentence(3),
+        'matricula_origem' => $faker->randomNumber(4),
+        'cargo_origem' => $faker->cargo(),
+        'classe' => $faker->randomElement(['A','B','C','D','E']),
+        'padrao' => $faker->numberBetween(1, 5),
+        'funcao' => $faker->randomElement(['FG', 'DAS', 'SPE']),
+        'denominacao_funcao' => $faker->randomElement(['FG1', 'DAS1', 'SPE1'])
+    ];
+});
+
+$factory->state(\App\Models\Vinculo::class,'s-sem-vinculo' ,function (Faker\Generator $faker) {
+    return [
+        'funcao' => $faker->randomElement(['FG', 'DAS', 'SPE']),
+        'denominacao_funcao' => $faker->randomElement(['FG1', 'DAS1', 'SPE1']),
+        'ato_nomeacao' => 'Portaria 123/2017',
+
+    ];
+});
+
+$factory->state(\App\Models\Vinculo::class,'terceirizado' ,function (Faker\Generator $faker) {
+    return [
+        'empresa' => $faker->company,
+    ];
+});
+
+$factory->state(\App\Models\Vinculo::class,'estagiario' ,function (Faker\Generator $faker) {
+    return [
+        'instituicao_ensino' => $faker->company,
+        'nivel' => '1',
+        'curso' => $faker->sentence(3),
+        'semestre' => $faker->numberBetween(1,6),
+        'numero_contrato' => $faker->randomNumber(4),
+        'data_contrato' => $faker->dateTimeBetween('-2 years', '-1 day'),
+        'supervisor_id' => \App\Models\User::first()->id,
+    ];
 });
