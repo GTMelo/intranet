@@ -27,9 +27,9 @@
                             <td><a href="/usuarios/{{ $user->slug }}">{{ $user->nome_curto }}</a></td>
                             @permission('read-cpf') <td>{{ $user->cpf }}</td> @endpermission
                             <td title="{{ $user->rh->cargo->descricao }}">{{ $user->rh->cargo->abreviacao }}</td>
-                            <td title="{{ $user->rh->unidade->descricao }}">{{ $user->rh->unidade->sigla }}</td>
-                            <td>@if(count($user->ramal())) {{ $user->ramal()->numero }} @endif</td>
-                            <td>@if(count($user->email_funcional())) {{ $user->email_funcional()->address }} @endif</td>
+                            <td title="{{ $user->unidade->descricao }}">{{ $user->unidade->sigla }}</td>
+                            <td>{{ $user->telefones()->first()->numero or ''}}</td>
+                            <td>{{ $user->emails()->first()->address or '' }}</td>
                         </tr>
                     @endforeach
                     </tbody>

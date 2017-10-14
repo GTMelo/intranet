@@ -46,9 +46,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Telefone::class);
     }
 
-//    public function ramal(){
-//        return $this->filterFlag($this->telefones, 'is-work')->first();
-//    }
+    public function ramal(){
+        return $this->filterFlag($this->telefones, 'is-work')->first();
+    }
 
     public function emails()
     {
