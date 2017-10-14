@@ -54,3 +54,7 @@ function makeAbrv($nome_completo){
     return $result;
 
 }
+
+function percent($total, $percent){
+    return ($percent / 100) * $total;
+}
