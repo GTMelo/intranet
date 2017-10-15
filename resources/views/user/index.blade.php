@@ -10,6 +10,9 @@
     <main class="container">
         <section>
             @if(count($users))
+                <div>
+                    {{ $users->links() }}
+                </div>
                 <table class="table is-striped is-fullwidth">
                     <thead>
                     <tr>
