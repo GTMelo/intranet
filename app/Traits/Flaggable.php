@@ -125,6 +125,19 @@ trait Flaggable
         return $result;
     }
 
+    public function scopeWithFlag($query, $flag, $reversed = false){
+
+        $a = Flag::ofCode($flag)->id;
+
+        if(!$reversed){
+            $result = $query->where('flags', 'like', "%$a%");
+        } else {
+            $result = $query->whereNull('flags')->orWhere('flags', 'not like', "%$a%");
+        }
+
+        return $result;
+    }
+
 //    public function flagsInRelation($relation){
 //        return $this->$relation()->withPivot('flags');
 //    }

@@ -46,9 +46,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Telefone::class);
     }
 
-    public function ramal(){
-        return $this->filterFlag($this->telefones, 'is-work')->first();
-    }
+//    public function ramal(){
+//        return $this->filterFlag($this->telefones, 'is-work')->first();
+//    }
 
     public function emails()
     {
@@ -103,29 +103,16 @@ class User extends Authenticatable
      * @return mixed
      * Suggar pra ver usuários aprovados
      */
-    public static function aprovados(){
-        return self::aprovado()->get();
+    public function scopeAprovados(){
+        return self::withFlag('approval-pending', true);
     }
 
     /**
      * @return mixed
      * Suggar pra ver usuários pendentes
      */
-    public static function pendentes(){
-        return self::aprovado(true)->get();
-    }
-
-    public function scopeAprovado($query, $reversed = false){
-
-        if($reversed) {
-            return $query->whereHas('flags', function ($query){
-                $query->where('flag_id', Flag::ofCode('approval-pending')->id);
-            });
-        }
-
-        return $query->whereDoesntHave('flags', function ($query){
-            $query->where('flag_id', Flag::ofCode('approval-pending')->id);
-        });
+    public function scopePendentes(){
+        return self::withFlag('approval-pending');
     }
 
 }
