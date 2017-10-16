@@ -5,7 +5,10 @@
         </div>
         <div class="documento-body">
             <div class="documento-image">
-                <img :src="img">
+                <!--TODO on click, show expanded image (on a modal?)-->
+                <a>
+                    <img class="documento-card-thumbnail" :src="img">
+                </a>
             </div>
             <div class="documento-content">
                 <table>
@@ -50,7 +53,9 @@
 <script>
 
     export default{
-        props: ['tipo', 'img', 'numero', 'emissao', 'validade', 'cpf', 'expedidor', 'zona', 'secao', 'serie']
+        props: ['tipo', 'img', 'numero', 'emissao', 'validade', 'cpf', 'expedidor', 'zona', 'secao', 'serie'],
+
+
     }
 
 </script>

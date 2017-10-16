@@ -35,17 +35,17 @@ class Rh extends Model
         return $this->hasMany(Dependente::class, 'rh_id');
     }
 
-//    public function pai(){
-//        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('pai')->id)->first();
-//    }
-//
-//    public function mae(){
-//        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('mãe')->id)->first();
-//    }
-//
-//    public function conjuge(){
-//        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('conjuge')->id)->first();
-//    }
+    public function pai(){
+        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('pai')->id)->first();
+    }
+
+    public function mae(){
+        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('mãe')->id)->first();
+    }
+
+    public function conjuge(){
+        return $this->dependentes()->where('tipo_dependente_id', TipoDependente::ofTipo('conjuge')->id)->first();
+    }
 
     // CARGO ==================================================
     public function cargo(){
@@ -55,30 +55,26 @@ class Rh extends Model
 
     // VINCULO ================================================
     public function vinculo(){
-        return $this->hasOne(Vinculo::class);
+        return $this->hasOne(Vinculo::class, 'rh_id');
     }
-//
-//    public function naturalidadeCidade(){
-//        return $this->belongsTo(Cidade::class, 'naturalidade_id');
-//    }
-//
-//    public function naturalidade(){
-//
-//        return $this->naturalidadeCidade;
-//    }
-//
-//    public function nacionalidade(){
-//        return $this->naturalidadeCidade->estado->pais->adjetivo_patrio;
-//    }
-//
-//    public function email_pessoal(){
-//        return $this->filterFlag($this->user->emails, 'is-personal')->first();
-//    }
-//
-//    public function endereco(){
-//        return $this->belongsTo(Endereco::class);
-//    }
-//
+
+    public function naturalidadeCidade(){
+        return $this->belongsTo(Cidade::class, 'naturalidade_id');
+    }
+
+    public function naturalidade(){
+
+        return $this->naturalidadeCidade;
+    }
+
+    public function nacionalidade(){
+        return $this->naturalidadeCidade->estado->pais->adjetivo_patrio;
+    }
+
+    public function endereco(){
+        return $this->belongsTo(Endereco::class);
+    }
+
     public function dado_bancario(){
         return $this->belongsTo(DadoBancario::class, 'dado_bancario_id');
     }
@@ -87,15 +83,16 @@ class Rh extends Model
     public function documentos(){
         return $this->hasMany(Documento::class, 'rh_id');
     }
-//
-//    public function foto(){
-//        return $this->documentos()->where('tipo_documento_id', TipoDocumento::ofTipo('foto'));
-//    }
-//
+
+    public function documento($tipo){
+        // TODO Cache tipo documentos, trocar esta query para cache
+        $tipoId = TipoDocumento::ofTipo($tipo)->id;
+        return $this->documentos->keyBy('tipo_documento_id')[$tipoId];
+    }
 
     // ESCOLARIDADE============================================
     public function escolaridades(){
-        return $this->hasMany(Escolaridade::class);
+        return $this->hasMany(Escolaridade::class, 'rh_id');
     }
 
     public function grau_escolaridade(){
@@ -145,17 +142,21 @@ class Rh extends Model
         return $this->idiomas()->updateExistingPivot($idioma->id, $updatedData);
     }
 
-//    public function telefone_pessoal(){
-//        return $this->filterFlag($this->user->telefones, '');
-//    }
-//
-//    public function telefone_residencial(){
-//        return $this->filterFlag($this->user->telefones, 'personal')->first();
-//    }
-//
-//    public function telefone_celular(){
-//        return $this->filterFlag($this->user->telefones, 'is-cellphone')->first();
-//    }
+    // OUTROS ==================================================
+
+    public function telefone_residencial(){
+        return $this->user->relationsWithFlag('telefones', 'is-personal');
+    }
+
+    public function telefone_celular(){
+        return $this->user->relationsWithFlag('telefones', 'is-cellphone');
+    }
+
+
+    public function email_pessoal(){
+        return $this->user->relationsWithFlag('emails', 'is-personal');
+    }
+
 
     public function getSexoAttribute($value){
         if($value == 'm') return 'Masculino';

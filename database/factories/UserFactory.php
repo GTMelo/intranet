@@ -56,6 +56,7 @@ $factory->define(\App\Models\Vinculo::class, function (Faker\Generator $faker) {
 $factory->state(\App\Models\Vinculo::class,'s-com-vinculo' ,function (Faker\Generator $faker) {
     $faker->addProvider(new \Faker\Provider\Cargo($faker));
     return [
+        'tipo_vinculo_id' => 1,
         'orgao_origem' => $faker->sentence(3),
         'matricula_origem' => $faker->randomNumber(4),
         'cargo_origem' => $faker->cargo(),
@@ -68,6 +69,7 @@ $factory->state(\App\Models\Vinculo::class,'s-com-vinculo' ,function (Faker\Gene
 
 $factory->state(\App\Models\Vinculo::class,'s-sem-vinculo' ,function (Faker\Generator $faker) {
     return [
+        'tipo_vinculo_id' => 2,
         'funcao' => $faker->randomElement(['FG', 'DAS', 'SPE']),
         'denominacao_funcao' => $faker->randomElement(['FG1', 'DAS1', 'SPE1']),
         'ato_nomeacao' => 'Portaria 123/2017',
@@ -77,12 +79,14 @@ $factory->state(\App\Models\Vinculo::class,'s-sem-vinculo' ,function (Faker\Gene
 
 $factory->state(\App\Models\Vinculo::class,'terceirizado' ,function (Faker\Generator $faker) {
     return [
+        'tipo_vinculo_id' => 3,
         'empresa' => $faker->company,
     ];
 });
 
 $factory->state(\App\Models\Vinculo::class,'estagiario' ,function (Faker\Generator $faker) {
     return [
+        'tipo_vinculo_id' => 4,
         'instituicao_ensino' => $faker->company,
         'nivel' => '1',
         'curso' => $faker->sentence(3),

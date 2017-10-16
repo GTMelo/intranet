@@ -1,7 +1,6 @@
 @extends('user.show')
 
 @section('user-content')
-
     <section>
         <h1 class="is-size-2">Dados Pessoais</h1>
 
@@ -29,7 +28,8 @@
 
             <it-item label="Estado Civil">
                 {{ $user->rh->estado_civil }}
-                @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome }}</p> @endif</it-item>
+                <p>{{ $user->rh->conjuge()->nome ?: '' }}</p>
+            </it-item>
 
             <it-item label="Endereço">
                 <p>{{ $user->rh->endereco->logradouro }}</p>

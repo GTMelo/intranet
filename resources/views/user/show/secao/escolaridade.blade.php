@@ -5,24 +5,15 @@
     <section>
         <h1 class="is-size-2">Escolaridade</h1>
 
-        <info-table>
-            <it-item label="Grau de Escolaridade">
+        <i-table>
+            <i-item label="Grau de Escolaridade">
                 {{ $user->rh->grau_escolaridade() }}
-            </it-item>
-        </info-table>
+            </i-item>
+        </i-table>
 
-    </section>
+        <h2 class="is-size-3">Títulos</h2>
 
-    <section>
-        <h1 class="is-size-2">Títulos</h1>
-        <escolaridade-item
-                tipo="Graduação"
-                instituicao="Teste Ins"
-                curso="Curso Ins"
-                situacao="Completo"
-                inicio="xx/xx/xxxx"
-                termino="xx/xx/xxxx"
-        ></escolaridade-item>
+        {{ ($user->rh->escolaridades->count() === 0)? 'Nenhum título registrado' : ''}}
 
         @foreach($user->rh->escolaridades as $item)
             <escolaridade-item

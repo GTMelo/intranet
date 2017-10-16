@@ -8,9 +8,9 @@ use App\Traits\Seedable;
 class TipoDocumento extends Model
 {
 
-
-
     protected $guarded = ['id'];
+
+    public $timestamps = false;
 
 
     public function documentos(){

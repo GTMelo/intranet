@@ -29,7 +29,8 @@
 
             <i-item label="Estado Civil">
                 {{ $user->rh->estado_civil }}
-                @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome }}</p> @endif</i-item>
+                @if($user->rh->conjuge())<p>{{ $user->rh->conjuge()->nome}}</p> @endif
+            </i-item>
 
             <i-item label="Endereço">
                 <p>{{ $user->rh->endereco->logradouro }}</p>
@@ -38,15 +39,22 @@
             </i-item>
 
             <i-item label="Telefone residencial">
-                {{ $user->rh->telefone_residencial() }}
+                {{ $user->rh->telefone_residencial()->first() ?: 'Não informado' }}
             </i-item>
 
             <i-item label="Telefone celular">
-                {{ $user->rh->telefone_celular() }}
+                {{ $user->rh->telefone_celular()->first() ?: 'Não informado' }}
             </i-item>
 
             <i-item label="Email particular">
-                {{ $user->rh->email_pessoal()->address }}
+                @if($user->rh->email_pessoal()->isNotEmpty())
+                    <ul>
+                        @foreach($user->rh->email_pessoal() as $email)
+                            <li>{{ $email->address ?: 'Não informado' }}</li>
+                        @endforeach
+                    </ul>
+                @else {{ 'Não Informado' }}
+                @endif
             </i-item>
         </i-table>
     </section>

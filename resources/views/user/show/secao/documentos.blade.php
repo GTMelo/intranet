@@ -8,16 +8,20 @@
         <div>
             @forelse($user->rh->documentos as $documento)
                 <documento-card
-                tipo="{{ $documento->tipo->descricao or '' }}"
-                img="http://via.placeholder.com/150x150"
-                numero="{{ $documento->identificacao or '' }}"
-                cpf="{{ $documento->cpf or '' }}"
-                expedidor="{{ $documento->orgao_expedidor or '' }}"
-                emissao="{{ $documento->data_emissao or '' }}"
-                validade="{{ $documento->validade or '' }}"
-                zona="{{ $documento->zona or '' }}"
-                secao="{{ $documento->secao or '' }}"
-                serie="{{ $documento->serie or '' }}">
+                        tipo="{{ $documento->tipo->display_name ?: '' }}"
+                        @if($documento->imagem)
+                        img="{{ Storage::url('documentos/' . $documento->imagem) ?: 'images/sem_imagem.png' }}"
+                        @else
+                        img="{{ asset('images/sem_imagem.png') }}"
+                        @endif
+                        numero="{{ $documento->identificacao ?: '' }}"
+                        cpf="{{ $documento->cpf ?: '' }}"
+                        expedidor="{{ $documento->orgao_expedidor ?: '' }}"
+                        emissao="{{ $documento->data_emissao ?: '' }}"
+                        validade="{{ $documento->validade ?: '' }}"
+                        zona="{{ $documento->zona ?: '' }}"
+                        secao="{{ $documento->secao ?: '' }}"
+                        serie="{{ $documento->serie ?: '' }}">
                 </documento-card>
             @empty
                 <span>Nenhum documento encontrado.</span>

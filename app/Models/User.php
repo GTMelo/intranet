@@ -37,6 +37,10 @@ class User extends Authenticatable
         return $this->hasOne(Rh::class);
     }
 
+    public function foto(){
+        return $this->rh->documento('foto')->imagem;
+    }
+
     public function unidade(){
         return $this->belongsTo(Unidade::class);
     }
@@ -46,18 +50,22 @@ class User extends Authenticatable
         return $this->belongsToMany(Telefone::class);
     }
 
-//    public function ramal(){
-//        return $this->filterFlag($this->telefones, 'is-work')->first();
-//    }
+    public function ramais(){
+        return $this->relationsWithFlag('telefones', 'is-work');
+    }
 
     public function emails()
     {
         return $this->belongsToMany(Email::class);
     }
 
-//    public function email(){
-//        return $this->filterFlag($this->emails, 'is-work')->first();
-//    }
+    public function emails_funcionais(){
+        return $this->relationsWithFlag('emails', 'is-work');
+    }
+
+    public function email(){
+        return $this->emails()->first();
+    }
 
     public static function ofSlug($slug){
         return self::where('slug', $slug)->first();

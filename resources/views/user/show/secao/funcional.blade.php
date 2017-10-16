@@ -6,9 +6,17 @@
         <h1 class="is-size-2">Exercício</h1>
 
         <i-table>
-            <i-item label="Lotação">{{ $user->rh->unidade->descricao }}</i-item>
+            <i-item label="Lotação">{{ $user->unidade->descricao }}</i-item>
             <i-item label="Data de Ingresso">{{ $user->rh->entrada_sain }}</i-item>
-            <i-item label="Ramal">{{ $user->rh->ramal()->numero }}</i-item>
+            <i-item label="Ramal">
+                <ul>
+                    @forelse($user->ramais() as $ramal)
+                        <li>{{$ramal->numero}}</li>
+                    @empty
+                        <li>Nenhum número registrado</li>
+                    @endforelse
+                </ul>
+            </i-item>
         </i-table>
 
     </section>
