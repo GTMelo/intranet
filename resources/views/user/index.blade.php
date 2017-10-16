@@ -15,8 +15,7 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        @permission('read-cpf')
-                        <th>CPF</th> @endpermission
+                        @permission('read-cpf')<th>CPF</th> @endpermission
                         <th>Cargo</th>
                         <th>Unidade</th>
                         <th>Telefone</th>
