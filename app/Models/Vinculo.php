@@ -9,7 +9,7 @@ class Vinculo extends Model
 
     protected $guarded = ['id'];
 
-    protected $dates = ['data_dou', 'data_contrato'];
+    protected $dates = ['entrada_sain', 'data_dou', 'data_contrato'];
 
     public $timestamps = false;
 
