@@ -11,7 +11,7 @@ class UserController extends Controller
 
     public function index(){
 
-        $users = User::aprovados()->paginate(15);
+        $users = User::aprovados()->paginate(20);
 
         return view('user/index', compact('users', 'tab'));
 

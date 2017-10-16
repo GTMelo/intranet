@@ -10,14 +10,13 @@
     <main class="container">
         <section>
             @if(count($users))
-                <div>
-                    {{ $users->links() }}
-                </div>
+                {{ $users->links('components.pagination') }}
                 <table class="table is-striped is-fullwidth">
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        @permission('read-cpf') <th>CPF</th> @endpermission
+                        @permission('read-cpf')
+                        <th>CPF</th> @endpermission
                         <th>Cargo</th>
                         <th>Unidade</th>
                         <th>Telefone</th>
@@ -28,7 +27,8 @@
                     @foreach($users as $user)
                         <tr>
                             <td><a href="/usuarios/{{ $user->slug }}">{{ $user->nome_curto }}</a></td>
-                            @permission('read-cpf') <td>{{ $user->cpf }}</td> @endpermission
+                            @permission('read-cpf')
+                            <td>{{ $user->cpf }}</td> @endpermission
                             <td title="{{ $user->rh->cargo->descricao }}">{{ $user->rh->cargo->abreviacao }}</td>
                             <td title="{{ $user->unidade->descricao }}">{{ $user->unidade->sigla }}</td>
                             <td>{{ $user->telefones()->first()->numero or ''}}</td>
