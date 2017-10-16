@@ -4,7 +4,11 @@
 @if(auth()->check())
     <div id="login-badge" class="level-item login-badge">
         <div class="user-image">
-            <img src="http://via.placeholder.com/40x40">
+            @if(auth()->user()->foto())
+                <img src="{{Storage::url('documentos/' . auth()->user()->foto())}}">
+            @else
+                <img src="images/sem_imagem.png">
+            @endif
         </div>
         <div class="user-data">
             <span id="user-name"><a href="/usuarios/{{auth()->user()->slug}}">{{ auth()->user()->nome_curto }}</a></span>
