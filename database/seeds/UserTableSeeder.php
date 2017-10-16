@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder
 
         // Cleanup
         User::clear(['email_user', 'telefone_user']);
-        Rh::clear();
+        Rh::clear('idioma_rh');
         Dependente::clear();
         Documento::clear();
         Vinculo::clear();
@@ -140,8 +140,8 @@ class UserTableSeeder extends Seeder
 
         // Give everyone a vinculo
         $output->writeln("<info>Creating Vinculos</info>");
-        $vinculos = ['s-com-vinculo', 's-sem-vinculo', 'terceirizado', 'estagiario'];
         foreach ($users as $user){
+            $vinculos = ['s-com-vinculo', 's-sem-vinculo', 'terceirizado', 'estagiario'];
             $chosenVinculo = $faker->randomElement($vinculos);
             factory(\App\Models\Vinculo::class, 1)->states($chosenVinculo)->create(['rh_id' => $user->id]);
         }
