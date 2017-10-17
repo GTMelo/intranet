@@ -8,9 +8,10 @@
             <tool-button icon="fa-print" url="/usuarios/{{$user->slug}}/editar">Imprimir ficha do usuário</tool-button>
 
             {{--TODO apenas se usuário inválido e auth is admin--}}
-            <tool-button icon="fa-check-square-o" url="/usuarios/{{$user->slug}}/validar">Validar usuário</tool-button>
-
-            <tool-button icon="fa-trash-o" url="/usuarios/{{$user->slug}}/excluir">Excluir usuário</tool-button>
+            @permission('global-edit-user-rh')
+                <tool-button icon="fa-check-square-o" url="/usuarios/{{$user->slug}}/validar">Validar usuário</tool-button>
+                <tool-button icon="fa-trash-o" url="/usuarios/{{$user->slug}}/excluir">Excluir usuário</tool-button>
+            @endpermission
         </toolbar>
     @endif
 

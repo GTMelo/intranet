@@ -83,13 +83,6 @@ class RegisterController extends Controller
             'unidade_id' => Unidade::first()->id,
         ]);
 
-        Vinculo::create([
-            'user_rh_id' => $user->id,
-        ]);
-
-        $user->telefones()->attach(Telefone::find(1));
-        $user->emails()->attach(Email::find(1));
-
         $user->addFlag('approval-pending');
 
         Session::flash('messages', 'Sua conta foi criada com sucesso.');

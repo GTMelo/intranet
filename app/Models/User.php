@@ -77,7 +77,13 @@ class User extends Authenticatable
     }
 
     public function canOrOwns($thing, $permissions, $fk = 'user_id'){
+
+        if(!auth()->check()) return false;
+
+        if(is_integer($thing)) return $this->id === $thing || $this->can($permissions);
+
         return $this->owns($thing, $fk) || $this->can($permissions);
+
     }
 
     public function getCpfAttribute($value)

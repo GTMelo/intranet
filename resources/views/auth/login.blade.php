@@ -15,13 +15,13 @@
 
                     <div class="field">
                         <div class="control has-icons-left">
-                            <input class="input is-large" type="text" placeholder="CPF">
+                            <input class="input is-large" type="text" placeholder="CPF" name="cpf">
                             <span class="icon is-large is-left"><i class="fa fa-user"></i></span>
                         </div>
                     </div>
                     <div class="field">
                         <div class="control has-icons-left">
-                            <input class="input is-large" type="password" placeholder="Senha">
+                            <input class="input is-large" type="password" placeholder="Senha" name="password">
                             <span class="icon is-large is-left"><i class="fa fa-key"></i></span>
                         </div>
                     </div>

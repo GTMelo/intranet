@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['owns'])->except('index');
+
+    }
+
 
     public function index(){
 
@@ -35,7 +41,10 @@ class UserController extends Controller
         }
     }
 
-    public function edit($slug, $subsecao){
+    public function edit(User $user){
+
+        return view('user/edit/edit');
+
     }
 
 
