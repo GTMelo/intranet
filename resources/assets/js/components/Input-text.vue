@@ -1,6 +1,6 @@
 <template>
 
-    <div class="field is-horizontal">
+    <div class="field ">
         <div class="field-label is-normal">
             <label class="label">{{ label }}</label>
         </div>

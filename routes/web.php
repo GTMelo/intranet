@@ -32,3 +32,4 @@ Route::get('/usuarios', 'UserController@index');
 Route::get('/usuarios/{user}', 'UserController@show');
 Route::get('/usuarios/{user}/rh/{secao}', 'UserController@show');
 Route::get('/usuarios/{user}/editar', 'UserController@edit');
+Route::patch('/usuarios/{user}', 'UserController@patch');
