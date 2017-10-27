@@ -3,6 +3,7 @@
 use App\Models\Dependente;
 use App\Models\Documento;
 use App\Models\Email;
+use App\Models\Flag;
 use App\Models\Idioma;
 use App\Models\Telefone;
 use App\Models\User;
@@ -79,20 +80,8 @@ class UserTableSeeder extends Seeder
         // Give everyone a photo
         $output->writeln("<info>Creating Fotos</info>");
         foreach ($users as $user){
-            factory(Documento::class, 1)->states(['foto'])->create([
-                'rh_id' => $user->id,
-                'imagem' => $faker->randomElement($fotosPessoas),
-            ]);
-        }
-
-        // Give everyone a cpf
-        $output->writeln("<info>Creating CPFs</info>");
-        foreach ($users as $user){
-            factory(Documento::class, 1)->states('cpf')->create([
-                'rh_id' => $user->id,
-                'imagem' => null,
-                'identificacao' => $user->cpf,
-            ]);
+            $user->foto = $faker->randomElement($fotosPessoas);
+            $user->save();
         }
 
         // Give everyone a variety of Documentos
@@ -145,5 +134,17 @@ class UserTableSeeder extends Seeder
             $chosenVinculo = $faker->randomElement($vinculos);
             factory(\App\Models\Vinculo::class, 1)->states($chosenVinculo)->create(['rh_id' => $user->id]);
         }
+
+        // Make 30% of the users as approval-pending
+        $ap = Flag::ofCode('approval-pending');
+        $usersPending = collect([]);
+        foreach ($users->random(percent($users->count(), 30)) as $user){
+            if($user->id == 1) continue;
+            $user->addFlag($ap);
+            $usersPending->push($user);
+        }
+
+        $output->writeln('Users created. First user: ' . $users->first()->cpf);
+        $output->writeln('Users pending approval: ' . $usersPending->pluck('cpf'));
     }
 }

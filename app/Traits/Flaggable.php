@@ -74,6 +74,7 @@ trait Flaggable
     /**
      * Syncs a list of flags with a collection
      * @param Collection $flags
+     * @return bool
      */
     public function syncFlag(Collection $flags){
         $this->flags = $flags;
@@ -137,10 +138,6 @@ trait Flaggable
 
         return $result;
     }
-
-//    public function flagsInRelation($relation){
-//        return $this->$relation()->withPivot('flags');
-//    }
 
     public static function hydrateFlags($list){
         $col = explode(',', $list);

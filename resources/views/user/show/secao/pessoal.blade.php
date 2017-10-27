@@ -20,11 +20,11 @@
             </i-item>
 
             <i-item label="Nacionalidade">
-                {{ $user->rh->nacionalidade() }}
+                {{ $user->rh->nacionalidade }}
             </i-item>
 
             <i-item label="Naturalidade">
-                {{ $user->rh->naturalidade()->nome }}/{{ $user->rh->naturalidade()->estado->sigla }}
+                {{ $user->rh->naturalidade }}
             </i-item>
 
             <i-item label="Estado Civil">
@@ -35,7 +35,7 @@
             <i-item label="Endereço">
                 <p>{{ $user->rh->endereco->logradouro }}</p>
                 <p>{{ $user->rh->endereco->cep }}</p>
-                <p>{{ $user->rh->endereco->cidade->nome }}/{{ $user->rh->endereco->cidade->estado->sigla }}</p>
+                <p>{{ $user->rh->endereco->cidade }}</p>
             </i-item>
 
             <i-item label="Telefone residencial">

@@ -33,7 +33,7 @@ class CreateUnidadesTable extends Migration
 
 
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('unidade_id')->default(1)->unsigned()->nullable();
+            $table->integer('unidade_id')->unsigned()->nullable();
             $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('set null');
         });
     }

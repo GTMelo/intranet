@@ -4,7 +4,7 @@
 
     <main class="container">
 
-        <img src="{{Storage::url('documentos/' . \App\Models\User::first()->rh->documentos->first()->imagem)}}">
+        {{--<img src="{{Storage::url('documentos/' . \App\Models\User::first()->rh->documentos->first()->imagem)}}">--}}
 
         {{--<section>--}}
             {{--<i-table>--}}
@@ -73,4 +73,19 @@
 @endsection
 
 @section('scripts')
-    @endsection
+    <script>
+        var thing = {
+            thang: 'stuff'
+        };
+
+        function calculate(arg){
+            console.log(this);
+        }
+
+        console.log(this.thing);
+
+
+
+
+    </script>
+@endsection

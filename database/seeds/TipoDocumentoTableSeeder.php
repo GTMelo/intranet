@@ -16,11 +16,6 @@ class TipoDocumentoTableSeeder extends Seeder
         TipoDocumento::clear();
 
         TipoDocumento::create([
-            'descricao' => 'cpf',
-            'display_name' => 'CPF',
-        ]);
-
-        TipoDocumento::create([
             'descricao' => 'rg',
             'display_name' => 'Identidade',
         ]);
@@ -58,11 +53,6 @@ class TipoDocumentoTableSeeder extends Seeder
         TipoDocumento::create([
             'descricao' => 'comprovante_residencia',
             'display_name' => 'Comprovante de Residência',
-        ]);
-
-        TipoDocumento::create([
-            'descricao' => 'foto',
-            'display_name' => 'Foto',
         ]);
 
         TipoDocumento::create([

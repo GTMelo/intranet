@@ -6,6 +6,7 @@ use App\Traits\Flaggable;
 use App\Traits\Seedable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\Scopes\AtivoScope;
 
@@ -37,12 +38,16 @@ class User extends Authenticatable
         return $this->hasOne(Rh::class);
     }
 
-    public function foto(){
-        return $this->rh->documento('foto')->imagem;
-    }
-
     public function unidade(){
         return $this->belongsTo(Unidade::class);
+    }
+
+    public function unidadeDescricao(){
+        return ($this->unidade)?$this->unidade->descricao:false;
+    }
+
+    public function unidadeSigla(){
+        return ($this->unidade)?$this->unidade->sigla:false;
     }
 
     public function telefones()
@@ -68,7 +73,7 @@ class User extends Authenticatable
     }
 
     public static function ofSlug($slug){
-        return self::where('slug', $slug)->first();
+        return static::where('slug', $slug)->first();
     }
 
     public function getRouteKeyName()
@@ -80,10 +85,14 @@ class User extends Authenticatable
 
         if(!auth()->check()) return false;
 
-        if(is_integer($thing)) return $this->id === $thing || $this->can($permissions);
+        if(is_int($thing)) return $this->id === $thing || $this->can($permissions);
 
         return $this->owns($thing, $fk) || $this->can($permissions);
 
+    }
+
+    public function getFotoAttribute($value){
+            return ($value)?Storage::url('documentos/' . $value):'/images/sem_imagem.png';
     }
 
     public function getCpfAttribute($value)
@@ -93,7 +102,7 @@ class User extends Authenticatable
 
         $str = str_replace(" ", "", $value);
 
-        for ($i = 0; $i < strlen($value); $i++) {
+        for ($i = 0, $iMax = strlen($value); $i < $iMax; $i++) {
             $mask[strpos($mask, "#")] = $value[$i];
         }
 

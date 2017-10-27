@@ -17,17 +17,19 @@ class CreateEnderecosTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('cidade_id')->default(1)->unsigned()->nullable();
+            // TODO para versão 1.1
+//            $table->integer('cidade_id')->unsigned()->nullable();
+            $table->string('cidade');
 
             $table->string('logradouro')->nullable();
             $table->string('cep')->nullable();
         });
 
-        Schema::table('enderecos', function (Blueprint $table) {
-
-            $table->foreign('cidade_id')->references('id')->on('cidades')->onDelete('set null');
-
-        });
+//        Schema::table('enderecos', function (Blueprint $table) {
+//
+//            $table->foreign('cidade_id')->references('id')->on('cidades')->onDelete('set null');
+//
+//        });
 
         Schema::table('rhs', function (Blueprint $table) {
             $table->integer('endereco_id')->default(1)->unsigned()->nullable();

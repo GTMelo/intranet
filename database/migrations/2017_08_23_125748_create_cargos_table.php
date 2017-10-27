@@ -22,7 +22,7 @@ class CreateCargosTable extends Migration
         });
 
         Schema::table('rhs', function (Blueprint $table) {
-            $table->integer('cargo_id')->default(1)->unsigned()->nullable();
+            $table->integer('cargo_id')->unsigned()->nullable();
             $table->foreign('cargo_id')->references('id')->on('cargos');
         });
     }

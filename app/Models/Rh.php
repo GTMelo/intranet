@@ -52,23 +52,18 @@ class Rh extends Model
         return $this->belongsTo(Cargo::class);
     }
 
+    public function cargoAbreviacao(){
+        return ($this->cargo)?$this->cargo->abreviacao:null;
+    }
+
+    public function cargoDescricao(){
+        return ($this->cargo)?$this->cargo->descricao:null;
+    }
+
 
     // VINCULO ================================================
     public function vinculo(){
         return $this->hasOne(Vinculo::class, 'rh_id');
-    }
-
-    public function naturalidadeCidade(){
-        return $this->belongsTo(Cidade::class, 'naturalidade_id');
-    }
-
-    public function naturalidade(){
-
-        return $this->naturalidadeCidade;
-    }
-
-    public function nacionalidade(){
-        return $this->naturalidadeCidade->estado->pais->adjetivo_patrio;
     }
 
     public function endereco(){
@@ -87,6 +82,7 @@ class Rh extends Model
     public function documento($tipo){
         // TODO Cache tipo documentos, trocar esta query para cache
         $tipoId = TipoDocumento::ofTipo($tipo)->id;
+        dd($tipoId);
         return $this->documentos->keyBy('tipo_documento_id')[$tipoId];
     }
 

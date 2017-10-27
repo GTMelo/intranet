@@ -17,12 +17,6 @@ class UnidadeTableSeeder extends Seeder
         Unidade::clear();
 
         Unidade::create([
-            'sigla' => 'S/N',
-            'descricao' => 'Sem Unidade',
-            'tldr' => 'O usuário ainda não possui uma unidade definida',
-        ]);
-
-        Unidade::create([
             'sigla' => 'SAIN',
             'descricao' => 'Secretaria de Assuntos Internacionais',
             'tldr' => 'Some SAIN tldr here',

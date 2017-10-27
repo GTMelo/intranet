@@ -78,12 +78,13 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
+        $user->addFlag('approval-pending');
+
         Rh::create([
             'user_id' => $user->id,
-            'unidade_id' => Unidade::first()->id,
+            'naturalidade' => 'Sem Cidade',
+            'nacionalidade' => 'Sem País',
         ]);
-
-        $user->addFlag('approval-pending');
 
         Session::flash('messages', 'Sua conta foi criada com sucesso.');
 

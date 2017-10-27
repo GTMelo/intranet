@@ -60,8 +60,6 @@
             </section><section>
                 <h2 class="is-size-2">Vínculo</h2>
             </section>
-
-
         </form>
     </main>
 

@@ -16,9 +16,6 @@ class TelefoneTableSeeder extends Seeder
 
         Telefone::clear();
 
-        Telefone::create([
-            'numero' => 'Sem Número'
-        ]);
 
         factory(Telefone::class, 100)->create();
 

@@ -28,10 +28,10 @@
                             <td><a href="/usuarios/{{ $user->slug }}">{{ $user->nome_curto }}</a></td>
                             @permission('read-cpf')
                             <td>{{ $user->cpf }}</td> @endpermission
-                            <td title="{{ $user->rh->cargo->descricao }}">{{ $user->rh->cargo->abreviacao }}</td>
-                            <td title="{{ $user->unidade->descricao }}">{{ $user->unidade->sigla }}</td>
-                            <td>{{ $user->telefones()->first()->numero or ''}}</td>
-                            <td>{{ $user->emails()->first()->address or '' }}</td>
+                            <td title="{{ $user->rh->cargoDescricao() ?: 'Sem Cargo' }}">{{ $user->rh->cargoAbreviacao() ?: 'S/N'}}</td>
+                            <td title="{{ $user->unidadeDescricao() ?: 'Sem Descrição' }}">{{ $user->unidadeSigla() ?: 'S/N' }}</td>
+                            <td>{{ $user->telefones()->first()->numero or 'Sem Telefone'}}</td>
+                            <td>{{ $user->emails()->first()->address or 'Sem Email' }}</td>
                         </tr>
                     @endforeach
                     </tbody>

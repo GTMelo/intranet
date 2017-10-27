@@ -9,7 +9,7 @@
             @if(auth()->check() && auth()->user()->canOrOwns($user->rh, 'read-cpf'))
                 <i-item label="CPF"> {{ $user->cpf }}</i-item>
             @endif
-            <i-item label="Data de entrada na SAIN"> {{ $user->rh->vinculo->entrada_sain }}</i-item>
+            @if($user->rh->vinculo) <i-item label="Data de entrada na SAIN"> {{ $user->rh->vinculo->entrada_sain }}</i-item> @endif
         </i-table>
     </section>
 

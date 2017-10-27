@@ -47,8 +47,8 @@ $factory->define(\App\Models\Email::class, function (Faker\Generator $faker) {
 
 $factory->define(\App\Models\Endereco::class, function (Faker\Generator $faker) {
     return [
-        'cidade_id' => Cidade::random()->id,
         'logradouro' => $faker->address(),
+        'cidade' => 'Brasília',
         'cep' => $faker->randomNumber(8),
     ];
 });

@@ -32,7 +32,8 @@ $factory->define(\App\Models\Rh::class , function (Faker\Generator $faker) {
         'data_nascimento' => $faker->dateTimeBetween('-50 years', '-20 years'),
         'estado_civil' => $faker->randomElement(['solteiro', 'casado']),
         'cargo_id' => \App\Models\Cargo::randomOrNew()->id,
-        'naturalidade_id' => \App\Models\Cidade::randomOrNew()->id,
+        'naturalidade' => 'Brasília',
+        'nacionalidade' => 'Brasil',
         'endereco_id' => factory(\App\Models\Endereco::class, 1)->create()->first()->id,
         'dado_bancario_id' => factory(\App\Models\DadoBancario::class, 1)->create()->first()->id,
     ];

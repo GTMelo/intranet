@@ -17,7 +17,7 @@ class CreateDadosBancariosTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->integer('banco_id')->default(1)->unsigned()->nullable();
+            $table->integer('banco_id')->unsigned()->nullable();
 
             $table->string('agencia')->nullable();
             $table->string('conta')->nullable();

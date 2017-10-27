@@ -15,9 +15,5 @@ class EmailTableSeeder extends Seeder
     {
         Email::clear();
 
-        Email::create([
-            'address' => 'Sem E-mail',
-        ]);
-
     }
 }
