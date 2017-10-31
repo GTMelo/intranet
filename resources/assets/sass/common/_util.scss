@@ -1,4 +1,8 @@
 .debug{
   border: 1px solid red;
   background: lavender;
+  & > * {
+    border: 1px dashed purple;
+    background: #ffdd57;
+  }
 }

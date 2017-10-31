@@ -5,26 +5,27 @@
 @include('layouts.partials.head')
 
 <body>
-    <div class="document-content" id="app">
 
-        {{--Header do Site--}}
-        @include('layouts.partials.header')
+<main role="content" id="app">
+    {{--Header do Site--}}
+    @include('layouts.partials.header')
+
+    {{--Tudo entre header e footer--}}
+    <div id="page_content">
 
         {{--Mensagens e erros--}}
         @include('layouts.partials.errors')
         @include('layouts.partials.success')
 
-        {{--Tudo entre header e footer--}}
         @yield('content')
-
-        {{--Footer do site--}}
-{{--        @include('layouts.partials.footer')--}}
-
     </div>
 
-    {{--Scripts a serem adicionados--}}
-    <script src="{!! asset('js/app.js') !!}"></script>
-    @yield('scripts')
+    {{--Footer do site--}}
+    @include('layouts.partials.footer')
+</main>
+{{--Scripts a serem adicionados--}}
+<script src="{!! asset('js/app.js') !!}"></script>
+@yield('scripts')
 </body>
 
 </html>

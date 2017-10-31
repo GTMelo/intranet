@@ -7,10 +7,8 @@
     'sub' => 'Preencha os dados abaixo para criar sua conta na IntraSAIN'
      ])
 
-    <main class="container">
-
+    <section class="section container-compact">
         @include('forms.registration')
-
-    </main>
+    </section>
 
 @endsection

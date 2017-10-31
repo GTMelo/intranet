@@ -17,12 +17,11 @@
 
     @include('user.show.hero_banner')
 
-    <main class="container user-profile">
+    <section class="section container user-profile">
 
         @include('user.sidebar')
 
-        <main>
-            @yield('user-content')
-        </main>
-    </main>
+        @yield('user-content')
+
+    </section>
 @endsection

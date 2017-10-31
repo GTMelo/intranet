@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('home.index', ['pageTitle' => 'Home']);
 });
 
+Route::prefix('admin')->group(function (){
+    Route::get('/', 'AdminController@index');
+    Route::get('flaglist', 'AdminController@flagList');
+});
+
 // Auth
 Auth::routes();
 Route::get('/registrar', 'Auth\RegisterController@showRegistrationForm', ['pageTitle' => 'Criar uma Nova Conta']);

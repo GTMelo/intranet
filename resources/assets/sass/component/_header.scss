@@ -1,8 +1,9 @@
 header[role="document-header"]{
-  @extend .level;
-  height: 50px;
+  //@extend .level;
+  @extend .grid, .gap-small;
+  grid-template-columns: auto 1fr auto;
+  height: 60px;
   background-color: $color-main;
-  padding: 0 1rem;
   color: white;
   & > nav{
     height: 100%;

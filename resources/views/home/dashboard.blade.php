@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    Dashboard
-    @endsection
+    <section class="section">
+        Dashboard
+    </section>
+@endsection

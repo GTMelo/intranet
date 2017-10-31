@@ -7,8 +7,7 @@
     'sub' => 'Confira a lista de contatos da SAIN'
      ])
 
-    <main class="container">
-        <section>
+    <section class="section container">
             @if(count($users))
                 {{ $users->links('components.pagination') }}
                 <table class="table is-striped is-fullwidth">
@@ -44,7 +43,5 @@
                 </div>
             @endif
 
-        </section>
-
-    </main>
+    </section>
 @endsection

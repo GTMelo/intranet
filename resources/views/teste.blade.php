@@ -1,8 +1,18 @@
 @extends('layouts.master')
 
 @section('content')
+    @php
+        $gridSize = 12;
+    @endphp
+    {{--<section>--}}
+        {{--<div class="grid gcols-{{ $gridSize }} grows-{{ $gridSize }} gap-small debug">--}}
+            {{--@for ($i = 0; $i < $gridSize*$gridSize; $i++)--}}
+                {{--<div>{{ $i }}</div>--}}
+            {{--@endfor--}}
+        {{--</div>--}}
+    {{--</section>--}}
 
-    <main class="container">
+    {{--<main class="container">--}}
 
         {{--<img src="{{Storage::url('documentos/' . \App\Models\User::first()->rh->documentos->first()->imagem)}}">--}}
 
@@ -68,7 +78,7 @@
             {{--</ul>--}}
         {{--</section>--}}
 
-    </main>
+    {{--</main>--}}
 
 @endsection
 
