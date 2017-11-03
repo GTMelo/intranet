@@ -9,8 +9,8 @@
 
             {{--TODO apenas se usuário inválido e auth is admin--}}
             @permission('global-edit-user-rh')
-                <tool-button icon="fa-check-square-o" url="/usuarios/{{$user->slug}}/validar">Validar usuário</tool-button>
-                <tool-button icon="fa-trash-o" url="/usuarios/{{$user->slug}}/excluir">Excluir usuário</tool-button>
+            <tool-button icon="fa-check-square-o" url="/usuarios/{{$user->slug}}/validar">Validar usuário</tool-button>
+            <tool-button icon="fa-trash-o" url="/usuarios/{{$user->slug}}/excluir">Excluir usuário</tool-button>
             @endpermission
         </toolbar>
     @endif
@@ -21,7 +21,9 @@
 
         @include('user.sidebar')
 
-        @yield('user-content')
+        <section>
+            @yield('user-content')
+        </section>
 
     </section>
 @endsection

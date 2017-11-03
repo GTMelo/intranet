@@ -1,17 +1,22 @@
 .user-profile {
 
-  @extend .is-flex;
-  aside{
-    margin-right: 1.5rem;
-  }
-  main{
-    flex: 1;
-  }
-  & .menu-list{
-    font-size: small;
-  }
+  @extend .grid;
+  grid-template-columns: 320px 1fr;
+  grid-gap: 1rem;
 
-  font-size: 115%;
+
+  //@extend .is-flex;
+  //aside{
+  //  margin-right: 1.5rem;
+  //}
+  //main{
+  //  flex: 1;
+  //}
+  //& .menu-list{
+  //  font-size: small;
+  //}
+  //
+  //font-size: 115%;
 }
 
 .user-infocard{

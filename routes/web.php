@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function (){
     Route::get('/', 'AdminController@index');
     Route::get('flaglist', 'AdminController@flagList');
+//    Route::get('cache', 'AdminController@cacheList');
+
 });
 
 // Auth
@@ -29,12 +31,17 @@ Route::get('/entrar', 'Auth\LoginController@showLoginForm', ['pageTitle' => 'Log
 Route::get('/sair', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/teste', 'TesteController@index');
-Route::post('/teste', 'TesteController@docStore');
+
+Route::prefix('/teste')->group(function (){
+    Route::get('/', 'TesteController@index');
+    Route::post('/', 'TesteController@docStore');
+});
 
 // Usuários
-Route::get('/usuarios', 'UserController@index');
-Route::get('/usuarios/{user}', 'UserController@show');
-Route::get('/usuarios/{user}/rh/{secao}', 'UserController@show');
-Route::get('/usuarios/{user}/editar', 'UserController@edit');
-Route::patch('/usuarios/{user}', 'UserController@patch');
+Route::prefix('usuarios')->group(function (){
+    Route::get('/', 'UserController@index');
+    Route::get('/{user}', 'UserController@show');
+    Route::get('/{user}/rh/{secao}', 'UserController@show');
+    Route::get('/{user}/editar', 'UserController@edit');
+    Route::patch('/{user}', 'UserController@patch');
+});

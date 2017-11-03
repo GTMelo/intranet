@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['owns'])->except('index');
+//        $this->middleware(['owns'])->except('index');
 
     }
 
