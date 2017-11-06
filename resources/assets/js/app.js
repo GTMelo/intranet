@@ -42,17 +42,12 @@ if (token) {
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('message', require('./components/Message.vue'));
-Vue.component('input-text', require('./components/Input-text.vue'));
-Vue.component('input-password', require('./components/Input-password.vue'));
-Vue.component('input-select', require('./components/Input-select.vue'));
-Vue.component('input-radio', require('./components/Input-radio.vue'));
 Vue.component('documento-card', require('./components/Documento-card.vue'));
 Vue.component('escolaridade-item', require('./components/Escolaridade-item.vue'));
 Vue.component('i-table', require('./components/I-table.vue'));
 Vue.component('i-item', require('./components/I-item.vue'));
 Vue.component('toolbar', require('./components/Toolbar.vue'));
 Vue.component('tool-button', require('./components/Toolbar-button.vue'));
-
 
 const app = new Vue({
     el: '#app',
