@@ -1,9 +1,18 @@
 @extends('layouts.master')
 
 @section('content')
-    @php
-        $gridSize = 12;
-    @endphp
+
+    <section>
+        <modaltwo classes="button" id="testeMe" text="VClick Mew">
+            <p slot="card_header"></p>
+
+            <span slot="card-footer">
+                Test footer
+            </span>
+        </modaltwo>
+
+    </section>
+
     {{--<section>--}}
         {{--<div class="grid gcols-{{ $gridSize }} grows-{{ $gridSize }} gap-small debug">--}}
             {{--@for ($i = 0; $i < $gridSize*$gridSize; $i++)--}}
