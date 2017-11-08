@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <!--If freeform is true, will not use a card. Slot will define what will be showed.-->
+            <!--If freeform is true, will not use a card. Slot will define what will be showed. Ex: image in a gallery-->
             <div v-if="isFreeform" class="modal-content animated zoomIn">
                 <slot></slot>
                 <button class="modal-close is-large" aria-label="close" @click="hide"></button>
