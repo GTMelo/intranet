@@ -1,6 +1,7 @@
 .toolbar{
   margin: 1rem 0;
   background-color: $color-light;
+  border-bottom: 1px solid $color-heavy;
   & a{
     color: black;
     transition: background-color, .2s;

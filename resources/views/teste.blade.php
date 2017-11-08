@@ -3,13 +3,13 @@
 @section('content')
 
     <section>
-        <modaltwo classes="button" id="testeMe" text="VClick Mew">
-            <p slot="card_header"></p>
-
-            <span slot="card-footer">
-                Test footer
-            </span>
-        </modaltwo>
+        <modal classes="button" id="testeMe" text="VClick Mew" freeform="true">
+            <p slot="header">Some <b>header</b></p>
+            <span slot="footer">Did thing</span>
+            <p class="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="">
+            </p>
+        </modal>
 
     </section>
 

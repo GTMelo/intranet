@@ -41,7 +41,8 @@ Route::prefix('/teste')->group(function (){
 Route::prefix('usuarios')->group(function (){
     Route::get('/', 'UserController@index');
     Route::get('/{user}', 'UserController@show');
-    Route::get('/{user}/rh/{secao}', 'UserController@show');
+//    Route::get('/{user}/rh/{secao}', 'UserController@show');
     Route::get('/{user}/editar', 'UserController@edit');
     Route::patch('/{user}', 'UserController@patch');
+    Route::delete('/{user}', 'UserController@delete');
 });

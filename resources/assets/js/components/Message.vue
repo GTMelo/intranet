@@ -1,6 +1,6 @@
 <template>
 
-    <transition leaveActiveClass="animated zoomOutDown">
+    <transition leaveActiveClass="animated fadeOutDown">
         <article :class="this.typeOfMessage" v-show="isVisible">
             <div class="message-header">
                 <p>{{title}}</p>

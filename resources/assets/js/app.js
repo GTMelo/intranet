@@ -48,7 +48,6 @@ Vue.component('i-table', require('./components/I-table.vue'));
 Vue.component('i-item', require('./components/I-item.vue'));
 Vue.component('toolbar', require('./components/Toolbar.vue'));
 Vue.component('tool-button', require('./components/Toolbar-button.vue'));
-Vue.component('modaltwo', require('./components/Modal2.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -23,22 +23,24 @@ class UserController extends Controller
 
     }
 
-    public function show(User $user, $secao = null){
+    public function show(User $user){
 
-        $secoes = collect(['basico', 'pessoal', 'funcional', 'escolaridade', 'documentos']);
+        return view('user/show', compact('user'));
 
-        if (!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$user\" não foi encontrado"]);
-        if(!$secao) return view('user/show/secao/basico', compact('user', 'secao'));
-
-
-        if($secoes->contains($secao)){
-            return view('user/show/secao/' . $secao, compact('user', 'secao'));
-        }
-        else {
-            $wrongPage = $secao;
-            $secao = 'basico';
-            return view('user/show/secao/basico', compact('user', 'secao'))->withErrors("A página \"$wrongPage\" não foi encontrada");
-        }
+//        $secoes = collect(['basico', 'pessoal', 'funcional', 'escolaridade', 'documentos']);
+//
+//        if (!$user) return redirect('usuarios')->withErrors(['userNotFound' => "O usuário \"$user\" não foi encontrado"]);
+//        if(!$secao) return view('user/show/secao/basico', compact('user', 'secao'));
+//
+//
+//        if($secoes->contains($secao)){
+//            return view('user/show/secao/' . $secao, compact('user', 'secao'));
+//        }
+//        else {
+//            $wrongPage = $secao;
+//            $secao = 'basico';
+//            return view('user/show/secao/basico', compact('user', 'secao'))->withErrors("A página \"$wrongPage\" não foi encontrada");
+//        }
     }
 
     public function edit(User $user){
