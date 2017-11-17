@@ -11,16 +11,22 @@
   },
   "dependencies": {
     "bulma": "^0.5.2",
-    "font-awesome": "^4.7.0"
+    "flatpickr": "^4.0.7",
+    "font-awesome": "^4.7.0",
+    "vue": "^2.1.10",
+    "vue-flatpickr-component": "^4.0.0",
+    "jquery": "^3.1.1"
   },
   "devDependencies": {
     "animate-sass": "^0.6.6",
     "axios": "^0.16.2",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.0.1",
-    "jquery": "^3.1.1",
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
-    "vue": "^2.1.10"
+    "style-loader": "^0.19.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+
   }
 }

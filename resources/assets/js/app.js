@@ -48,24 +48,10 @@ Vue.component('i-table', require('./components/I-table.vue'));
 Vue.component('i-item', require('./components/I-item.vue'));
 Vue.component('toolbar', require('./components/Toolbar.vue'));
 Vue.component('tool-button', require('./components/Toolbar-button.vue'));
+Vue.component('input-date', require('./components/Input-date.vue'));
+Vue.component('input-file', require('./components/Input-file.vue'));
+
 
 const app = new Vue({
     el: '#app',
-
-    data: {
-
-        testArray: ['thing', 'thang'],
-
-        showTestModal: false,
-        showLoginModal: false,
-        showRegistrationModal: false
-    },
-
-    methods: {
-
-    },
-
-    computed: {
-
-    }
 });

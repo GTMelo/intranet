@@ -2,15 +2,20 @@
 
 @section('content')
 
-    <section>
-        <modal classes="button" id="testeMe" text="VClick Mew" freeform="true">
+    <section class="section">
+        <input-date></input-date>
+        <input-file></input-file>
+    </section>
+
+    {{--<section>--}}
+        {{--<modal classes="button" id="testeMe" text="VClick Mew">--}}
             {{--<p slot="header">Some <b>header</b></p>--}}
             {{--<span slot="footer">Did thing</span>--}}
             {{--<p class="image is-4by3">--}}
                 {{--<img src="https://bulma.io/images/placeholders/1280x960.png" alt="">--}}
             {{--</p>--}}
-        </modal>
-    </section>
+        {{--</modal>--}}
+    {{--</section>--}}
 
     {{--<section>--}}
         {{--<div class="grid gcols-{{ $gridSize }} grows-{{ $gridSize }} gap-small debug">--}}
@@ -92,18 +97,5 @@
 
 @section('scripts')
     <script>
-        var thing = {
-            thang: 'stuff'
-        };
-
-        function calculate(arg){
-            console.log(this);
-        }
-
-        console.log(this.thing);
-
-
-
-
     </script>
 @endsection

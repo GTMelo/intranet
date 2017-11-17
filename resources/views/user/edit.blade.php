@@ -61,9 +61,6 @@
                         </div>
                     </div>
 
-
-
-
                 </div>
 
             </section>
@@ -71,10 +68,12 @@
             <section>
                 <h2 class="is-size-2">Dados Pessoais</h2>
 
-                <div class="field">
-                    <label class="label">Data de Nascimento</label>
-                    <div class="control">
-                        <input class="input" type="text" name="nome_completo">
+                <div class="grid gcols-2 gap-normal ">
+                    <div class="field">
+                        <label class="label">Data de Nascimento</label>
+                        <div class="control">
+                            <input-date name="data_nascimento"></input-date>
+                        </div>
                     </div>
                 </div>
 

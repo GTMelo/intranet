@@ -37,7 +37,7 @@
 
 <script>
     export default {
-        name: "modal2",
+        name: "modal",
         props: [
             'classes',
             'id',
