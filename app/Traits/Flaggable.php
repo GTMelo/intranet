@@ -11,7 +11,9 @@ namespace App\Traits;
 
 use App\Models\Flag;
 use DB;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Trait Flaggable
@@ -29,39 +31,99 @@ use Illuminate\Support\Collection;
 trait Flaggable
 {
 
-    public static function hasFlagColumn(){
+    public static function hasFlagColumn()
+    {
         return collect(DB::getSchemaBuilder()->getColumnListing((new self())->getTable()))
             ->contains('flags');
     }
 
-    public function getFlagsAttribute($value){
+    public static function createFlagsColumn(){
+        if(!self::hasFlagColumn()){
+            Schema::table((new self())->getTable(), function (Blueprint $table){
+                $table->string('flags');
+            });
+        }
+    }
+
+    public function getFlagsAttribute($value)
+    {
         return Flag::findMany(explode(',', $value));
     }
 
-    public function setFlagsAttribute($value){
-        if($value instanceof Collection && $value->isEmpty()) {
+    public function setFlagsAttribute($value)
+    {
+        if ($value instanceof Collection && $value->isEmpty()) {
             $this->attributes['flags'] = null;
         } else {
-            $this->attributes['flags'] = $value->implode('id',',');
-        };
-    }
-
-    public function addFlag($flag){
-        $collection = $this->flags;
-        if(!is_array($flag)) $flag = collect($flag);
-        foreach ($flag as $item) {
-            if (is_int($item)) $collection->push(Flag::find($item));
-            if (is_object($item)) $collection->push($item);
+            $value = $value->sortBy('id');
+            $this->attributes['flags'] = $value->implode('id', ',');
         }
-        $this->syncFlag($collection);
     }
 
-    public function removeFlag($flag = null){
+    public function addFlag($flag)
+    {
+        self::createFlagsColumn();
+
+        $userFlags = $this->flags;
+        $flagsToAdd = $this->createFlagCollection($flag);
+
+        $result = $userFlags->merge($flagsToAdd);
+
+        $this->syncFlag($result);
+    }
+
+    private function convertToFlag($arg)
+    {
+        $type = gettype($arg);
+        switch ($type) {
+            case 'string':
+                return Flag::ofCode($arg);
+            case 'integer':
+                return Flag::find($arg);
+            case 'object':
+                return $arg;
+        }
+        return false;
+    }
+
+    private function createFlagCollection($arg)
+    {
+        $type = \gettype($arg);
+        $partialResult = collect([]);
+        $result = collect([]);
+
+        $types = collect(['string', 'integer', 'object']);
+
+        if ($types->contains($type) && !$arg instanceof Collection) {
+            return collect([$this->convertToFlag($arg)]);
+        }
+
+        if ($type === 'array') {
+            $partialResult = $partialResult->merge($arg);
+        }
+
+        if ($arg instanceof collection) {
+            $partialResult = $arg;
+        }
+
+        foreach ($partialResult as $entry) {
+            $result->push($this->convertToFlag($entry));
+        }
+
+        return $result;
+
+    }
+
+    // TODO removeFlag funcionando apenas com int e object. Add String, Array e Collection
+    public function removeFlag($flag = null)
+    {
+        self::createFlagsColumn();
+
         $collection = $this->flags->keyBy('id');
-        if(!$flag) {
+        if (!$flag) {
             $collection = collect([]);
         } else {
-            if(!is_array($flag)) $flag = collect([])->push($flag);
+            if (!is_array($flag)) $flag = collect([])->push($flag);
             foreach ($flag as $item) {
                 if (is_int($item)) $collection->forget($item);
                 if (is_object($item)) $collection->forget($item->id);
@@ -76,7 +138,8 @@ trait Flaggable
      * @param Collection $flags
      * @return bool
      */
-    public function syncFlag(Collection $flags){
+    public function syncFlag(Collection $flags)
+    {
         $this->flags = $flags;
         $this->save();
     }
@@ -87,18 +150,21 @@ trait Flaggable
      * @param bool $requireAll
      * @return bool
      */
-    public function hasFlag($flag, $requireAll = false){
-        if($flag instanceof Flag) return $this->flags->contains($flag);
-        if(is_string($flag)) return $this->flags->pluck('code')->contains($flag);
-        if(is_array($flag) || $flag instanceof Collection){
-            if($requireAll){
-                foreach ($flag as $item){
-                    if(!$this->hasFlag($item)) return false;
+    public function hasFlag($flag, $requireAll = false)
+    {
+        self::createFlagsColumn()
+
+        if ($flag instanceof Flag) return $this->flags->contains($flag);
+        if (is_string($flag)) return $this->flags->pluck('code')->contains($flag);
+        if (is_array($flag) || $flag instanceof Collection) {
+            if ($requireAll) {
+                foreach ($flag as $item) {
+                    if (!$this->hasFlag($item)) return false;
                 }
                 return true;
             } else {
-                foreach ($flag as $item){
-                    if($this->hasFlag($item)) return true;
+                foreach ($flag as $item) {
+                    if ($this->hasFlag($item)) return true;
                 }
                 return false;
             }
@@ -106,15 +172,17 @@ trait Flaggable
         return null;
     }
 
-    public static function filterByFlag($flag, $chunkSize = 100){
+    public static function filterByFlag($flag, $chunkSize = 100)
+    {
+        self::createFlagsColumn();
 
         $isTableBig = static::all()->count() > 1000;
 
-        if($isTableBig){
+        if ($isTableBig) {
             $result = collect([]);
             static::chunk($chunkSize, function ($batch) use ($flag, $result) {
-                foreach ($batch as $item){
-                    if($item->hasFlag($flag)) $result->push($item);
+                foreach ($batch as $item) {
+                    if ($item->hasFlag($flag)) $result->push($item);
                 }
             });
         } else {
@@ -126,11 +194,12 @@ trait Flaggable
         return $result;
     }
 
-    public function scopeWithFlag($query, $flag, $reversed = false){
+    public function scopeWithFlag($query, $flag, $reversed = false)
+    {
 
         $a = Flag::ofCode($flag)->id;
 
-        if(!$reversed){
+        if (!$reversed) {
             $result = $query->where('flags', 'like', "%$a%");
         } else {
             $result = $query->whereNull('flags')->orWhere('flags', 'not like', "%$a%");
@@ -139,7 +208,8 @@ trait Flaggable
         return $result;
     }
 
-    public static function hydrateFlags($list){
+    public static function hydrateFlags($list)
+    {
         $col = explode(',', $list);
         return Flag::findMany($col);
     }
@@ -151,20 +221,22 @@ trait Flaggable
      * @param $flag
      * @return Collection
      */
-    public function relationsWithFlag($relation, $flag){
+    public function relationsWithFlag($relation, $flag)
+    {
 
-        if($flag instanceof Flag) $flag = $flag->id;
-        if(is_string($flag)) $flag = Flag::ofCode($flag)->id;
+        if ($flag instanceof Flag) $flag = $flag->id;
+        if (is_string($flag)) $flag = Flag::ofCode($flag)->id;
 
         $relation = $this->$relation()->wherePivot('flags', 'LIKE', "%$flag%")->get();
         return $relation;
     }
 
-    public static function filterByRelationWithFlag($rel, $flag){
+    public static function filterByRelationWithFlag($rel, $flag)
+    {
         $model = new self();
         $table = $model->$rel()->getTable();
-        if($flag instanceof Flag) $flag = $flag->id;
-        if(is_string($flag)) $flag = Flag::ofCode($flag)->id;
+        if ($flag instanceof Flag) $flag = $flag->id;
+        if (is_string($flag)) $flag = Flag::ofCode($flag)->id;
         $partialResult = DB::table($table)
             ->select()
             ->where('flags', 'LIKE', "%$flag%")
@@ -173,91 +245,5 @@ trait Flaggable
         $result = self::findMany($partialResult);
         return $result;
     }
-
-//    /**
-//     * Returns all flags assigned to the item
-//     * @param bool $codeOnly if true, return only the codes
-//     * @return Collection or null
-//     */
-//    public function flags($codeOnly = false)
-//    {
-//        if ($codeOnly) return self::belongsToMany(Flag::class)->pluck('code');
-//
-//        return self::belongsToMany(Flag::class);
-//    }
-//
-//    /**
-//     * Check if the model has the queried flag
-//     * @param Flag|String $flag the interested code
-//     * @return bool true if model has flag
-//     */
-//    public function hasFlag($flag)
-//    {
-//        if ($flag instanceof Flag) return self::flags()->get()->contains($flag);
-//
-//        return self::flags(true)->contains($flag);
-//    }
-//
-//    /**
-//     * Adds a flag to a model
-//     * @param $code
-//     * @return mixed
-//     */
-//    public function addFlag($code)
-//    {
-//
-//        if ($code instanceof Flag) return self::flags()->attach($code);
-//
-//        return self::flags()->attach(Flag::ofCode($code));
-//    }
-//
-//    /**
-//     * Removes a flag to a model
-//     * @param $code
-//     * @return mixed
-//     */
-//    public function removeFlag($code)
-//    {
-//
-//        if ($code instanceof Flag) return self::flags()->detach($code);
-//
-//        return self::flags()->detach(Flag::ofCode($code));
-//    }
-//
-//    /**
-//     * Clears all flags of a model
-//     * @return mixed
-//     */
-//    public function removeAllFlags()
-//    {
-//        return self::flags()->detach();
-//    }
-//
-//    /**
-//     * Filters results for results that have an specific match
-//     * @param $flag
-//     * @param int $chunkSize
-//     * @return Collection
-//     */
-//    public static function filterFlag($flag, $chunkSize = 100)
-//    {
-//
-//        $isTableBig = static::all()->count() > 1000;
-//
-//        if($isTableBig){
-//            $result = collect([]);
-//            static::chunk($chunkSize, function ($batch) use ($flag, $result) {
-//                foreach ($batch as $item){
-//                    if($item->hasFlag($flag)) $result->push($item);
-//                }
-//            });
-//        } else {
-//            return static::all()->filter(function ($value) use ($flag) {
-//                return $value->hasFlag($flag);
-//            });
-//        }
-//
-//        return $result;
-//    }
 
 }
