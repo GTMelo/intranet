@@ -75,9 +75,135 @@
                             <input-date name="data_nascimento"></input-date>
                         </div>
                     </div>
+
+                    <div class="field">
+                        <label class="label">Pai</label>
+                        <div class="control">
+                            <input class="input" type="text" name="pai">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Mãe</label>
+                        <div class="control">
+                            <input class="input" type="text" name="mae">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Nacionalidade</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nacionalidade">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Naturalidade</label>
+                        <div class="control">
+                            <input class="input" type="text" name="naturalidade">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">UF</label>
+                        <div class="control">
+                            <input class="input" type="text" name="uf">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Nome Completo</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nome_completo">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Estado Civil</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nome_completo">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Endereço</label>
+                        <div class="control">
+                            <input class="input" type="text" name="endereco">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Cidade</label>
+                        <div class="control">
+                            <input class="input" type="text" name="cidade">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Estado</label>
+                        <div class="control">
+                            <input class="input" type="text" name="estado">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">CEP</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nome_completo">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Telefone Residencial</label>
+                        <div class="control">
+                            <input class="input" type="text" name="telefone_residencial">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Telefone Celular</label>
+                        <div class="control">
+                            <input class="input" type="text" name="celular">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email Particular</label>
+                        <div class="control">
+                            <input class="input" type="text" name="email_particular">
+                        </div>
+                    </div>
                 </div>
 
             </section>
+
+            <section>
+                <h2 class="is-size-2">Dados Bancários</h2>
+
+                <div class="field">
+                    <label class="label">Banco</label>
+                    <div class="control">
+                        <input class="input" type="text" name="banco">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Agência</label>
+                    <div class="control">
+                        <input class="input" type="text" name="agencia">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Conta</label>
+                    <div class="control">
+                        <input class="input" type="text" name="conta">
+                    </div>
+                </div>
+            </section>
+
+
+
             <button class="button is-primary" type="submit">Enviar</button>
         </form>
 
