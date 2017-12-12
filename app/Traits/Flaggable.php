@@ -37,10 +37,11 @@ trait Flaggable
             ->contains('flags');
     }
 
-    public static function createFlagsColumn(){
-        if(!self::hasFlagColumn()){
-            Schema::table((new self())->getTable(), function (Blueprint $table){
-                $table->string('flags');
+    private static function createFlagsColumn()
+    {
+        if (!self::hasFlagColumn()) {
+            Schema::table((new self())->getTable(), function (Blueprint $table) {
+                $table->string('flags')->nullable();
             });
         }
     }
@@ -70,6 +71,8 @@ trait Flaggable
         $result = $userFlags->merge($flagsToAdd);
 
         $this->syncFlag($result);
+
+        return $this->flags;
     }
 
     private function convertToFlag($arg)
@@ -117,20 +120,22 @@ trait Flaggable
     // TODO removeFlag funcionando apenas com int e object. Add String, Array e Collection
     public function removeFlag($flag = null)
     {
-        self::createFlagsColumn();
 
-        $collection = $this->flags->keyBy('id');
+        // Clear all flags if flag is null
         if (!$flag) {
-            $collection = collect([]);
-        } else {
-            if (!is_array($flag)) $flag = collect([])->push($flag);
-            foreach ($flag as $item) {
-                if (is_int($item)) $collection->forget($item);
-                if (is_object($item)) $collection->forget($item->id);
-            }
-        };
+            $this->syncFlag(collect([]));
+        }
 
-        $this->syncFlag($collection);
+        $userFlags = $this->flags->keyBy('id');
+        $flag = $this->createFlagCollection($flag)->keyBy('id');
+
+        $result = $userFlags->reject(function ($value, $key) use ($flag) {
+            return $flag->contains($value);
+        });
+
+        $this->syncFlag($result);
+
+        return $this->flags;
     }
 
     /**
@@ -152,7 +157,7 @@ trait Flaggable
      */
     public function hasFlag($flag, $requireAll = false)
     {
-        self::createFlagsColumn()
+        self::createFlagsColumn();
 
         if ($flag instanceof Flag) return $this->flags->contains($flag);
         if (is_string($flag)) return $this->flags->pluck('code')->contains($flag);
@@ -242,8 +247,8 @@ trait Flaggable
             ->where('flags', 'LIKE', "%$flag%")
             ->get()
             ->pluck($model->getForeignKey());
-        $result = self::findMany($partialResult);
-        return $result;
+
+        return self::findMany($partialResult);
     }
 
 }

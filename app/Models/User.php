@@ -120,6 +120,7 @@ class User extends Authenticatable
 
     public function aprovar(){
         $this->removeFlag('approval-pending');
+        return !$this->hasFlag('approval-pending');
     }
 
     /**
