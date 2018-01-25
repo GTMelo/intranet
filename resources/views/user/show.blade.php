@@ -15,15 +15,11 @@
         </toolbar>
     @endif
 
-{{--    @include('user.show.hero_banner')--}}
+    @include('user.show.hero_banner')
 
     <section class="section container user-profile">
 
-{{--        @include('user.sidebar')--}}
-
-        <section>
-            {{--@yield('user-content')--}}
-        </section>
+        @yield('user-content')
 
     </section>
 @endsection

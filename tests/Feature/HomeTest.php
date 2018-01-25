@@ -27,22 +27,4 @@ class HomeTest extends TestCase
 
     }
 
-    /** @test */
-    public function an_user_can_see_the_login_button(){
-
-        $response = $this->get('/');
-
-        $response->assertSee('Login');
-
-    }
-
-    public function an_user_can_see_the_register_button(){
-
-        $response = $this->get('/');
-
-        $response->assertSee('Registrar');
-
-    }
-
-
 }
