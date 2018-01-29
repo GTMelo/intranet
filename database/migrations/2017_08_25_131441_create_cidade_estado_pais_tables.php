@@ -14,10 +14,10 @@ class CreateCidadeEstadoPaisTables extends Migration
     public function up()
     {
 
-        Schema::table('rhs', function (Blueprint $table){
-            $table->string('naturalidade');
-            $table->string('nacionalidade');
-        });
+//        Schema::table('rhs', function (Blueprint $table){
+//            $table->string('naturalidade');
+//            $table->string('nacionalidade');
+//        });
 
         // TODO implementar na versão 1.1
 //        Schema::create('paises', function (Blueprint $table) {
@@ -75,10 +75,10 @@ class CreateCidadeEstadoPaisTables extends Migration
      */
     public function down()
     {
-        Schema::table('rhs', function (Blueprint $table){
-            $table->dropColumn('naturalidade');
-            $table->dropColumn('nacionalidade');
-        });
+//        Schema::table('rhs', function (Blueprint $table){
+//            $table->dropColumn('naturalidade');
+//            $table->dropColumn('nacionalidade');
+//        });
 
 //        Schema::dropIfExists('cidade_flag');
 
@@ -94,8 +94,8 @@ class CreateCidadeEstadoPaisTables extends Migration
 //            $table->dropForeign('estados_pais_id_foreign');
 //        });
 
-        Schema::dropIfExists('cidades');
-        Schema::dropIfExists('estados');
-        Schema::dropIfExists('paises');
+//        Schema::dropIfExists('cidades');
+//        Schema::dropIfExists('estados');
+//        Schema::dropIfExists('paises');
     }
 }

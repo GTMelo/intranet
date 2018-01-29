@@ -13,17 +13,17 @@ class CreateEnderecosTable extends Migration
      */
     public function up()
     {
-        Schema::create('enderecos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-
-            // TODO para versão 1.1
-//            $table->integer('cidade_id')->unsigned()->nullable();
-            $table->string('cidade');
-
-            $table->string('logradouro')->nullable();
-            $table->string('cep')->nullable();
-        });
+//        Schema::create('enderecos', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->timestamps();
+//
+//            // TODO para versão 1.1
+////            $table->integer('cidade_id')->unsigned()->nullable();
+//            $table->string('cidade');
+//
+//            $table->string('logradouro')->nullable();
+//            $table->string('cep')->nullable();
+//        });
 
 //        Schema::table('enderecos', function (Blueprint $table) {
 //
@@ -31,10 +31,10 @@ class CreateEnderecosTable extends Migration
 //
 //        });
 
-        Schema::table('rhs', function (Blueprint $table) {
-            $table->integer('endereco_id')->default(1)->unsigned()->nullable();
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('set null');
-        });
+//        Schema::table('rhs', function (Blueprint $table) {
+//            $table->integer('endereco_id')->default(1)->unsigned()->nullable();
+//            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('set null');
+//        });
     }
 
     /**
@@ -44,10 +44,10 @@ class CreateEnderecosTable extends Migration
      */
     public function down()
     {
-        Schema::table('rhs', function (Blueprint $table) {
-            $table->dropForeign('rhs_endereco_id_foreign');
-            $table->dropColumn('endereco_id');
-        });
-        Schema::dropIfExists('enderecos');
+//        Schema::table('rhs', function (Blueprint $table) {
+//            $table->dropForeign('rhs_endereco_id_foreign');
+//            $table->dropColumn('endereco_id');
+//        });
+//        Schema::dropIfExists('enderecos');
     }
 }

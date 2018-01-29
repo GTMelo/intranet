@@ -13,29 +13,27 @@ class CreateUnidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unidades', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->softDeletes();
+//        Schema::create('unidades', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->timestamps();
+//            $table->softDeletes();
+//
+//            $table->integer('unidade_superior_id')->unsigned()->nullable();
+//            $table->string('sigla', 10)->nullable();
+//            $table->string('descricao')->nullable();
+//            $table->text('tldr')->nullable();
+//        });
 
-            $table->integer('unidade_superior_id')->unsigned()->nullable();
-            $table->string('sigla', 10)->nullable();
-            $table->string('descricao')->nullable();
-            $table->text('tldr')->nullable();
-        });
-
-
-
-        Schema::table('unidades', function (Blueprint $table) {
-            $table->foreign('unidade_superior_id')->references('id')->on('unidades')->onDelete('set null');
-        });
-
-
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('unidade_id')->unsigned()->nullable();
-            $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('set null');
-        });
+//
+//
+//        Schema::table('unidades', function (Blueprint $table) {
+//            $table->foreign('unidade_superior_id')->references('id')->on('unidades')->onDelete('set null');
+//        });
+//
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->integer('unidade_id')->unsigned()->nullable();
+//            $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('set null');
+//        });
     }
 
     /**
@@ -45,9 +43,9 @@ class CreateUnidadesTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_unidade_id_foreign');
-        });
-        Schema::dropIfExists('unidades');
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->dropForeign('users_unidade_id_foreign');
+//        });
+//        Schema::dropIfExists('unidades');
     }
 }

@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->string('cpf')->unique();
             $table->string('nome_completo')->nullable();
@@ -24,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('slug')->unique();
             $table->string('foto')->nullable();
             $table->string('password');
+            $table->boolean('is_validado')->default(false);
+            $table->boolean('is_suspenso')->default(false);
 
             $table->rememberToken();
             $table->timestamp('previous_last_login')->nullable();
@@ -31,17 +32,16 @@ class CreateUsersTable extends Migration
 
         });
 
-
-        Schema::create('rhs', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->index();
-
-            $table->enum('sexo', ['m', 'f'])->nullable();
-            $table->date('data_nascimento')->nullable();
-            $table->string('estado_civil')->nullable();
-
-            $table->primary('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
+//        Schema::create('rhs', function (Blueprint $table) {
+//            $table->integer('user_id')->unsigned()->index();
+//
+//            $table->enum('sexo', ['m', 'f'])->nullable();
+//            $table->date('data_nascimento')->nullable();
+//            $table->string('estado_civil')->nullable();
+//
+//            $table->primary('user_id');
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//        });
     }
 
     /**
@@ -51,7 +51,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rhs');
+//        Schema::dropIfExists('rhs');
         Schema::dropIfExists('users');
     }
 }

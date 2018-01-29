@@ -13,34 +13,34 @@ class CreateDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_documentos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('descricao');
-            $table->string('display_name');
-        });
+//        Schema::create('tipo_documentos', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('descricao');
+//            $table->string('display_name');
+//        });
 
-        Schema::create('documentos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('rh_id')->unsigned()->nullable();
-            $table->timestamps();
+//        Schema::create('documentos', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->integer('rh_id')->unsigned()->nullable();
+//            $table->timestamps();
+//
+//            $table->integer('tipo_documento_id')->unsigned()->nullable();
+//            $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos')->onDelete('set null');
+//
+//            $table->string('imagem')->nullable();
+//            $table->string('identificacao')->nullable();
+//            $table->string('orgao_expedidor')->nullable();
+//            $table->date('data_emissao')->nullable();
+//            $table->date('validade')->nullable();
+//            $table->string('zona')->nullable();
+//            $table->string('secao')->nullable();
+//            $table->string('serie')->nullable();
+//
+//        });
 
-            $table->integer('tipo_documento_id')->unsigned()->nullable();
-            $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos')->onDelete('set null');
-
-            $table->string('imagem')->nullable();
-            $table->string('identificacao')->nullable();
-            $table->string('orgao_expedidor')->nullable();
-            $table->date('data_emissao')->nullable();
-            $table->date('validade')->nullable();
-            $table->string('zona')->nullable();
-            $table->string('secao')->nullable();
-            $table->string('serie')->nullable();
-
-        });
-
-        Schema::table('documentos', function (Blueprint $table) {
-            $table->foreign('rh_id')->references('user_id')->on('rhs')->onDelete('cascade');
-        });
+//        Schema::table('documentos', function (Blueprint $table) {
+//            $table->foreign('rh_id')->references('user_id')->on('rhs')->onDelete('cascade');
+//        });
     }
 
     /**
@@ -50,12 +50,12 @@ class CreateDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::table('documentos', function (Blueprint $table) {
-            $table->dropForeign('documentos_tipo_documento_id_foreign');
-        });
-
-        Schema::dropIfExists('documentos');
-
-        Schema::dropIfExists('tipo_documentos');
+//        Schema::table('documentos', function (Blueprint $table) {
+//            $table->dropForeign('documentos_tipo_documento_id_foreign');
+//        });
+//
+//        Schema::dropIfExists('documentos');
+//
+//        Schema::dropIfExists('tipo_documentos');
     }
 }

@@ -20,6 +20,8 @@ class User extends Authenticatable
         'slug',
         'nome_completo',
         'password',
+        'is_validado',
+        'is_suspenso'
     ];
 
     protected $hidden = [
@@ -28,49 +30,81 @@ class User extends Authenticatable
 
     protected $dates = ['previous_last_login', 'current_last_login'];
 
+    protected $casts = [
+        'is_validado' => 'boolean',
+        'is_suspenso' => 'boolean'
+    ];
+
     protected static function boot()
     {
         parent::boot();
-        self::addGlobalScope(new AtivoScope());
     }
 
-    public function rh(){
-        return $this->hasOne(Rh::class);
+    public function validar(){
+        $this->is_validado = true;
+        $this->save();
     }
 
-    public function unidade(){
-        return $this->belongsTo(Unidade::class);
+    public function invalidar(){
+        $this->is_validado = false;
+        $this->save();
     }
 
-    public function unidadeDescricao(){
-        return ($this->unidade)?$this->unidade->descricao:false;
+    public function isValidado(){
+        return $this->is_validado;
     }
 
-    public function unidadeSigla(){
-        return ($this->unidade)?$this->unidade->sigla:false;
+    public function suspender(){
+        $this->is_suspenso = true;
+        $this->save();
     }
 
-    public function telefones()
-    {
-        return $this->belongsToMany(Telefone::class);
+    public function reativar(){
+        $this->is_suspenso = false;
+        $this->save();
     }
 
-    public function ramais(){
-        return $this->relationsWithFlag('telefones', 'is-work');
+    public function isSuspenso(){
+        return $this->is_suspenso;
     }
 
-    public function emails()
-    {
-        return $this->belongsToMany(Email::class);
-    }
-
-    public function emails_funcionais(){
-        return $this->relationsWithFlag('emails', 'is-work');
-    }
-
-    public function email(){
-        return $this->emails()->first();
-    }
+//    public function rh(){
+//        return $this->hasOne(Rh::class);
+//    }
+//
+//    public function unidade(){
+//        return $this->belongsTo(Unidade::class);
+//    }
+//
+//    public function unidadeDescricao(){
+//        return ($this->unidade)?$this->unidade->descricao:false;
+//    }
+//
+//    public function unidadeSigla(){
+//        return ($this->unidade)?$this->unidade->sigla:false;
+//    }
+//
+//    public function telefones()
+//    {
+//        return $this->belongsToMany(Telefone::class);
+//    }
+//
+//    public function ramais(){
+//        return $this->relationsWithFlag('telefones', 'is-work');
+//    }
+//
+//    public function emails()
+//    {
+//        return $this->belongsToMany(Email::class);
+//    }
+//
+//    public function emails_funcionais(){
+//        return $this->relationsWithFlag('emails', 'is-work');
+//    }
+//
+//    public function email(){
+//        return $this->emails()->first();
+//    }
 
     public static function ofSlug($slug){
         return static::where('slug', $slug)->first();
@@ -81,62 +115,62 @@ class User extends Authenticatable
         return 'slug';
     }
 
-    public function canOrOwns($thing, $permissions, $fk = 'user_id'){
+//    public function canOrOwns($thing, $permissions, $fk = 'user_id'){
+//
+//        if(!auth()->check()) return false;
+//
+//        if(is_int($thing)) return $this->id === $thing || $this->can($permissions);
+//
+//        return $this->owns($thing, $fk) || $this->can($permissions);
+//
+//    }
+//
+//    public function getFotoAttribute($value){
+//            return ($value)?Storage::url('documentos/' . $value):'/images/sem_imagem.png';
+//    }
+//
+//    public function getCpfAttribute($value)
+//    {
+//
+//        $mask = '###.###.###-##';
+//
+//        $str = str_replace(" ", "", $value);
+//
+//        for ($i = 0, $iMax = strlen($value); $i < $iMax; $i++) {
+//            $mask[strpos($mask, "#")] = $value[$i];
+//        }
+//
+//        return $mask;
+//    }
+//
+//    public function setCpfAttribute($value)
+//    {
+//
+//        $value = str_replace([' ', '/', '.', '-'], "", $value);
+//
+//        $this->attributes['cpf'] = $value;
+//
+//    }
 
-        if(!auth()->check()) return false;
+//    public function aprovar(){
+//        $this->removeFlag('approval-pending');
+//        return !$this->hasFlag('approval-pending');
+//    }
+//
+//    /**
+//     * @return mixed
+//     * Suggar pra ver usuários aprovados
+//     */
+//    public function scopeAprovados(){
+//        return self::withFlag('approval-pending', true);
+//    }
 
-        if(is_int($thing)) return $this->id === $thing || $this->can($permissions);
-
-        return $this->owns($thing, $fk) || $this->can($permissions);
-
-    }
-
-    public function getFotoAttribute($value){
-            return ($value)?Storage::url('documentos/' . $value):'/images/sem_imagem.png';
-    }
-
-    public function getCpfAttribute($value)
-    {
-
-        $mask = '###.###.###-##';
-
-        $str = str_replace(" ", "", $value);
-
-        for ($i = 0, $iMax = strlen($value); $i < $iMax; $i++) {
-            $mask[strpos($mask, "#")] = $value[$i];
-        }
-
-        return $mask;
-    }
-
-    public function setCpfAttribute($value)
-    {
-
-        $value = str_replace([' ', '/', '.', '-'], "", $value);
-
-        $this->attributes['cpf'] = $value;
-
-    }
-
-    public function aprovar(){
-        $this->removeFlag('approval-pending');
-        return !$this->hasFlag('approval-pending');
-    }
-
-    /**
-     * @return mixed
-     * Suggar pra ver usuários aprovados
-     */
-    public function scopeAprovados(){
-        return self::withFlag('approval-pending', true);
-    }
-
-    /**
-     * @return mixed
-     * Suggar pra ver usuários pendentes
-     */
-    public function scopePendentes(){
-        return self::withFlag('approval-pending');
-    }
+//    /**
+//     * @return mixed
+//     * Suggar pra ver usuários pendentes
+//     */
+//    public function scopePendentes(){
+//        return self::withFlag('approval-pending');
+//    }
 
 }
