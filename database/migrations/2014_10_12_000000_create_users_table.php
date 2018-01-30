@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('slug')->unique();
             $table->string('foto')->nullable();
             $table->string('password');
-            $table->boolean('is_validado')->default(false);
+            $table->boolean('is_aprovado')->default(false);
             $table->boolean('is_suspenso')->default(false);
 
             $table->rememberToken();

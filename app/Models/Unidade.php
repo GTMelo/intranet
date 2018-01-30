@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\AtivoScope;
+use App\Models\Scopes\NaoDeletadoScope;
 use App\Traits\Seedable;
 
 
@@ -19,7 +19,7 @@ class Unidade extends Model
     protected static function boot()
     {
 
-        self::addGlobalScope(new AtivoScope());
+        self::addGlobalScope(new NaoDeletadoScope());
         parent::boot();
 
     }

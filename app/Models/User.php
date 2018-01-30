@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 use Laratrust\Traits\LaratrustUserTrait;
-use App\Models\Scopes\AtivoScope;
+use App\Models\Scopes\NaoDeletadoScope;
 
 class User extends Authenticatable
 {
@@ -20,7 +20,7 @@ class User extends Authenticatable
         'slug',
         'nome_completo',
         'password',
-        'is_validado',
+        'is_aprovado',
         'is_suspenso'
     ];
 
@@ -31,27 +31,22 @@ class User extends Authenticatable
     protected $dates = ['previous_last_login', 'current_last_login'];
 
     protected $casts = [
-        'is_validado' => 'boolean',
+        'is_aprovado' => 'boolean',
         'is_suspenso' => 'boolean'
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-    }
-
-    public function validar(){
-        $this->is_validado = true;
+    public function aprovar(){
+        $this->is_aprovado = true;
         $this->save();
     }
 
-    public function invalidar(){
-        $this->is_validado = false;
+    public function desaprovar(){
+        $this->is_aprovado = false;
         $this->save();
     }
 
-    public function isValidado(){
-        return $this->is_validado;
+    public function isAprovado(){
+        return $this->is_aprovado;
     }
 
     public function suspender(){
@@ -66,6 +61,18 @@ class User extends Authenticatable
 
     public function isSuspenso(){
         return $this->is_suspenso;
+    }
+
+    public function scopeAprovado($query, $inverter = false){
+        return $query->where('is_aprovado', !$inverter);
+    }
+
+    public function scopeAtivo($query, $inverter = false){
+        return $query->where('is_suspenso', $inverter);
+    }
+
+    public function scopeValido($query){
+        return $query->aprovado()->ativo();
     }
 
 //    public function rh(){

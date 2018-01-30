@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 use Illuminate\Database\Eloquent\Scope;
 
-class AtivoScope implements Scope
+class NaoDeletadoScope implements Scope
 {
 
     /**
